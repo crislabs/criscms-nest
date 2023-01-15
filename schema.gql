@@ -1,0 +1,1577 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type PageData {
+  count: Float!
+  limit: Float!
+  offset: Float!
+}
+
+type DataSite {
+  title: String!
+  description: String
+  type: Type!
+  imageSite: ImageSite
+  infoSite: InfoSite
+  adminSite: [AdminSite]
+  dbSite: [DBSite]
+  updateDate: UpdateDate!
+}
+
+type DBSite {
+  uid: String!
+  label: String!
+  slug: String!
+}
+
+type ImageSite {
+  banner: Image
+  logo: Image
+  icon: Image
+}
+
+type Image {
+  uid: String
+  src: String
+  alt: String
+}
+
+type AdminSite {
+  privilege: String!
+  sid: String!
+}
+
+type InfoSite {
+  clientId: String!
+}
+
+type UpdateDate {
+  createdAt: DateTime!
+  lastUpdatedAt: DateTime
+  register: [Register!]
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Register {
+  uid: String
+  change: String
+  updatedAt: DateTime!
+}
+
+type Seo {
+  title: String!
+  href: String!
+  description: String!
+  image: Image
+}
+
+type Tags {
+  uid: String!
+  text: String!
+  slug: String!
+}
+
+type Type {
+  label: String!
+  slug: String!
+}
+
+type FoodSite {
+  _id: ID!
+  dataSite: DataSite!
+  url: String
+}
+
+type HardwareStoreSite {
+  _id: ID!
+  dataSite: DataSite!
+  url: String
+}
+
+type PetSite {
+  _id: ID!
+  dataSite: DataSite!
+  url: String
+  pages: [PetPage0]
+  users: [PetUser]
+  products: [PetProduct]
+  adoptions: [PetAdoption]
+  articles: [PetArticle]
+}
+
+type ListPetSite {
+  page: PetSiteConnection!
+  pageData: PageData
+}
+
+type PetSiteConnection {
+  edges: [PetSiteEdge!]
+  pageInfo: PetSitePageInfo
+}
+
+type PetSiteEdge {
+  cursor: String
+  node: PetSite
+}
+
+type PetSitePageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type PortfolioSite {
+  _id: ID!
+  dataSite: DataSite!
+  url: String
+}
+
+type DataComment {
+  content: String!
+  siteId: String!
+  author: String!
+  updateDate: UpdateDate!
+  likes: [String!]
+}
+
+type FoodComment {
+  _id: ID!
+  dataComment: DataComment!
+  parentId: String!
+}
+
+type PetComment {
+  _id: ID!
+  dataComment: DataComment!
+  parentId: String!
+}
+
+type PortfolioComment {
+  _id: ID!
+  dataComment: DataComment!
+  parentId: String!
+}
+
+type HardwareStoreComment {
+  _id: ID!
+  dataComment: DataComment!
+  parentId: String!
+}
+
+type DataProduct {
+  title: String!
+  description: String!
+  thumbnailUrl: String
+  type: Type!
+  mark: Mark
+  inStock: Float
+  price: Float
+  discountPrice: Float
+  promotion: Promotion
+  details: String
+  featured: String
+  specs: String
+  tags: [Tags!]
+  images: [Image!]
+  updateDate: UpdateDate!
+  likes: [String!]
+  siteId: String!
+}
+
+type Mark {
+  label: String!
+  slug: String!
+}
+
+type Promotion {
+  label: String!
+  slug: String!
+}
+
+type HardwareStoreProduct {
+  _id: ID!
+  dataProduct: DataProduct!
+  slug: String!
+  parentId: String!
+}
+
+type PetProduct {
+  _id: ID!
+  dataProduct: DataProduct!
+  slug: String!
+  parentId: String!
+  comments: [PetComment]
+}
+
+type FoodProduct {
+  _id: ID!
+  dataProduct: DataProduct!
+  slug: String!
+  parentId: String!
+}
+
+type ListPetProduct {
+  page: PetProductConnection!
+  pageData: PageData
+}
+
+type PetProductConnection {
+  edges: [PetProductEdge!]
+  pageInfo: PetProductPageInfo
+}
+
+type PetProductEdge {
+  cursor: String
+  node: PetProduct
+}
+
+type PetProductPageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type DataAdoption {
+  title: String!
+  description: String!
+  thumbnailUrl: String
+  type: Type!
+  inStock: Float
+  price: Float
+  discountPrice: Float
+  promotion: Promotion
+  details: String
+  featured: String
+  specs: String
+  tags: [Tags!]
+  images: [Image!]
+  updateDate: UpdateDate!
+  likes: [String!]
+  siteId: String!
+}
+
+type PetAdoption {
+  _id: ID!
+  dataAdoption: DataAdoption!
+  slug: String!
+  parentId: String!
+  comments: [PetComment]
+}
+
+type ListPetAdoption {
+  page: PetAdoptionConnection!
+  pageData: PageData
+}
+
+type PetAdoptionConnection {
+  edges: [PetAdoptionEdge!]
+  pageInfo: PetAdoptionPageInfo
+}
+
+type PetAdoptionEdge {
+  cursor: String
+  node: PetAdoption
+}
+
+type PetAdoptionPageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type DataArticle {
+  content: String
+  category: String
+  meta: String
+  tags: [Tags!]
+  author: String!
+  thumbnail: Image
+  seoArticle: Seo!
+  updateDate: UpdateDate!
+  likes: [String!]
+}
+
+type PetArticle {
+  _id: ID!
+  dataArticle: DataArticle!
+  siteId: String!
+  parentId: String!
+  slug: String!
+  comments: [PetComment]
+}
+
+type ListPetArticle {
+  page: PetArticleConnection!
+  pageData: PageData
+}
+
+type PetArticleConnection {
+  edges: [PetArticleEdge!]
+  pageInfo: PetArticlePageInfo
+}
+
+type PetArticleEdge {
+  cursor: String
+  node: PetArticle
+}
+
+type PetArticlePageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type FoodArticle {
+  _id: ID!
+  dataArticle: DataArticle!
+  siteId: String!
+  parentId: String!
+  slug: String!
+}
+
+type PortfolioArticle {
+  _id: ID!
+  dataArticle: DataArticle!
+  siteId: String!
+  parentId: String!
+  slug: String!
+}
+
+type HardwareStoreArticle {
+  _id: ID!
+  dataArticle: DataArticle!
+  siteId: String!
+  parentId: String!
+  slug: String!
+}
+
+type DataPage {
+  title: String!
+  description: String!
+  thumbnailUrl: String
+  type: Type!
+  icon: String
+  section: [ComponentPage!]!
+  updateDate: UpdateDate!
+  siteId: String!
+}
+
+type ComponentPage {
+  uid: String!
+  component: String!
+  html: String!
+}
+
+type FoodPage0 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type FoodPage1 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type FoodPage2 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type FoodPage3 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type FoodPage4 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type FoodPage5 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type FoodPage6 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type FoodPage7 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type FoodPage8 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type FoodPage9 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type FoodPage10 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type FoodPage11 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type FoodPage12 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type HardwareStorePage0 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type HardwareStorePage1 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type HardwareStorePage2 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type HardwareStorePage3 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type HardwareStorePage4 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type HardwareStorePage5 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type HardwareStorePage6 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type HardwareStorePage7 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type HardwareStorePage8 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type HardwareStorePage9 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type HardwareStorePage10 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type HardwareStorePage11 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type HardwareStorePage12 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type PetPage0 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+  adoptions: [PetAdoption]
+  pages: [PetPage1]
+  products: [PetProduct]
+  articles: [PetArticle]
+}
+
+type PetPage1 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+  products: [PetProduct]
+  pages: [PetPage2]
+}
+
+type PetPage2 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+  products: [PetProduct]
+  pages: [PetPage3]
+}
+
+type PetPage3 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+  products: [PetProduct]
+  pages: [PetPage4]
+}
+
+type PetPage4 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+  products: [PetProduct]
+  pages: [PetPage5]
+}
+
+type PetPage5 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+  products: [PetProduct]
+  pages: [PetPage6]
+}
+
+type PetPage6 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+  products: [PetProduct]
+  pages: [PetPage7]
+}
+
+type PetPage7 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+  products: [PetProduct]
+  pages: [PetPage8]
+}
+
+type PetPage8 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+  products: [PetProduct]
+  pages: [PetPage9]
+}
+
+type PetPage9 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+  products: [PetProduct]
+  pages: [PetPage10]
+}
+
+type PetPage10 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+  products: [PetProduct]
+  pages: [PetPage11]
+}
+
+type PetPage11 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+  products: [PetProduct]
+  pages: [PetPage12]
+}
+
+type PetPage12 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+  products: [PetProduct]
+}
+
+type PortfolioPage0 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type PortfolioPage1 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type PortfolioPage2 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type PortfolioPage3 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type PortfolioPage4 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type PortfolioPage5 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type PortfolioPage6 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type PortfolioPage7 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type PortfolioPage8 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type PortfolioPage9 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type PortfolioPage10 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type PortfolioPage11 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type PortfolioPage12 {
+  _id: ID!
+  dataPage: DataPage!
+  slug: String!
+  parentId: String!
+}
+
+type ListPetPage0 {
+  page: PetPage0Connection!
+  pageData: PageData
+}
+
+type PetPage0Connection {
+  edges: [PetPage0Edge!]
+  pageInfo: PetPage0PageInfo
+}
+
+type PetPage0Edge {
+  cursor: String
+  node: PetPage0
+}
+
+type PetPage0PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListPetPage1 {
+  page: PetPage1Connection!
+  pageData: PageData
+}
+
+type PetPage1Connection {
+  edges: [PetPage1Edge!]
+  pageInfo: PetPage1PageInfo
+}
+
+type PetPage1Edge {
+  cursor: String
+  node: PetPage1
+}
+
+type PetPage1PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListPetPage2 {
+  page: PetPage2Connection!
+  pageData: PageData
+}
+
+type PetPage2Connection {
+  edges: [PetPage2Edge!]
+  pageInfo: PetPage2PageInfo
+}
+
+type PetPage2Edge {
+  cursor: String
+  node: PetPage2
+}
+
+type PetPage2PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListPetPage3 {
+  page: PetPage3Connection!
+  pageData: PageData
+}
+
+type PetPage3Connection {
+  edges: [PetPage3Edge!]
+  pageInfo: PetPage3PageInfo
+}
+
+type PetPage3Edge {
+  cursor: String
+  node: PetPage3
+}
+
+type PetPage3PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListPetPage4 {
+  page: PetPage4Connection!
+  pageData: PageData
+}
+
+type PetPage4Connection {
+  edges: [PetPage4Edge!]
+  pageInfo: PetPage4PageInfo
+}
+
+type PetPage4Edge {
+  cursor: String
+  node: PetPage4
+}
+
+type PetPage4PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListPetPage5 {
+  page: PetPage5Connection!
+  pageData: PageData
+}
+
+type PetPage5Connection {
+  edges: [PetPage5Edge!]
+  pageInfo: PetPage5PageInfo
+}
+
+type PetPage5Edge {
+  cursor: String
+  node: PetPage5
+}
+
+type PetPage5PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListPetPage6 {
+  page: PetPage6Connection!
+  pageData: PageData
+}
+
+type PetPage6Connection {
+  edges: [PetPage6Edge!]
+  pageInfo: PetPage6PageInfo
+}
+
+type PetPage6Edge {
+  cursor: String
+  node: PetPage6
+}
+
+type PetPage6PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListPetPage7 {
+  page: PetPage7Connection!
+  pageData: PageData
+}
+
+type PetPage7Connection {
+  edges: [PetPage7Edge!]
+  pageInfo: PetPage7PageInfo
+}
+
+type PetPage7Edge {
+  cursor: String
+  node: PetPage7
+}
+
+type PetPage7PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListPetPage8 {
+  page: PetPage8Connection!
+  pageData: PageData
+}
+
+type PetPage8Connection {
+  edges: [PetPage8Edge!]
+  pageInfo: PetPage8PageInfo
+}
+
+type PetPage8Edge {
+  cursor: String
+  node: PetPage8
+}
+
+type PetPage8PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListPetPage9 {
+  page: PetPage9Connection!
+  pageData: PageData
+}
+
+type PetPage9Connection {
+  edges: [PetPage9Edge!]
+  pageInfo: PetPage9PageInfo
+}
+
+type PetPage9Edge {
+  cursor: String
+  node: PetPage9
+}
+
+type PetPage9PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListPetPage10 {
+  page: PetPage10Connection!
+  pageData: PageData
+}
+
+type PetPage10Connection {
+  edges: [PetPage10Edge!]
+  pageInfo: PetPage10PageInfo
+}
+
+type PetPage10Edge {
+  cursor: String
+  node: PetPage10
+}
+
+type PetPage10PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListPetPage11 {
+  page: PetPage11Connection!
+  pageData: PageData
+}
+
+type PetPage11Connection {
+  edges: [PetPage11Edge!]
+  pageInfo: PetPage11PageInfo
+}
+
+type PetPage11Edge {
+  cursor: String
+  node: PetPage11
+}
+
+type PetPage11PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListPetPage12 {
+  page: PetPage12Connection!
+  pageData: PageData
+}
+
+type PetPage12Connection {
+  edges: [PetPage12Edge!]
+  pageInfo: PetPage12PageInfo
+}
+
+type PetPage12Edge {
+  cursor: String
+  node: PetPage12
+}
+
+type PetPage12PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type DataUser {
+  password: String!
+  updateDate: UpdateDate!
+  username: String!
+  picture: String!
+  role: String!
+  status: Boolean!
+  oAuth: OAuth!
+  siteId: String!
+}
+
+type OAuth {
+  provider: String!
+}
+
+type PetUser {
+  _id: ID!
+  dataUser: DataUser!
+  email: String!
+}
+
+type Query {
+  petGetSite(id: String!): PetSite!
+  petGetSites: [PetSite!]!
+  petGetSitesByPagination(listInput: ListInput!): [PetSite!]!
+  petGetSitesWithCursor(args: ConnectionArgs!): ListPetSite!
+  petGetPage0(id: String!): PetPage0!
+  petGetPage0BySlug(slug: String!, siteId: String!): PetPage0!
+  petGetPages0: [PetPage0!]!
+  petGetPages0ByParentId(parentId: String!): [PetPage0!]!
+  petGetPages0BySiteId(siteId: String!): [PetPage0!]!
+  petGetPages0ByParentIdByPagination(listInput: ListInput!, parentId: String!): [PetPage0!]!
+  petGetPages0WithCursor(args: ConnectionArgs!, parentId: String!): ListPetPage0!
+  petGetPage1(id: String!): PetPage1!
+  petGetPage1BySlug(slug: String!, siteId: String!): PetPage1!
+  petGetPages1: [PetPage1!]!
+  petGetPages1BySiteId(siteId: String!): [PetPage1!]!
+  petGetPages1ByParentId(parentId: String!): [PetPage1!]!
+  petGetPages1ByParentIdByPagination(listInput: ListInput!, parentId: String!): [PetPage1!]!
+  petGetPages1WithCursor(args: ConnectionArgs!, parentId: String!): ListPetPage1!
+  petGetPage2(id: String!): PetPage2!
+  petGetPage2BySlug(slug: String!, siteId: String!): PetPage2!
+  petGetPages2: [PetPage2!]!
+  petGetPages2ByParentId(parentId: String!): [PetPage2!]!
+  petGetPages2BySiteId(siteId: String!): [PetPage2!]!
+  petGetPages2ByParentIdByPagination(listInput: ListInput!, parentId: String!): [PetPage2!]!
+  petGetPages2WithCursor(args: ConnectionArgs!, parentId: String!): ListPetPage2!
+  petGetPage3(id: String!): PetPage3!
+  petGetPage3BySlug(slug: String!, siteId: String!): PetPage3!
+  petGetPages3: [PetPage3!]!
+  petGetPages3ByParentId(parentId: String!): [PetPage3!]!
+  petGetPages3BySiteId(siteId: String!): [PetPage3!]!
+  petGetPages3ByParentIdByPagination(listInput: ListInput!, parentId: String!): [PetPage3!]!
+  petGetPages3WithCursor(args: ConnectionArgs!, parentId: String!): ListPetPage3!
+  petGetPage4(id: String!): PetPage4!
+  petGetPage4BySlug(slug: String!, siteId: String!): PetPage4!
+  petGetPages4: [PetPage4!]!
+  petGetPages4ByParentId(parentId: String!): [PetPage4!]!
+  petGetPages4BySiteId(siteId: String!): [PetPage4!]!
+  petGetPages4ByParentIdByPagination(listInput: ListInput!, parentId: String!): [PetPage4!]!
+  petGetPages4WithCursor(args: ConnectionArgs!, parentId: String!): ListPetPage4!
+  petGetPage5(id: String!): PetPage5!
+  petGetPage5BySlug(slug: String!, siteId: String!): PetPage5!
+  petGetPages5: [PetPage5!]!
+  petGetPages5ByParentId(parentId: String!): [PetPage5!]!
+  petGetPages5BySiteId(siteId: String!): [PetPage5!]!
+  petGetPages5ByParentIdByPagination(listInput: ListInput!, parentId: String!): [PetPage5!]!
+  petGetPages5WithCursor(args: ConnectionArgs!, parentId: String!): ListPetPage5!
+  petGetPage6(id: String!): PetPage6!
+  petGetPage6BySlug(slug: String!, siteId: String!): PetPage6!
+  petGetPages6: [PetPage6!]!
+  petGetPages6ByParentId(parentId: String!): [PetPage6!]!
+  petGetPages6BySiteId(siteId: String!): [PetPage6!]!
+  petGetPages6ByParentIdByPagination(listInput: ListInput!, parentId: String!): [PetPage6!]!
+  petGetPages6WithCursor(args: ConnectionArgs!, parentId: String!): ListPetPage6!
+  petGetPage7(id: String!): PetPage7!
+  petGetPage7BySlug(slug: String!, siteId: String!): PetPage7!
+  petGetPages7: [PetPage7!]!
+  petGetPages7ByParentId(parentId: String!): [PetPage7!]!
+  petGetPages7BySiteId(siteId: String!): [PetPage7!]!
+  petGetPages7ByParentIdByPagination(listInput: ListInput!, parentId: String!): [PetPage7!]!
+  petGetPages7WithCursor(args: ConnectionArgs!, parentId: String!): ListPetPage7!
+  petGetPage8(id: String!): PetPage8!
+  petGetPage8BySlug(slug: String!, siteId: String!): PetPage8!
+  petGetPages8: [PetPage8!]!
+  petGetPages8ByParentId(parentId: String!): [PetPage8!]!
+  petGetPages8BySiteId(siteId: String!): [PetPage8!]!
+  petGetPages8ByParentIdByPagination(listInput: ListInput!, parentId: String!): [PetPage8!]!
+  petGetPages8WithCursor(args: ConnectionArgs!, parentId: String!): ListPetPage8!
+  petGetPage9(id: String!): PetPage9!
+  petGetPage9BySlug(slug: String!, siteId: String!): PetPage9!
+  petGetPages9: [PetPage9!]!
+  petGetPages9ByParentId(parentId: String!): [PetPage9!]!
+  petGetPages9BySiteId(siteId: String!): [PetPage9!]!
+  petGetPages9ByParentIdByPagination(listInput: ListInput!, parentId: String!): [PetPage9!]!
+  petGetPages9WithCursor(args: ConnectionArgs!, parentId: String!): ListPetPage9!
+  petGetPage10(id: String!): PetPage10!
+  petGetPage10BySlug(slug: String!, siteId: String!): PetPage10!
+  petGetPages10: [PetPage10!]!
+  petGetPages10ByParentId(parentId: String!): [PetPage10!]!
+  petGetPages10BySiteId(siteId: String!): [PetPage10!]!
+  petGetPages10ByParentIdByPagination(listInput: ListInput!, parentId: String!): [PetPage10!]!
+  petGetPages10WithCursor(args: ConnectionArgs!, parentId: String!): ListPetPage10!
+  petGetPage11(id: String!): PetPage11!
+  petGetPage11BySlug(slug: String!, siteId: String!): PetPage11!
+  petGetPages11: [PetPage11!]!
+  petGetPages11ByParentId(parentId: String!): [PetPage11!]!
+  petGetPages11BySiteId(siteId: String!): [PetPage11!]!
+  petGetPages11ByParentIdByPagination(listInput: ListInput!, parentId: String!): [PetPage11!]!
+  petGetPages11WithCursor(args: ConnectionArgs!, parentId: String!): ListPetPage11!
+  petGetPage12(id: String!): PetPage12!
+  petGetPage12BySlug(slug: String!, siteId: String!): PetPage12!
+  petGetPages12: [PetPage12!]!
+  petGetPages12ByParentId(parentId: String!): [PetPage12!]!
+  petGetPages12BySiteId(siteId: String!): [PetPage12!]!
+  petGetPages12ByParentIdByPagination(listInput: ListInput!, parentId: String!): [PetPage12!]!
+  petGetPages12WithCursor(args: ConnectionArgs!, parentId: String!): ListPetPage12!
+  petGetProduct(id: String!): PetProduct!
+  petGetProductBySlug(slug: String!, siteId: String!): PetProduct!
+  petGetProducts: [PetProduct!]!
+  petGetProductsBySiteId(siteId: String!): [PetProduct!]!
+  petGetProductsByParentId(parentId: String!): [PetProduct!]!
+  petGetProductsByParentIdByPagination(listInput: ListInput!, parentId: String!): [PetProduct!]!
+  petGetProductsWithCursor(args: ConnectionArgs!, parentId: String!): ListPetProduct!
+  petGetComment(id: String!): PetComment!
+  petGetCommentsByParentId(parentId: String!): [PetComment!]!
+  petGetAdoption(id: String!): PetAdoption!
+  petGetAdoptionBySlug(slug: String!, siteId: String!): PetAdoption!
+  petGetAdoptions: [PetAdoption!]!
+  petGetAdoptionsBySiteId(siteId: String!): [PetAdoption!]!
+  petGetAdoptionsByParentId(parentId: String!): [PetAdoption!]!
+  petGetAdoptionsByParentIdByPagination(listInput: ListInput!, parentId: String!): [PetAdoption!]!
+  petGetAdoptionsWithCursor(args: ConnectionArgs!, parentId: String!): ListPetAdoption!
+  petGetArticle(id: String!): PetArticle!
+  petGetArticleBySlug(siteId: String!, slug: String!): PetArticle!
+  petGetArticles: [PetArticle!]!
+  petGetArticlesByParentId(parentId: String!): [PetArticle!]!
+  petGetArticlesBySiteId(siteId: String!): [PetArticle!]!
+  petGetArticlesByParentIdByPagination(listInput: ListInput!, parentId: String!): [PetArticle!]!
+  petGetArticlesWithCursor(args: ConnectionArgs!, parentId: String!): ListPetArticle!
+  petGetUser(id: String!): PetUser!
+  petGetUserByEmail(email: String!, siteId: String!): PetUser!
+  petGetUsers: [PetUser!]!
+}
+
+input ListInput {
+  """classical limit"""
+  limit: Float!
+
+  """classical offset"""
+  offset: Float!
+}
+
+input ConnectionArgs {
+  """Paginate before opaque cursor"""
+  before: String
+
+  """Paginate after opaque cursor"""
+  after: String
+
+  """Paginate first"""
+  first: Float
+
+  """Paginate last"""
+  last: Float
+}
+
+type Mutation {
+  petCreateSite(input: CreateSite!): PetSite!
+  petUpdateSite(input: UpdateSite!): PetSite!
+  petUpdateDbSite(input: UpdateDB!): PetSite!
+  petUpdateAdminSite(input: UpdateAdminSite!): PetSite!
+  petUpdateImageSite(input: UpdateImage!): PetSite!
+  petDeleteSite(id: String!): String!
+  petDeleteSites(ids: [String!]!): [String!]!
+  petDeleteAllSites: String!
+  petCreatePage0(input: CreatePage!): PetPage0!
+  petUpdatePage0(input: UpdatePage!): PetPage0!
+  petUpdateImagePage0(input: UpdateImage!): PetPage0!
+  petDeletePage0(id: String!): String!
+  petDeletePages0(ids: [String!]!): [String!]!
+  petDeleteAllPages0: String!
+  petCreatePage1(input: CreatePage!): PetPage1!
+  petUpdatePage1(input: UpdatePage!): PetPage1!
+  petUpdateImagePage1(input: UpdateImage!): PetPage1!
+  petDeletePage1(id: String!): String!
+  petDeletePages1(ids: [String!]!): [String!]!
+  petDeleteAllPages1: String!
+  petCreatePage2(input: CreatePage!): PetPage2!
+  petUpdatePage2(input: UpdatePage!): PetPage2!
+  petUpdateImagePage2(input: UpdateImage!): PetPage2!
+  petDeletePage2(id: String!): String!
+  petDeletePages2(ids: [String!]!): [String!]!
+  petDeleteAllPages2: String!
+  petCreatePage3(input: CreatePage!): PetPage3!
+  petUpdatePage3(input: UpdatePage!): PetPage3!
+  petUpdateImagePage3(input: UpdateImage!): PetPage3!
+  petDeletePage3(id: String!): String!
+  petDeletePages3(ids: [String!]!): [String!]!
+  petDeleteAllPages3: String!
+  petCreatePage4(input: CreatePage!): PetPage4!
+  petUpdatePage4(input: UpdatePage!): PetPage4!
+  petUpdateImagePage4(input: UpdateImage!): PetPage4!
+  petDeletePage4(id: String!): String!
+  petDeletePages4(ids: [String!]!): [String!]!
+  petDeleteAllPages4: String!
+  petCreatePage5(input: CreatePage!): PetPage5!
+  petUpdatePage5(input: UpdatePage!): PetPage5!
+  petUpdateImagePage5(input: UpdateImage!): PetPage5!
+  petDeletePage5(id: String!): String!
+  petDeletePages5(ids: [String!]!): [String!]!
+  petDeleteAllPages5: String!
+  petCreatePage6(input: CreatePage!): PetPage6!
+  petUpdatePage6(input: UpdatePage!): PetPage6!
+  petUpdateImagePage6(input: UpdateImage!): PetPage6!
+  petDeletePage6(id: String!): String!
+  petDeletePages6(ids: [String!]!): [String!]!
+  petDeleteAllPages6: String!
+  petCreatePage7(input: CreatePage!): PetPage7!
+  petUpdatePage7(input: UpdatePage!): PetPage7!
+  petUpdateImagePage7(input: UpdateImage!): PetPage7!
+  petDeletePage7(id: String!): String!
+  petDeletePages7(ids: [String!]!): [String!]!
+  petDeleteAllPages7: String!
+  petCreatePage8(input: CreatePage!): PetPage8!
+  petUpdatePage8(input: UpdatePage!): PetPage8!
+  petUpdateImagePage8(input: UpdateImage!): PetPage8!
+  petDeletePage8(id: String!): String!
+  petDeletePages8(ids: [String!]!): [String!]!
+  petDeleteAllPages8: String!
+  petCreatePage9(input: CreatePage!): PetPage9!
+  petUpdatePage9(input: UpdatePage!): PetPage9!
+  petUpdateImagePage9(input: UpdateImage!): PetPage9!
+  petDeletePage9(id: String!): String!
+  petDeletePages9(ids: [String!]!): [String!]!
+  petDeleteAllPages9: String!
+  petCreatePage10(input: CreatePage!): PetPage10!
+  petUpdatePage10(input: UpdatePage!): PetPage10!
+  petUpdateImagePage10(input: UpdateImage!): PetPage10!
+  petDeletePage10(id: String!): String!
+  petDeletePages10(ids: [String!]!): [String!]!
+  petDeleteAllPages10: String!
+  petCreatePage11(input: CreatePage!): PetPage11!
+  petUpdatePage11(input: UpdatePage!): PetPage11!
+  petUpdateImagePage11(input: UpdateImage!): PetPage11!
+  petDeletePage11(id: String!): String!
+  petDeletePages11(ids: [String!]!): [String!]!
+  petDeleteAllPages11: String!
+  petCreatePage12(input: CreatePage!): PetPage12!
+  petUpdatePage12(input: UpdatePage!): PetPage12!
+  petUpdateImagePage12(input: UpdateImage!): PetPage12!
+  petDeletePage12(id: String!): String!
+  petDeletePages12(ids: [String!]!): [String!]!
+  petDeleteAllPages12: String!
+  petCreateProduct(input: CreateProduct!): PetProduct!
+  petUpdateProduct(input: UpdateProduct!): PetProduct!
+  petUpdateDetailProduct(input: UpdateDetailProduct!): PetProduct!
+  petUpdatePriceProduct(input: UpdatePriceProduct!): PetProduct!
+  petUpdateSpecsProduct(input: UpdateSpecsProduct!): PetProduct!
+  petUpdateTagsProduct(input: UpdateTagsProduct!): PetProduct!
+  petUpdateLikesProduct(input: UpdateLikesProduct!): PetProduct!
+  petUpdateDisLikesProduct(input: UpdateLikesProduct!): PetProduct!
+  petUpdateImageProduct(input: UpdateImageProduct!): PetProduct!
+  petDeleteProduct(id: String!): String!
+  petDeleteProducts(ids: [String!]!): [String!]!
+  petDeleteAllProducts: String!
+  petCreateComment(input: CreateComment!): PetComment!
+  petUpdateComment(input: UpdateComment!): PetComment!
+  petUpdateLikesComment(input: UpdateLikesComment!): PetComment!
+  petUpdateDisLikesComment(input: UpdateLikesComment!): PetComment!
+  petDeleteComment(id: String!): String!
+  petDeleteComments(ids: [String!]!): [String!]!
+  petDeleteAllComments: String!
+  petCreateAdoption(input: CreateAdoption!): PetAdoption!
+  petUpdateAdoption(input: UpdateAdoption!): PetAdoption!
+  petUpdateDetailAdoption(input: UpdateDetailAdoption!): PetAdoption!
+  petUpdateSpecsAdoption(input: UpdateSpecsAdoption!): PetAdoption!
+  petUpdateTagsAdoption(input: UpdateTagsAdoption!): PetAdoption!
+  petUpdateLikesAdoption(input: UpdateLikesAdoption!): PetAdoption!
+  petUpdateDisLikesAdoption(input: UpdateLikesAdoption!): PetAdoption!
+  petUpdateImageAdoption(input: UpdateImageAdoption!): PetAdoption!
+  petDeleteAdoption(id: String!): String!
+  petDeleteAdoptions(ids: [String!]!): [String!]!
+  petDeleteAllAdoptions: String!
+  petCreateArticle(input: CreateArticle!): PetArticle!
+  petUpdateArticle(input: UpdateArticle!): PetArticle!
+  petUpdateContentArticle(input: UpdateContentArticle!): PetArticle!
+  petUpdateTagsArticle(input: UpdateTagsArticle!): PetArticle!
+  petUpdateLikesArticle(input: UpdateLikesArticle!): PetArticle!
+  petUpdateDisLikesArticle(input: UpdateLikesArticle!): PetArticle!
+  petUpdateImageArticle(input: UpdateImage!): PetArticle!
+  petDeleteArticle(id: String!): String!
+  petDeleteArticles(ids: [String!]!): [String!]!
+  petDeleteAllArticles: String!
+  petCreateUser(input: CreateUser!): PetUser!
+}
+
+input CreateSite {
+  title: String!
+  type: String!
+  uid: String!
+}
+
+input UpdateSite {
+  title: String!
+  uid: String!
+  id: String!
+}
+
+input UpdateDB {
+  id: String!
+  type: [String!]!
+}
+
+input UpdateAdminSite {
+  id: String!
+  admin: [InputAdmin!]!
+}
+
+input InputAdmin {
+  privilege: String!
+  sid: String!
+}
+
+input UpdateImage {
+  id: String!
+  type: String
+  uid: String!
+  images: InputImage!
+}
+
+input InputImage {
+  uid: String
+  src: String!
+  alt: String!
+}
+
+input CreatePage {
+  title: String!
+  description: String!
+  type: String!
+  parentId: String!
+  siteId: String!
+  uid: String!
+}
+
+input UpdatePage {
+  title: String!
+  description: String!
+  type: String!
+  parentId: String!
+  siteId: String!
+  uid: String!
+  id: String!
+}
+
+input CreateProduct {
+  title: String!
+  description: String!
+  siteId: String!
+  parentId: String!
+  uid: String!
+  type: String!
+}
+
+input UpdateProduct {
+  title: String
+  description: String
+  siteId: String
+  parentId: String
+  uid: String
+  type: String
+  id: String!
+}
+
+input UpdateDetailProduct {
+  id: String!
+  text: String!
+  uid: String!
+}
+
+input UpdatePriceProduct {
+  id: String!
+  price: String!
+  discountPrice: String!
+  inStock: String!
+  uid: String!
+}
+
+input UpdateSpecsProduct {
+  id: String!
+  text: String!
+  uid: String!
+}
+
+input UpdateTagsProduct {
+  id: String!
+  tags: [String!]!
+  uid: String!
+}
+
+input UpdateLikesProduct {
+  id: String!
+  uid: String!
+}
+
+input UpdateImageProduct {
+  id: String!
+  type: String
+  uid: String!
+  images: [InputImage!]!
+}
+
+input CreateComment {
+  author: String!
+  content: String!
+  siteId: String!
+  parentId: String!
+  uid: String!
+}
+
+input UpdateComment {
+  author: String
+  content: String
+  siteId: String
+  parentId: String
+  uid: String
+  id: String!
+}
+
+input UpdateLikesComment {
+  id: String!
+  uid: String!
+}
+
+input CreateAdoption {
+  title: String!
+  description: String!
+  siteId: String!
+  parentId: String!
+  uid: String!
+  type: String!
+}
+
+input UpdateAdoption {
+  title: String
+  description: String
+  siteId: String
+  parentId: String
+  uid: String
+  type: String
+  id: String!
+}
+
+input UpdateDetailAdoption {
+  id: String!
+  text: String!
+  uid: String!
+}
+
+input UpdateSpecsAdoption {
+  id: String!
+  text: String!
+  uid: String!
+}
+
+input UpdateTagsAdoption {
+  id: String!
+  tags: [String!]!
+  uid: String!
+}
+
+input UpdateLikesAdoption {
+  id: String!
+  uid: String!
+}
+
+input UpdateImageAdoption {
+  id: String!
+  type: String
+  uid: String!
+  images: [InputImage!]!
+}
+
+input CreateArticle {
+  title: String!
+  description: String!
+  siteId: String!
+  parentId: String!
+  uid: String!
+}
+
+input UpdateArticle {
+  title: String
+  description: String
+  siteId: String
+  parentId: String
+  uid: String
+  id: String!
+}
+
+input UpdateContentArticle {
+  id: String!
+  content: String!
+  uid: String!
+}
+
+input UpdateTagsArticle {
+  id: String!
+  tags: [String!]!
+  uid: String!
+}
+
+input UpdateLikesArticle {
+  id: String!
+  uid: String!
+}
+
+input CreateUser {
+  username: String!
+  siteId: String!
+  image: String!
+  email: String!
+  password: String!
+  role: String!
+  oAuth: String
+}
