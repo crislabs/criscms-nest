@@ -1329,6 +1329,7 @@ type Mutation {
   petUpdateLikesAdoption(input: UpdateLikesAdoption!): PetAdoption!
   petUpdateDisLikesAdoption(input: UpdateLikesAdoption!): PetAdoption!
   petUpdateImageAdoption(input: UpdateImageAdoption!): PetAdoption!
+  petUpdateImageSeoAdoption(input: UpdateImageSeo!): PetAdoption!
   petDeleteAdoption(id: String!): String!
   petDeleteAdoptions(ids: [String!]!): [String!]!
   petDeleteAllAdoptions: String!
@@ -1530,6 +1531,12 @@ input UpdateImageAdoption {
   type: String
   uid: String!
   images: [InputImage!]!
+}
+
+input UpdateImageSeo {
+  id: String
+  src: String!
+  uid: String!
 }
 
 input CreateArticle {

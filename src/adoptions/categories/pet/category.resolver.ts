@@ -17,7 +17,7 @@ import {
   UpdateSpecsProduct,
   UpdateTagsProduct,
 } from 'src/common/dto/product.input';
-import { UpdateImageAdoption, UpdateImageProduct } from 'src/common/dto/site.input';
+import { UpdateImageSeo, UpdateImageAdoption, UpdateImageProduct } from 'src/common/dto/site.input';
 import { PetComment } from 'src/common/entities/comment.model';
 import {
   ListPetAdoption,
@@ -73,6 +73,13 @@ export class PetAdoptionResolver {
   })
   updateImage(@Args('input') input: UpdateImageAdoption) {
     return this.adoptionService.updateImage(input);
+  }
+
+  @Mutation(() => PetAdoption, {
+    name: 'petUpdateImageSeoAdoption',
+  })
+  updateImageSeo(@Args('input') input: UpdateImageSeo) {
+    return this.adoptionService.updateImageSeo(input);
   }
 
   @Mutation(() => String, { name: 'petDeleteAdoption' })

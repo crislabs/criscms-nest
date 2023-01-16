@@ -9,7 +9,7 @@ import {
   UpdateSpecsProduct,
   UpdateTagsProduct,
 } from '../dto/product.input';
-import { UpdateImageProduct } from '../dto/site.input';
+import { UpdateImageProduct, UpdateImageSeo } from '../dto/site.input';
 
 export function productCreated({
   title,
@@ -187,6 +187,26 @@ export function productUpdateImage({
         alt: data.alt,
       })),
       
+      'dataProduct.updateDate.lastUpdatedAt': new Date(),
+    },
+    $push: {
+      'dataProduct.updateDate.register': {
+        uid: uid,
+        change: 'image product update',
+        updatedAt: new Date(),
+      },
+    },
+  };
+}
+export function productUpdateImageSeo({
+  id,
+  src,
+  uid,
+}: UpdateImageSeo) {
+  // const { src, alt } = images as InputImage;
+  return {
+    $set: {
+      'dataProduct.thumbnailUrl': src,
       'dataProduct.updateDate.lastUpdatedAt': new Date(),
     },
     $push: {

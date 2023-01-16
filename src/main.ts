@@ -13,12 +13,17 @@ async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
     new FastifyAdapter({ logger: true }),
-
   );
   // app.useGlobalFilters(new ExceptionsFilter());
   app.register(contentParser);
   app.enableCors({
-    origin: ['http://localhost:3000', 'https://crislabs.vercel.app', 'https://jesuscalamani92.vercel.app', 'https://jjcalamani92.vercel.app'],
+    origin: [
+      'http://localhost:3000',
+      'https://crislabs.vercel.app',
+      'https://garritas.vercel.app',
+      'https://jesuscalamani92.vercel.app',
+      'https://jjcalamani92.vercel.app',
+    ],
   });
   app.useGlobalPipes(new ValidationPipe());
   const configService = app.get(ConfigService);

@@ -69,8 +69,7 @@ export function pageUpdateImage({ id, images, type, uid }: UpdateImage) {
   const { src, alt } = images as InputImage;
   return {
     $set: {
-      'dataPage.seoPage.image.src': src,
-      'dataPage.seoPage.image.alt': alt,
+      'dataPage.thumbnailUrl': src,
       'dataPage.updateDate.lastUpdatedAt': new Date(),
     },
     $push: {

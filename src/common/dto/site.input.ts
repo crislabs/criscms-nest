@@ -57,6 +57,15 @@ export class UpdateImageProduct {
 export class UpdateImageAdoption extends UpdateImageProduct {}
 
 @InputType()
+export class UpdateImageSeo {
+  @Field({ nullable: true })
+  readonly id: string;
+  @Field()
+  readonly src: string;
+  @Field()
+  readonly uid: string;
+}
+@InputType()
 export class InputImage {
   @Field({ nullable: true })
   readonly uid?: string;

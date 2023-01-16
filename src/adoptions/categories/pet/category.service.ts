@@ -14,7 +14,7 @@ import {
   UpdateSpecsProduct,
   UpdateTagsProduct,
 } from 'src/common/dto/product.input';
-import { UpdateImageAdoption, UpdateImageProduct } from 'src/common/dto/site.input';
+import { UpdateImageSeo, UpdateImageAdoption, UpdateImageProduct } from 'src/common/dto/site.input';
 import { PetAdoption } from 'src/common/entities/adoption.model';
 import { AdoptionDocument } from 'src/common/entities/adoption.schema';
 // import { PetAdoption } from 'src/common/entities/product.model';
@@ -28,6 +28,7 @@ import {
   adoptionTagsUpdated,
   adoptionUpdated,
   adoptionUpdateImage,
+  adoptionUpdateImageSeo,
 } from 'src/common/functions/adoption';
 import { ListInput } from 'src/common/pagination/dto/list.input';
 import { slug } from 'utils/function';
@@ -128,6 +129,14 @@ export class PetAdoptionService {
     const data = await this.adoptionModel.findOneAndUpdate(
       { _id: input.id },
       adoptionUpdateImage(input),
+      { lean: true, new: true },
+    );
+    return data;
+  }
+  async updateImageSeo(input: UpdateImageSeo) {
+    const data = await this.adoptionModel.findOneAndUpdate(
+      { _id: input.id },
+      adoptionUpdateImageSeo(input),
       { lean: true, new: true },
     );
     return data;

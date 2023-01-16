@@ -9,7 +9,7 @@ import {
   UpdateSpecsAdoption,
   UpdateTagsAdoption,
 } from '../dto/adoption.input';
-import { UpdateImageProduct } from '../dto/site.input';
+import { UpdateImageSeo, UpdateImageProduct } from '../dto/site.input';
 
 export function adoptionCreated({
   title,
@@ -199,6 +199,28 @@ export function adoptionUpdateImage({
       'dataAdoption.updateDate.register': {
         uid: uid,
         change: 'image adoption update',
+        updatedAt: new Date(),
+      },
+    },
+  };
+}
+export function adoptionUpdateImageSeo({
+  id,
+  src,
+  uid,
+}: UpdateImageSeo) {
+  // const { src, alt } = images as InputImage;
+  return {
+    $set: {
+      'dataAdoption.thumbnailUrl': src,
+      // 'dataAdoption.seoAdoption.image.src': images[0].src,
+      // 'dataAdoption.seoAdoption.image.alt': images[0].alt,
+      'dataAdoption.updateDate.lastUpdatedAt': new Date(),
+    },
+    $push: {
+      'dataAdoption.updateDate.register': {
+        uid: uid,
+        change: 'image for seo update',
         updatedAt: new Date(),
       },
     },
