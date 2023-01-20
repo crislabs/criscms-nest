@@ -5,7 +5,7 @@ import { DataSite } from './site.model';
 @Schema({ versionKey: false })
 export class SiteDocument extends AbstractDocument {
   @Prop({ type: DataSite })
-  dataSite: DataSite;
+  data: DataSite;
   @Prop({ trim: true })
   url?: string;
 }

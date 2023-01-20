@@ -5,13 +5,13 @@ import { DataPage } from './page.model';
 @Schema({ versionKey: false })
 export class PageDocument extends AbstractDocument {
   @Prop({ type: DataPage })
-  dataPage: DataPage;
+  data: DataPage;
   @Prop({ trim: true })
   slug: string;
   @Prop({ trim: true, index: true })
   parentId: string;
   @Prop({ trim: true, index: true })
-  'dataPage.siteId': string;
+  'data.siteId': string;
 }
 
 export const FoodPage0Schema = SchemaFactory.createForClass(PageDocument);

@@ -29,7 +29,7 @@ export class PetPage9Service {
     const page = await this.pageModel.findOne(
       {
         slug: slug(input.title),
-        'dataPage.siteId': input.siteId,
+        'data.siteId': input.siteId,
         parentId: input.parentId,
       },
       {},
@@ -52,7 +52,7 @@ export class PetPage9Service {
       {
         _id: { $ne: input.id },
         slug: slug(input.title),
-        'dataPage.siteId': input.siteId,
+        'data.siteId': input.siteId,
         parentId: input.parentId,
       },
       {},
@@ -95,7 +95,7 @@ export class PetPage9Service {
   }
 
   async deleteManyBySiteId(ids: string[]) {
-    await this.pageModel.deleteMany({ 'dataPage.siteId': { $in: ids } });
+    await this.pageModel.deleteMany({ 'data.siteId': { $in: ids } });
     return 'pages delete';
   }
 
@@ -118,7 +118,7 @@ export class PetPage9Service {
   }
 
   findBySiteId(siteId: string) {
-    return this.pageModel.find({ 'dataPage.siteId': siteId });
+    return this.pageModel.find({ 'data.siteId': siteId });
   }
 
   async findOne(id: string) {
@@ -134,7 +134,7 @@ export class PetPage9Service {
 
   async findOneBySlug(slug: string, siteId: string) {
     const document = await this.pageModel.findOne(
-      { slug: slug, 'dataPage.siteId': siteId },
+      { slug: slug, 'data.siteId': siteId },
       {},
       { lean: true },
     );
@@ -145,7 +145,7 @@ export class PetPage9Service {
 
   findByParentIdByPagination(paginationQuery: ListInput, parentId: string) {
     const { limit, offset } = paginationQuery;
-    return this.pageModel.find({ parentId: parentId }).sort({ 'dataPage.updateDate.lastUpdatedAt': -1 }).skip(offset).limit(limit).exec();
+    return this.pageModel.find({ parentId: parentId }).sort({ 'data.updateDate.lastUpdatedAt': -1 }).skip(offset).limit(limit).exec();
   }
 
 
@@ -154,7 +154,7 @@ export class PetPage9Service {
     const count = await this.pageModel.count({ parentId: parentId });
     const data = await this.pageModel
       .find({ parentId: parentId }, {}, { lean: true })
-      .sort({ 'dataPage.updateDate.lastUpdatedAt': -1 })
+      .sort({ 'data.updateDate.lastUpdatedAt': -1 })
       .skip(offset)
       .limit(limit)
       .exec();

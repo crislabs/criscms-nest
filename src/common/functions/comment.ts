@@ -15,7 +15,7 @@ export function commentCreated({
   return {
     _id: new Types.ObjectId(),
     parentId: parentId,
-    dataComment: {
+    data: {
       author: author,
       content: content,
       siteId: siteId,
@@ -40,11 +40,11 @@ export function commentUpdated({
 }: UpdateComment) {
   return {
     $set: {
-      'dataComment.content': content,
-      'dataComment.updateDate.lastUpdatedAt': new Date(),
+      'data.content': content,
+      'data.updateDate.lastUpdatedAt': new Date(),
     },
     $push: {
-      'dataComment.updateDate.register': {
+      'data.updateDate.register': {
         uid: uid,
         change: 'comment update',
         updatedAt: new Date(),
@@ -62,13 +62,13 @@ export function commentLikesUpdated({ uid }: UpdateLikesComment) {
       //   text: data,
       //   slug: slug(data),
       // })),
-      'dataComment.updateDate.lastUpdatedAt': new Date(),
+      'data.updateDate.lastUpdatedAt': new Date(),
     },
     $addToSet: {
-      'dataComment.likes': uid,
+      'data.likes': uid,
     },
     $push: {
-      'dataComment.updateDate.register': {
+      'data.updateDate.register': {
         uid: uid,
         change: 'comment likes updated',
         updatedAt: new Date(),
@@ -85,13 +85,13 @@ export function commentDisLikesUpdated({ uid }: UpdateLikesComment) {
       //   text: data,
       //   slug: slug(data),
       // })),
-      'dataComment.updateDate.lastUpdatedAt': new Date(),
+      'data.updateDate.lastUpdatedAt': new Date(),
     },
     $pull: {
-      'dataComment.likes': uid,
+      'data.likes': uid,
     },
     $push: {
-      'dataComment.updateDate.register': {
+      'data.updateDate.register': {
         uid: uid,
         change: 'comment dislikes updated',
         updatedAt: new Date(),

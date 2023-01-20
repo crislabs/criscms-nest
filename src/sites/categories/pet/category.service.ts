@@ -106,7 +106,7 @@ export class PetSiteService {
 
   findByParentIdByPagination(paginationQuery: ListInput) {
     const { limit, offset } = paginationQuery;
-    return this.siteModel.find().sort({ 'dataSite.updateDate.lastUpdatedAt': -1 }).skip(offset).limit(limit).exec();
+    return this.siteModel.find().sort({ 'data.updateDate.lastUpdatedAt': -1 }).skip(offset).limit(limit).exec();
   }
 
   async findByCursor(paginationQuery: ListInput) {
@@ -115,7 +115,7 @@ export class PetSiteService {
 
     const data = await this.siteModel
       .find({}, {}, { lean: true })
-      .sort({ 'dataSite.updateDate.lastUpdatedAt': -1 })
+      .sort({ 'data.updateDate.lastUpdatedAt': -1 })
       .skip(offset)
       .limit(limit)
       .exec();

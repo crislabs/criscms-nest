@@ -16,7 +16,7 @@ export async function  userCreated({
 }: CreateUser) {
   return {
     _id: new Types.ObjectId(),
-    dataUser: {
+    data: {
       role: role,
       picture: image,
       username: username,
@@ -40,15 +40,15 @@ export function pageUpdate({ id, type, title, description, uid }: UpdatePage) {
     filter: { _id: id },
     update: {
       $set: {
-        'dataPage.type': type,
-        'dataPage.seoPage.title': capitalizar(title),
-        'dataPage.seoPage.href': slug(title),
-        'dataPage.seoPage.description': description,
-        'dataPage.updateData.lastUpdatedAt': new Date(),
+        'data.type': type,
+        'data.seoPage.title': capitalizar(title),
+        'data.seoPage.href': slug(title),
+        'data.seoPage.description': description,
+        'data.updateData.lastUpdatedAt': new Date(),
         slug: slug(title),
       },
       $push: {
-        'dataPage.updateDate.register': {
+        'data.updateDate.register': {
           uid: uid,
           change: 'page update',
           updatedAt: new Date(),
@@ -65,12 +65,12 @@ export function pageUpdateImage({ id, images, type, uid }: UpdateImage) {
     filter: { _id: id },
     update: {
       $set: {
-        'dataPage.seoPage.image.src': src,
-        'dataPage.seoPage.image.alt': alt,
-        'dataPage.updateDate.lastUpdatedAt': new Date(),
+        'data.seoPage.image.src': src,
+        'data.seoPage.image.alt': alt,
+        'data.updateDate.lastUpdatedAt': new Date(),
       },
       $push: {
-        'dataPage.updateDate.register': {
+        'data.updateDate.register': {
           uid: uid,
           change: 'image update',
           updatedAt: new Date(),

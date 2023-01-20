@@ -65,7 +65,7 @@ export class PetCommentService {
   }
 
   async deleteManyBySiteId(ids: string[]) {
-    await this.commentModel.deleteMany({ 'dataComment.siteId': { $in: ids } });
+    await this.commentModel.deleteMany({ 'data.siteId': { $in: ids } });
     return 'comments delete';
   }
   async deleteManyByParentId(ids: string[]) {

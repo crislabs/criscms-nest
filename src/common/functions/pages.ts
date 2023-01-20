@@ -16,7 +16,7 @@ export function pageCreated({
 }: CreatePage) {
   return {
     _id: new Types.ObjectId(),
-    dataPage: {
+    data: {
       // type: type,
       type: {
         label: typePage(type),
@@ -46,17 +46,17 @@ export function pageCreated({
 export function pageUpdate({ id, type, title, description, uid }: UpdatePage) {
   return {
     $set: {
-      'dataPage.type': {
+      'data.type': {
         label: typePage(type),
         slug: type,
       },
-      'dataPage.title': title,
-      'dataPage.description': description,
-      'dataPage.updateDate.lastUpdatedAt': new Date(),
+      'data.title': title,
+      'data.description': description,
+      'data.updateDate.lastUpdatedAt': new Date(),
       slug: slug(title),
     },
     $push: {
-      'dataPage.updateDate.register': {
+      'data.updateDate.register': {
         uid: uid,
         change: 'update page',
         updatedAt: new Date(),
@@ -69,11 +69,11 @@ export function pageUpdateImage({ id, images, type, uid }: UpdateImage) {
   const { src, alt } = images as InputImage;
   return {
     $set: {
-      'dataPage.thumbnailUrl': src,
-      'dataPage.updateDate.lastUpdatedAt': new Date(),
+      'data.thumbnailUrl': src,
+      'data.updateDate.lastUpdatedAt': new Date(),
     },
     $push: {
-      'dataPage.updateDate.register': {
+      'data.updateDate.register': {
         uid: uid,
         change: 'image update',
         updatedAt: new Date(),

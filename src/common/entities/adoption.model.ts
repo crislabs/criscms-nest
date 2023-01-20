@@ -7,7 +7,7 @@ import { Image, Seo, Tags, Type, UpdateDate } from './site.model';
 @ObjectType()
 export class Adoption extends AbstractModel {
   @Field(() => DataAdoption)
-  readonly dataAdoption: DataAdoption | string;
+  readonly data: DataAdoption | string;
   @Field()
   readonly slug: string;
 

@@ -6,9 +6,7 @@ import { Image, Seo, Tags, UpdateDate } from './site.model';
 @ObjectType()
 export class Article extends AbstractModel {
   @Field(() => DataArticle)
-  readonly dataArticle: DataArticle | string;
-  @Field()
-  readonly siteId: string;
+  readonly data: DataArticle | string;
   @Field()
   readonly parentId: string;
   @Field()
@@ -16,9 +14,17 @@ export class Article extends AbstractModel {
 }
 @ObjectType()
 export class DataArticle {
+  @Field()
+  readonly title: string;
+  @Field()
+  readonly description: string;
+  @Field({ nullable: true })
+  readonly thumbnailUrl?: string;
   @Field({ nullable: true })
   readonly content?: string;
   @Field({ nullable: true })
+  readonly siteId: string;
+  @Field()
   readonly category?: string;
   @Field({ nullable: true })
   readonly meta?: string;
@@ -26,10 +32,7 @@ export class DataArticle {
   readonly tags?: Tags[];
   @Field()
   readonly author: string;
-  @Field(() => Image, { nullable: true })
-  readonly thumbnail?: Image | string;
-  @Field(() => Seo)
-  readonly seoArticle: Seo | string;
+ 
   @Field(() => UpdateDate)
   readonly updateDate: UpdateDate | string;
   @Field(() => [String], { nullable: true })

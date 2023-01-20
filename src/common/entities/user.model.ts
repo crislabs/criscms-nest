@@ -5,7 +5,7 @@ import { Image, UpdateDate } from './site.model';
 @ObjectType()
 export class User extends AbstractModel {
   @Field(() => DataUser)
-  readonly dataUser: DataUser | string;
+  readonly data: DataUser | string;
   @Field()
   readonly email: string;
 }

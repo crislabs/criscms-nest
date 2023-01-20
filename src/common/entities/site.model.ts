@@ -5,7 +5,7 @@ import { RelayTypes } from '../pagination/relay/relay.types';
 @ObjectType()
 export class Site extends AbstractModel {
   @Field(() => DataSite)
-  readonly dataSite: DataSite | string;
+  readonly data: DataSite | string;
   @Field({nullable: true})
   readonly url?: string;
 }
@@ -19,21 +19,19 @@ export class DataSite {
   @Field(() => Type)
   readonly type: Type | string;
   @Field(() => ImageSite, { nullable: true })
-  readonly imageSite?: ImageSite | string;
+  readonly images?: ImageSite | string;
   @Field(() => InfoSite, { nullable: true })
-  readonly infoSite?: InfoSite | string;
+  readonly info?: InfoSite | string;
   @Field(() => [AdminSite], { nullable: 'itemsAndList' })
-  readonly adminSite: AdminSite[];
+  readonly admin: AdminSite[];
   @Field(() => [DBSite], { nullable: 'itemsAndList' })
-  readonly dbSite: DBSite[];
+  readonly db: DBSite[];
   @Field(() => UpdateDate)
   readonly updateDate: UpdateDate | string;
 }
 
 @ObjectType()
 export class DBSite {
-  @Field()
-  readonly uid: string;
   @Field()
   readonly label: string;
   @Field()

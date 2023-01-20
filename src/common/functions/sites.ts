@@ -17,7 +17,7 @@ export function siteCreated({
  
   return {
     _id: new Types.ObjectId(),
-    dataSite: {
+    data: {
       title: title,
       type: {
         label: typeSite(type),
@@ -42,13 +42,13 @@ export function siteUpdate({ id, uid, title }: UpdateSite) {
   
   return {
     $set: {
-      'dataSite.title': title,
+      'data.title': title,
       
-      'dataSite.updateDate.lastUpdatedAt': new Date(),
+      'data.updateDate.lastUpdatedAt': new Date(),
       
     },
     $push: {
-      'dataSite.updateDate.register': {
+      'data.updateDate.register': {
         uid: uid,
         change: 'updated site',
         updatedAt: new Date(),
@@ -59,14 +59,14 @@ export function siteUpdate({ id, uid, title }: UpdateSite) {
 export function siteDBUpdate({ id, type }: UpdateDB) {
   return {
     $set: {
-      'dataSite.dbSite': type.map((data) => ({
+      'data.dbSite': type.map((data) => ({
         label: capitalizar(data),
         slug: slug(data),
       })),
-      'dataSite.updateDate.lastUpdatedAt': new Date(),
+      'data.updateDate.lastUpdatedAt': new Date(),
     },
     $push: {
-      'dataSite.updateDate.register': {
+      'data.updateDate.register': {
         change: 'updated site db',
         updatedAt: new Date(),
       },
@@ -76,14 +76,14 @@ export function siteDBUpdate({ id, type }: UpdateDB) {
 export function siteAdminUpdate({ admin }: UpdateAdminSite) {
   return {
     $set: {
-      'dataSite.adminSite': admin.map((data) => ({
+      'data.adminSite': admin.map((data) => ({
         privilege: data.privilege,
         sid: data.sid,
       })),
-      'dataSite.updateDate.lastUpdatedAt': new Date(),
+      'data.updateDate.lastUpdatedAt': new Date(),
     },
     $push: {
-      'dataSite.updateDate.register': {
+      'data.updateDate.register': {
         change: 'updated admin user',
         updatedAt: new Date(),
       },
@@ -96,29 +96,29 @@ export function siteImageUpdate({ id, images, type, uid }: UpdateImage) {
     $set:
       type === 'logo'
         ? {
-            'dataSite.imageSite.logo': {
+            'data.imageSite.logo': {
               src: src,
               alt: alt,
             },
-            'dataSite.updateDate.lastUpdatedAt': new Date(),
+            'data.updateDate.lastUpdatedAt': new Date(),
           }
         : type === 'banner'
         ? {
-            'dataSite.imageSite.banner': {
+            'data.imageSite.banner': {
               src: src,
               alt: alt,
             },
-            'dataSite.updateDate.lastUpdatedAt': new Date(),
+            'data.updateDate.lastUpdatedAt': new Date(),
           }
         : {
-            'dataSite.imageSite.icon': {
+            'data.imageSite.icon': {
               src: src,
               alt: alt,
             },
-            'dataSite.updateDate.lastUpdatedAt': new Date(),
+            'data.updateDate.lastUpdatedAt': new Date(),
           },
     $push: {
-      'dataSite.updateDate.register': {
+      'data.updateDate.register': {
         uid: uid,
         change: `${type} image update`,
         updatedAt: new Date(),

@@ -44,27 +44,32 @@ export class PetUserService {
   //   return document;
   // }
 
-  // async deleteOne(id: string) {
-  //   await this.siteModel.deleteOne({ _id: id });
-  //   return id;
-  // }
+  async deleteOne(id: string) {
+    await this.userModel.deleteOne({ _id: id });
+    return id;
+  }
 
-  // async deleteMany(ids: string[]) {
-  //   this.siteModel.deleteMany({ _id: { $in: ids } });
-  //   return ids;
-  // }
+  async deleteMany(ids: string[]) {
+    this.userModel.deleteMany({ _id: { $in: ids } });
+    return ids;
+  }
 
-  // async deleteAll() {
-  //   this.siteModel.deleteMany();
-  //   return 'sites delete';
-  // }
+  async deleteManyBySiteId(ids: string[]) {
+    this.userModel.deleteMany({ 'data.siteId': { $in: ids } });
+    return 'users delete';
+  }
+
+  async deleteAll() {
+    this.userModel.deleteMany();
+    return 'users deleted';
+  }
 
   findAll() {
     return this.userModel.find();
   }
 
   findBySiteId(siteId: string) {
-    return this.userModel.find({ 'dataUser.siteId': siteId });
+    return this.userModel.find({ 'data.siteId': siteId });
   }
 
   async findOne(id: string) {
@@ -77,7 +82,7 @@ export class PetUserService {
   async findOneByEmail(email: string, siteId: string) {
     const document = await this.userModel.findOne({
       email: email,
-      'dataUser.siteId': siteId,
+      'data.siteId': siteId,
     });
     if (!document) throw new NotFoundException('Document not found.');
 
@@ -90,7 +95,7 @@ export class PetUserService {
 
   //   const data = await this.siteModel
   //     .find({}, {}, { lean: true })
-  //     .sort({ 'dataUser.updateDate.lastUpdatedAt': -1 })
+  //     .sort({ 'data.updateDate.lastUpdatedAt': -1 })
   //     .skip(offset)
   //     .limit(limit)
   //     .exec();

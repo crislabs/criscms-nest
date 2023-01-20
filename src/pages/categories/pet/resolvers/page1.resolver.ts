@@ -138,8 +138,8 @@ export class PetPage1Resolver {
   }
 
   @ResolveField('products', () => [PetProduct], { nullable: 'itemsAndList' })
-  getProduct(@Parent() { _id, dataPage }: PetPage1) {
-    const { type } = dataPage as DataPage;
+  getProduct(@Parent() { _id, data }: PetPage1) {
+    const { type } = data as DataPage;
     const { slug } = type as Type;
 
     if (slug === 'pet') {
@@ -149,7 +149,7 @@ export class PetPage1Resolver {
     }
   }
   @ResolveField('pages', () => [PetPage2], { nullable: 'itemsAndList' })
-  getPages(@Parent() { _id, dataPage }: PetPage1) {
+  getPages(@Parent() { _id, data }: PetPage1) {
     // const { type } = dataPage as DataPage;
     // const { slug } = type as Type;
     return this.page2Service.findByParentId(_id.toString());

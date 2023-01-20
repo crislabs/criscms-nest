@@ -6,7 +6,7 @@ import { Image, Seo, Tags, Type, UpdateDate } from './site.model';
 @ObjectType()
 export class Product extends AbstractModel {
   @Field(() => DataProduct)
-  readonly dataProduct: DataProduct | string;
+  readonly data: DataProduct | string;
   @Field()
   readonly slug: string;
 

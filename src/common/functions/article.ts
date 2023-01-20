@@ -16,7 +16,7 @@ export function articleCreated({
     siteId: siteId,
     parentId: parentId,
     slug: slug(title),
-    dataArticle: {
+    data: {
       author: uid,
       seoArticle: {
         title: title,
@@ -41,14 +41,14 @@ export function articleCreated({
 export function articleUpdated({ id, title, description, uid }: UpdateArticle) {
   return {
     $set: {
-      'dataArticle.seoArticle.title': title,
-      'dataArticle.seoArticle.href': slug(title),
-      'dataArticle.seoArticle.description': description,
-      'dataArticle.updateDate.lastUpdatedAt': new Date(),
+      'data.seoArticle.title': title,
+      'data.seoArticle.href': slug(title),
+      'data.seoArticle.description': description,
+      'data.updateDate.lastUpdatedAt': new Date(),
       slug: slug(title),
     },
     $push: {
-      'dataArticle.updateDate.register': {
+      'data.updateDate.register': {
         uid: uid,
         change: 'article updated',
         updatedAt: new Date(),
@@ -60,11 +60,11 @@ export function articleUpdated({ id, title, description, uid }: UpdateArticle) {
 export function articleContentUpdated({ content, uid }: UpdateContentArticle) {
   return {
     $set: {
-      'dataArticle.content': content,
-      'dataArticle.updateDate.lastUpdatedAt': new Date(),
+      'data.content': content,
+      'data.updateDate.lastUpdatedAt': new Date(),
     },
     $push: {
-      'dataArticle.updateDate.register': {
+      'data.updateDate.register': {
         uid: uid,
         change: 'article content updated',
         updatedAt: new Date(),
@@ -76,15 +76,15 @@ export function articleContentUpdated({ content, uid }: UpdateContentArticle) {
 export function articleTagsUpdated({ tags, uid }: UpdateTagsArticle) {
   return {
     $set: {
-      'dataArticle.tags': tags.map((data) => ({
+      'data.tags': tags.map((data) => ({
         uid: uuidv3(),
         text: data,
         slug: slug(data),
       })),
-      'dataArticle.updateDate.lastUpdatedAt': new Date(),
+      'data.updateDate.lastUpdatedAt': new Date(),
     },
     $push: {
-      'dataArticle.updateDate.register': {
+      'data.updateDate.register': {
         uid: uid,
         change: 'article tags updated',
         updatedAt: new Date(),
@@ -101,13 +101,13 @@ export function articleLikesUpdated({ uid }: UpdateLikesArticle) {
       //   text: data,
       //   slug: slug(data),
       // })),
-      'dataArticle.updateDate.lastUpdatedAt': new Date(),
+      'data.updateDate.lastUpdatedAt': new Date(),
     },
     $addToSet: {
-      'dataArticle.likes': uid,
+      'data.likes': uid,
     },
     $push: {
-      'dataArticle.updateDate.register': {
+      'data.updateDate.register': {
         uid: uid,
         change: 'comment likes updated',
         updatedAt: new Date(),
@@ -124,13 +124,13 @@ export function articleDisLikesUpdated({ uid }: UpdateLikesArticle) {
       //   text: data,
       //   slug: slug(data),
       // })),
-      'dataArticle.updateDate.lastUpdatedAt': new Date(),
+      'data.updateDate.lastUpdatedAt': new Date(),
     },
     $pull: {
-      'dataArticle.likes': uid,
+      'data.likes': uid,
     },
     $push: {
-      'dataArticle.updateDate.register': {
+      'data.updateDate.register': {
         uid: uid,
         change: 'comment dislikes updated',
         updatedAt: new Date(),
@@ -143,17 +143,17 @@ export function articleImageUpdated({ id, images, type, uid }: UpdateImage) {
   const { src, alt } = images as InputImage;
   return {
     $set: {
-      'dataArticle.thumbnail': {
+      'data.thumbnail': {
         uid: uuidv3(),
         src: src,
         alt: alt,
       },
-      'dataArticle.seoArticle.image.src': src,
-      'dataArticle.seoArticle.image.alt': alt,
-      'dataArticle.updateDate.lastUpdatedAt': new Date(),
+      'data.seoArticle.image.src': src,
+      'data.seoArticle.image.alt': alt,
+      'data.updateDate.lastUpdatedAt': new Date(),
     },
     $push: {
-      'dataArticle.updateDate.register': {
+      'data.updateDate.register': {
         uid: uid,
         change: 'article image updated',
         updatedAt: new Date(),

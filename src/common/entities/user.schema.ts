@@ -5,7 +5,7 @@ import { DataUser } from './user.model';
 @Schema({ versionKey: false })
 export class UserDocument extends AbstractDocument {
   @Prop({ type: DataUser })
-  dataUser: DataUser;
+  data: DataUser;
   @Prop({ unique: true })
   email: string;
 

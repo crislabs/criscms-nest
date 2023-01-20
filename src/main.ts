@@ -20,6 +20,7 @@ async function bootstrap() {
     origin: [
       'http://localhost:3000',
       'https://crislabs.vercel.app',
+      'https://criscms.vercel.app',
       'https://garritas.vercel.app',
       'https://jesuscalamani92.vercel.app',
       'https://jjcalamani92.vercel.app',

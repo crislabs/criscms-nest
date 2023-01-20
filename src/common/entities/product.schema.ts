@@ -5,7 +5,7 @@ import { DataProduct } from './product.model';
 @Schema({ versionKey: false })
 export class ProductDocument extends AbstractDocument {
   @Prop({ type: DataProduct })
-  dataProduct: DataProduct;
+  data: DataProduct;
 
   @Prop({ trim: true })
   slug: string;

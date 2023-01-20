@@ -36,6 +36,7 @@ import { PetProductService } from 'src/products/categories/pet/category.service'
 import { PetArticleService } from 'src/articles/categories/pet/category.service';
 import { PetAdoptionService } from 'src/adoptions/categories/pet/category.service';
 import { PetAdoption } from 'src/common/entities/adoption.model';
+import { PetCommentService } from 'src/comments/categories/pet/category.service';
 
 @Resolver(() => PetSite)
 export class PetSiteResolver {
@@ -43,6 +44,7 @@ export class PetSiteResolver {
     private readonly siteService: PetSiteService,
     private readonly pageService: PetPage0Service,
     private readonly userService: PetUserService,
+    private readonly commentService: PetCommentService,
     private readonly productService: PetProductService,
     private readonly adoptionService: PetAdoptionService,
     private readonly articleService: PetArticleService,
@@ -78,18 +80,33 @@ export class PetSiteResolver {
   @Mutation(() => String, { name: 'petDeleteSite' })
   deleteOne(@Args('id', { type: () => String }) id: string) {
     this.pageService.deleteManyBySiteId([id]);
+    this.userService.deleteManyBySiteId([id]);
+    this.commentService.deleteManyBySiteId([id]);
+    this.productService.deleteManyBySiteId([id]);
+    this.adoptionService.deleteManyBySiteId([id]);
+    this.articleService.deleteManyBySiteId([id]);
     return this.siteService.deleteOne(id);
   }
 
   @Mutation(() => [String], { name: 'petDeleteSites' })
   deleteMany(@Args('ids', { type: () => [String] }) ids: string[]) {
     this.pageService.deleteManyBySiteId(ids);
+    this.userService.deleteManyBySiteId(ids);
+    this.commentService.deleteManyBySiteId(ids);
+    this.productService.deleteManyBySiteId(ids);
+    this.adoptionService.deleteManyBySiteId(ids);
+    this.articleService.deleteManyBySiteId(ids);
     return this.siteService.deleteMany(ids);
   }
 
   @Mutation(() => String, { name: 'petDeleteAllSites' })
   deleteAll() {
     this.pageService.deleteAll();
+    this.userService.deleteAll()
+    this.commentService.deleteAll()
+    this.productService.deleteAll();
+    this.adoptionService.deleteAll();
+    this.articleService.deleteAll();
     return this.siteService.deleteAll();
   }
 

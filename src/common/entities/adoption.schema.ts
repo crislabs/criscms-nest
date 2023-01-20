@@ -5,7 +5,7 @@ import { DataAdoption } from './adoption.model';
 @Schema({ versionKey: false })
 export class AdoptionDocument extends AbstractDocument {
   @Prop({ type: DataAdoption })
-  dataAdoption: DataAdoption;
+  data: DataAdoption;
 
   @Prop({ trim: true })
   slug: string;

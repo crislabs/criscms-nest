@@ -12,15 +12,14 @@ type DataSite {
   title: String!
   description: String
   type: Type!
-  imageSite: ImageSite
-  infoSite: InfoSite
-  adminSite: [AdminSite]
-  dbSite: [DBSite]
+  images: ImageSite
+  info: InfoSite
+  admin: [AdminSite]
+  db: [DBSite]
   updateDate: UpdateDate!
 }
 
 type DBSite {
-  uid: String!
   label: String!
   slug: String!
 }
@@ -63,13 +62,6 @@ type Register {
   updatedAt: DateTime!
 }
 
-type Seo {
-  title: String!
-  href: String!
-  description: String!
-  image: Image
-}
-
 type Tags {
   uid: String!
   text: String!
@@ -83,19 +75,19 @@ type Type {
 
 type FoodSite {
   _id: ID!
-  dataSite: DataSite!
+  data: DataSite!
   url: String
 }
 
 type HardwareStoreSite {
   _id: ID!
-  dataSite: DataSite!
+  data: DataSite!
   url: String
 }
 
 type PetSite {
   _id: ID!
-  dataSite: DataSite!
+  data: DataSite!
   url: String
   pages: [PetPage0]
   users: [PetUser]
@@ -128,7 +120,7 @@ type PetSitePageInfo {
 
 type PortfolioSite {
   _id: ID!
-  dataSite: DataSite!
+  data: DataSite!
   url: String
 }
 
@@ -142,25 +134,25 @@ type DataComment {
 
 type FoodComment {
   _id: ID!
-  dataComment: DataComment!
+  data: DataComment!
   parentId: String!
 }
 
 type PetComment {
   _id: ID!
-  dataComment: DataComment!
+  data: DataComment!
   parentId: String!
 }
 
 type PortfolioComment {
   _id: ID!
-  dataComment: DataComment!
+  data: DataComment!
   parentId: String!
 }
 
 type HardwareStoreComment {
   _id: ID!
-  dataComment: DataComment!
+  data: DataComment!
   parentId: String!
 }
 
@@ -196,14 +188,14 @@ type Promotion {
 
 type HardwareStoreProduct {
   _id: ID!
-  dataProduct: DataProduct!
+  data: DataProduct!
   slug: String!
   parentId: String!
 }
 
 type PetProduct {
   _id: ID!
-  dataProduct: DataProduct!
+  data: DataProduct!
   slug: String!
   parentId: String!
   comments: [PetComment]
@@ -211,7 +203,7 @@ type PetProduct {
 
 type FoodProduct {
   _id: ID!
-  dataProduct: DataProduct!
+  data: DataProduct!
   slug: String!
   parentId: String!
 }
@@ -259,7 +251,7 @@ type DataAdoption {
 
 type PetAdoption {
   _id: ID!
-  dataAdoption: DataAdoption!
+  data: DataAdoption!
   slug: String!
   parentId: String!
   comments: [PetComment]
@@ -288,21 +280,22 @@ type PetAdoptionPageInfo {
 }
 
 type DataArticle {
+  title: String!
+  description: String!
+  thumbnailUrl: String
   content: String
-  category: String
+  siteId: String
+  category: String!
   meta: String
   tags: [Tags!]
   author: String!
-  thumbnail: Image
-  seoArticle: Seo!
   updateDate: UpdateDate!
   likes: [String!]
 }
 
 type PetArticle {
   _id: ID!
-  dataArticle: DataArticle!
-  siteId: String!
+  data: DataArticle!
   parentId: String!
   slug: String!
   comments: [PetComment]
@@ -332,24 +325,21 @@ type PetArticlePageInfo {
 
 type FoodArticle {
   _id: ID!
-  dataArticle: DataArticle!
-  siteId: String!
+  data: DataArticle!
   parentId: String!
   slug: String!
 }
 
 type PortfolioArticle {
   _id: ID!
-  dataArticle: DataArticle!
-  siteId: String!
+  data: DataArticle!
   parentId: String!
   slug: String!
 }
 
 type HardwareStoreArticle {
   _id: ID!
-  dataArticle: DataArticle!
-  siteId: String!
+  data: DataArticle!
   parentId: String!
   slug: String!
 }
@@ -373,189 +363,189 @@ type ComponentPage {
 
 type FoodPage0 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type FoodPage1 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type FoodPage2 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type FoodPage3 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type FoodPage4 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type FoodPage5 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type FoodPage6 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type FoodPage7 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type FoodPage8 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type FoodPage9 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type FoodPage10 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type FoodPage11 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type FoodPage12 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type HardwareStorePage0 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type HardwareStorePage1 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type HardwareStorePage2 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type HardwareStorePage3 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type HardwareStorePage4 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type HardwareStorePage5 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type HardwareStorePage6 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type HardwareStorePage7 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type HardwareStorePage8 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type HardwareStorePage9 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type HardwareStorePage10 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type HardwareStorePage11 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type HardwareStorePage12 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type PetPage0 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
   adoptions: [PetAdoption]
@@ -566,7 +556,7 @@ type PetPage0 {
 
 type PetPage1 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
   products: [PetProduct]
@@ -575,7 +565,7 @@ type PetPage1 {
 
 type PetPage2 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
   products: [PetProduct]
@@ -584,7 +574,7 @@ type PetPage2 {
 
 type PetPage3 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
   products: [PetProduct]
@@ -593,7 +583,7 @@ type PetPage3 {
 
 type PetPage4 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
   products: [PetProduct]
@@ -602,7 +592,7 @@ type PetPage4 {
 
 type PetPage5 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
   products: [PetProduct]
@@ -611,7 +601,7 @@ type PetPage5 {
 
 type PetPage6 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
   products: [PetProduct]
@@ -620,7 +610,7 @@ type PetPage6 {
 
 type PetPage7 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
   products: [PetProduct]
@@ -629,7 +619,7 @@ type PetPage7 {
 
 type PetPage8 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
   products: [PetProduct]
@@ -638,7 +628,7 @@ type PetPage8 {
 
 type PetPage9 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
   products: [PetProduct]
@@ -647,7 +637,7 @@ type PetPage9 {
 
 type PetPage10 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
   products: [PetProduct]
@@ -656,7 +646,7 @@ type PetPage10 {
 
 type PetPage11 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
   products: [PetProduct]
@@ -665,7 +655,7 @@ type PetPage11 {
 
 type PetPage12 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
   products: [PetProduct]
@@ -673,91 +663,91 @@ type PetPage12 {
 
 type PortfolioPage0 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type PortfolioPage1 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type PortfolioPage2 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type PortfolioPage3 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type PortfolioPage4 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type PortfolioPage5 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type PortfolioPage6 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type PortfolioPage7 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type PortfolioPage8 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type PortfolioPage9 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type PortfolioPage10 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type PortfolioPage11 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
 
 type PortfolioPage12 {
   _id: ID!
-  dataPage: DataPage!
+  data: DataPage!
   slug: String!
   parentId: String!
 }
@@ -1065,7 +1055,7 @@ type OAuth {
 
 type PetUser {
   _id: ID!
-  dataUser: DataUser!
+  data: DataUser!
   email: String!
 }
 

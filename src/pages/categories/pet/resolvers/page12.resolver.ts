@@ -130,8 +130,8 @@ export class PetPage12Resolver {
   }
 
   @ResolveField('products', () => [PetProduct], { nullable: 'itemsAndList' })
-  getProduct(@Parent() { _id, dataPage }: PetPage12) {
-    const { type } = dataPage as DataPage;
+  getProduct(@Parent() { _id, data }: PetPage12) {
+    const { type } = data as DataPage;
     if (type === 'pet') {
       return this.productService.findByParentId(_id.toString());
     } else {

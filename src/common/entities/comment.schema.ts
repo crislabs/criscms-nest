@@ -5,7 +5,7 @@ import { DataComment } from './comment.model';
 @Schema({ versionKey: false })
 export class CommentDocument extends AbstractDocument {
   @Prop({ type: DataComment })
-  dataComment: DataComment;
+  data: DataComment;
   @Prop({ trim: true })
   parentId: string;
 }

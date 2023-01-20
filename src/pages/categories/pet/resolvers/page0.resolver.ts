@@ -150,8 +150,8 @@ export class PetPage0Resolver {
   }
 
   @ResolveField('adoptions', () => [PetAdoption], { nullable: 'itemsAndList' })
-  getAdoption(@Parent() { _id, dataPage }: PetPage0) {
-    const { type } = dataPage as DataPage;
+  getAdoption(@Parent() { _id, data }: PetPage0) {
+    const { type } = data as DataPage;
     const { slug } = type as Type;
 
     if (slug === 'adoption') {
@@ -161,7 +161,7 @@ export class PetPage0Resolver {
     }
   }
   @ResolveField('pages', () => [PetPage1], { nullable: 'itemsAndList' })
-  getPages(@Parent() { _id, dataPage }: PetPage0) {
+  getPages(@Parent() { _id, data }: PetPage0) {
     // const { type } = dataPage as DataPage;
     // const { slug } = type as Type;
     return this.page1Service.findByParentId(_id.toString());
@@ -171,8 +171,8 @@ export class PetPage0Resolver {
     // }
   }
   @ResolveField('products', () => [PetProduct], { nullable: 'itemsAndList' })
-  getProduct(@Parent() { _id, dataPage }: PetPage0) {
-    const { type } = dataPage as DataPage;
+  getProduct(@Parent() { _id, data }: PetPage0) {
+    const { type } = data as DataPage;
     const { slug } = type as Type;
 
     if (slug === 'pet') {
@@ -182,8 +182,8 @@ export class PetPage0Resolver {
     }
   }
   @ResolveField('articles', () => [PetArticle], { nullable: 'itemsAndList' })
-  getArticle(@Parent() { _id, dataPage }: PetPage0) {
-    const { type } = dataPage as DataPage;
+  getArticle(@Parent() { _id, data }: PetPage0) {
+    const { type } = data as DataPage;
     const { slug } = type as Type;
     if (type === 'blog') {
       return this.articleService.findByParentId(_id.toString());

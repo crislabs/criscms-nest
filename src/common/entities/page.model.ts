@@ -6,7 +6,7 @@ import { Seo, Type, UpdateDate } from './site.model';
 @ObjectType()
 export class Page extends AbstractModel {
   @Field(() => DataPage)
-  readonly dataPage: DataPage | string;
+  readonly data: DataPage | string;
   @Field()
   readonly slug: string;
   @Field()

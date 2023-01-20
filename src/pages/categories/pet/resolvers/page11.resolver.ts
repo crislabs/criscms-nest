@@ -135,8 +135,8 @@ export class PetPage11Resolver {
   }
 
   @ResolveField('products', () => [PetProduct], { nullable: 'itemsAndList' })
-  getProduct(@Parent() { _id, dataPage }: PetPage11) {
-    const { type } = dataPage as DataPage;
+  getProduct(@Parent() { _id, data }: PetPage11) {
+    const { type } = data as DataPage;
     if (type === 'pet') {
       return this.productService.findByParentId(_id.toString());
     } else {
@@ -144,7 +144,7 @@ export class PetPage11Resolver {
     }
   }
   @ResolveField('pages', () => [PetPage12], { nullable: 'itemsAndList' })
-  getPages(@Parent() { _id, dataPage }: PetPage11) {
+  getPages(@Parent() { _id, data }: PetPage11) {
     return this.page12Service.findByParentId(_id.toString());
   }
 }

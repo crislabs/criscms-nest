@@ -5,13 +5,12 @@ import { DataArticle } from './article.model';
 @Schema({ versionKey: false })
 export class ArticleDocument extends AbstractDocument {
   @Prop({ type: DataArticle })
-  dataArticle: DataArticle;
+  data: DataArticle;
   @Prop({ trim: true })
   slug: string;
   @Prop({ trim: true })
   parentId: string;
-  @Prop({ trim: true })
-  siteId: string;
+  
 }
 export const FoodArticleSchema = SchemaFactory.createForClass(ArticleDocument);
 export const PetArticleSchema = SchemaFactory.createForClass(ArticleDocument);

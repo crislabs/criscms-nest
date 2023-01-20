@@ -29,7 +29,7 @@ export class PetProductService {
     const product = await this.productModel.findOne(
       {
         slug: slug(input.title),
-        'dataProduct.siteId': input.siteId,
+        'data.siteId': input.siteId,
         parentId: input.parentId,
       },
       {},
@@ -51,7 +51,7 @@ export class PetProductService {
       {
         _id: { $ne: input.id },
         slug: slug(input.title),
-        'dataProduct.siteId': input.siteId,
+        'data.siteId': input.siteId,
         parentId: input.parentId,
       },
       {},
@@ -140,7 +140,7 @@ export class PetProductService {
   }
 
   async deleteManyBySiteId(ids: string[]) {
-    await this.productModel.deleteMany({ 'dataProduct.siteId': { $in: ids } });
+    await this.productModel.deleteMany({ 'data.siteId': { $in: ids } });
     return 'pages delete';
   }
   async deleteManyByParentId(ids: string[]) {
@@ -159,7 +159,7 @@ export class PetProductService {
   }
 
   findBySiteId(siteId: string) {
-    const data = this.productModel.find({ 'dataProduct.siteId': siteId });
+    const data = this.productModel.find({ 'data.siteId': siteId });
     return data;
   }
 
@@ -179,7 +179,7 @@ export class PetProductService {
   async findOneBySlug(slug: string, siteId: string) {
     const document = await this.productModel.findOne({
       slug: slug,
-      'dataProduct.siteId': siteId,
+      'data.siteId': siteId,
     });
     if (!document) throw new NotFoundException('Document not found.');
 
@@ -188,7 +188,7 @@ export class PetProductService {
 
   findByParentIdByPagination(paginationQuery: ListInput, parentId: string) {
     const { limit, offset } = paginationQuery;
-    return this.productModel.find({ parentId: parentId }).sort({ 'dataProduct.updateDate.lastUpdatedAt': -1 }).skip(offset).limit(limit).exec();
+    return this.productModel.find({ parentId: parentId }).sort({ 'data.updateDate.lastUpdatedAt': -1 }).skip(offset).limit(limit).exec();
   }
 
   async findByCursor(paginationQuery: ListInput, parentId: string) {
@@ -196,7 +196,7 @@ export class PetProductService {
     const count = await this.productModel.count({ parentId: parentId });
     const data = await this.productModel
       .find({ parentId: parentId }, {}, { lean: true })
-      .sort({ 'dataProduct.updateDate.lastUpdatedAt': -1 })
+      .sort({ 'data.updateDate.lastUpdatedAt': -1 })
       .skip(offset)
       .limit(limit)
       .exec();

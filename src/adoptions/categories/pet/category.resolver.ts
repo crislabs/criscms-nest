@@ -8,16 +8,8 @@ import {
 } from '@nestjs/graphql';
 import { connectionFromArraySlice } from 'graphql-relay';
 import { CreateAdoption, UpdateAdoption, UpdateDetailAdoption, UpdateLikesAdoption, UpdateSpecsAdoption, UpdateTagsAdoption } from 'src/common/dto/adoption.input';
-// import { PetCommentService } from 'src/comments/categories/pet/category.service';
-import {
-  CreateProduct,
-  UpdateDetailProduct,
-  UpdateLikesProduct,
-  UpdateProduct,
-  UpdateSpecsProduct,
-  UpdateTagsProduct,
-} from 'src/common/dto/product.input';
-import { UpdateImageSeo, UpdateImageAdoption, UpdateImageProduct } from 'src/common/dto/site.input';
+
+import { UpdateImageSeo, UpdateImageAdoption } from 'src/common/dto/site.input';
 import { PetComment } from 'src/common/entities/comment.model';
 import {
   ListPetAdoption,

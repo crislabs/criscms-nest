@@ -6,7 +6,7 @@ import { Image, Seo, Tags, UpdateDate } from './site.model';
 @ObjectType()
 export class Comment extends AbstractModel {
   @Field(() => DataComment)
-  readonly dataComment: DataComment | string;
+  readonly data: DataComment | string;
   @Field()
   readonly parentId: string;
 }

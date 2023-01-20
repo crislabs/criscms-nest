@@ -34,7 +34,7 @@ export class PetArticleService {
     const article = await this.articleModel.findOne(
       {
         slug: slug(input.title),
-        'dataArticle.siteId': input.siteId,
+        'data.siteId': input.siteId,
         parentId: input.parentId,
       },
       {},
@@ -56,7 +56,7 @@ export class PetArticleService {
       {
         _id: { $ne: input.id },
         slug: slug(input.title),
-        'dataArticle.siteId': input.siteId,
+        'data.siteId': input.siteId,
         parentId: input.parentId,
       },
       {},
@@ -130,7 +130,7 @@ export class PetArticleService {
   }
 
   async deleteManyBySiteId(ids: string[]) {
-    await this.articleModel.deleteMany({ 'dataArticle.siteId': { $in: ids } });
+    await this.articleModel.deleteMany({ 'data.siteId': { $in: ids } });
     return 'articles delete';
   }
   async deleteManyByParentId(ids: string[]) {
@@ -149,7 +149,7 @@ export class PetArticleService {
   }
 
   findBySiteId(siteId: string) {
-    const data = this.articleModel.find({ 'dataArticle.siteId': siteId });
+    const data = this.articleModel.find({ 'data.siteId': siteId });
     return data;
   }
 
@@ -158,7 +158,7 @@ export class PetArticleService {
     return data;
   }
   findByUserId(userId: string) {
-    const data = this.articleModel.find({ 'dataUser.author': userId });
+    const data = this.articleModel.find({ 'data.author': userId });
     return data;
   }
 
@@ -181,7 +181,7 @@ export class PetArticleService {
 
   findByParentIdByPagination(paginationQuery: ListInput, parentId: string) {
     const { limit, offset } = paginationQuery;
-    return this.articleModel.find({ parentId: parentId }).sort({ 'dataArticle.updateDate.lastUpdatedAt': -1 }).skip(offset).limit(limit).exec();
+    return this.articleModel.find({ parentId: parentId }).sort({ 'data.updateDate.lastUpdatedAt': -1 }).skip(offset).limit(limit).exec();
   }
 
   async findByCursor(paginationQuery: ListInput, parentId: string) {
@@ -189,7 +189,7 @@ export class PetArticleService {
     const count = await this.articleModel.count({ parentId: parentId });
     const data = await this.articleModel
       .find({ parentId: parentId }, {}, { lean: true })
-      .sort({ 'dataArticle.updateDate.lastUpdatedAt': -1 })
+      .sort({ 'data.updateDate.lastUpdatedAt': -1 })
       .skip(offset)
       .limit(limit)
       .exec();

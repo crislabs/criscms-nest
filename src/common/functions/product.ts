@@ -24,7 +24,7 @@ export function productCreated({
     siteId: siteId,
     parentId: parentId,
     slug: slug(title),
-    dataProduct: {
+    data: {
       title: title,
       description: description,
       type: {
@@ -50,13 +50,13 @@ export function productCreated({
 export function productUpdated({ id, title, description, uid }: UpdateProduct) {
   return {
     $set: {
-      'dataProduct.title': title,
-      'dataProduct.description': description,
-      'dataProduct.updateDate.lastUpdatedAt': new Date(),
+      'data.title': title,
+      'data.description': description,
+      'data.updateDate.lastUpdatedAt': new Date(),
       slug: slug(title),
     },
     $push: {
-      'dataProduct.updateDate.register': {
+      'data.updateDate.register': {
         uid: uid,
         change: 'product updated',
         updatedAt: new Date(),
@@ -67,11 +67,11 @@ export function productUpdated({ id, title, description, uid }: UpdateProduct) {
 export function productDetailUpdated({ text, uid }: UpdateDetailProduct) {
   return {
     $set: {
-      'dataProduct.details': text,
-      'dataProduct.updateDate.lastUpdatedAt': new Date(),
+      'data.details': text,
+      'data.updateDate.lastUpdatedAt': new Date(),
     },
     $push: {
-      'dataProduct.updateDate.register': {
+      'data.updateDate.register': {
         uid: uid,
         change: 'product detail updated',
         updatedAt: new Date(),
@@ -82,11 +82,11 @@ export function productDetailUpdated({ text, uid }: UpdateDetailProduct) {
 export function productSpecsUpdated({ text, uid }: UpdateSpecsProduct) {
   return {
     $set: {
-      'dataProduct.specs': text,
-      'dataProduct.updateDate.lastUpdatedAt': new Date(),
+      'data.specs': text,
+      'data.updateDate.lastUpdatedAt': new Date(),
     },
     $push: {
-      'dataProduct.updateDate.register': {
+      'data.updateDate.register': {
         uid: uid,
         change: 'product specs updated',
         updatedAt: new Date(),
@@ -97,13 +97,13 @@ export function productSpecsUpdated({ text, uid }: UpdateSpecsProduct) {
 export function productPriceUpdated({ price, discountPrice, inStock, uid }: UpdatePriceProduct) {
   return {
     $set: {
-      'dataProduct.price': price,
-      'dataProduct.discountPrice': discountPrice,
-      'dataProduct.inStock': inStock,
-      'dataProduct.updateDate.lastUpdatedAt': new Date(),
+      'data.price': price,
+      'data.discountPrice': discountPrice,
+      'data.inStock': inStock,
+      'data.updateDate.lastUpdatedAt': new Date(),
     },
     $push: {
-      'dataProduct.updateDate.register': {
+      'data.updateDate.register': {
         uid: uid,
         change: 'product price updated',
         updatedAt: new Date(),
@@ -114,15 +114,15 @@ export function productPriceUpdated({ price, discountPrice, inStock, uid }: Upda
 export function productTagsUpdated({ tags, uid }: UpdateTagsProduct) {
   return {
     $set: {
-      'dataProduct.tags': tags.map((data) => ({
+      'data.tags': tags.map((data) => ({
         uid: uuidv3(),
         text: data,
         slug: slug(data),
       })),
-      'dataProduct.updateDate.lastUpdatedAt': new Date(),
+      'data.updateDate.lastUpdatedAt': new Date(),
     },
     $push: {
-      'dataProduct.updateDate.register': {
+      'data.updateDate.register': {
         uid: uid,
         change: 'product tags updated',
         updatedAt: new Date(),
@@ -134,13 +134,13 @@ export function productTagsUpdated({ tags, uid }: UpdateTagsProduct) {
 export function productLikesUpdated({ uid }: UpdateLikesProduct) {
   return {
     $set: {
-      'dataProduct.updateDate.lastUpdatedAt': new Date(),
+      'data.updateDate.lastUpdatedAt': new Date(),
     },
     $addToSet: {
-      'dataProduct.likes': uid,
+      'data.likes': uid,
     },
     $push: {
-      'dataProduct.updateDate.register': {
+      'data.updateDate.register': {
         uid: uid,
         change: 'product likes updated',
         updatedAt: new Date(),
@@ -152,18 +152,18 @@ export function productLikesUpdated({ uid }: UpdateLikesProduct) {
 export function productDisLikesUpdated({ uid }: UpdateLikesProduct) {
   return {
     $set: {
-      // 'dataProduct.likes': tags.map((data) => ({
+      // 'data.likes': tags.map((data) => ({
       //   uid: uuidv3(),
       //   text: data,
       //   slug: slug(data),
       // })),
-      'dataProduct.updateDate.lastUpdatedAt': new Date(),
+      'data.updateDate.lastUpdatedAt': new Date(),
     },
     $pull: {
-      'dataProduct.likes': uid,
+      'data.likes': uid,
     },
     $push: {
-      'dataProduct.updateDate.register': {
+      'data.updateDate.register': {
         uid: uid,
         change: 'product dislikes updated',
         updatedAt: new Date(),
@@ -181,16 +181,16 @@ export function productUpdateImage({
   // const { src, alt } = images as InputImage;
   return {
     $set: {
-      'dataProduct.images': images.map((data) => ({
+      'data.images': images.map((data) => ({
         
         src: data.src,
         alt: data.alt,
       })),
       
-      'dataProduct.updateDate.lastUpdatedAt': new Date(),
+      'data.updateDate.lastUpdatedAt': new Date(),
     },
     $push: {
-      'dataProduct.updateDate.register': {
+      'data.updateDate.register': {
         uid: uid,
         change: 'image product update',
         updatedAt: new Date(),
@@ -206,11 +206,11 @@ export function productUpdateImageSeo({
   // const { src, alt } = images as InputImage;
   return {
     $set: {
-      'dataProduct.thumbnailUrl': src,
-      'dataProduct.updateDate.lastUpdatedAt': new Date(),
+      'data.thumbnailUrl': src,
+      'data.updateDate.lastUpdatedAt': new Date(),
     },
     $push: {
-      'dataProduct.updateDate.register': {
+      'data.updateDate.register': {
         uid: uid,
         change: 'image product update',
         updatedAt: new Date(),

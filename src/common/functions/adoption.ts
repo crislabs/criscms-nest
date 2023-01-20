@@ -23,7 +23,7 @@ export function adoptionCreated({
     _id: new Types.ObjectId(),
     parentId: parentId,
     slug: slug(title),
-    dataAdoption: {
+    data: {
       title: title,
       description: description,
       siteId: siteId,
@@ -51,13 +51,13 @@ export function adoptionCreated({
 export function adoptionUpdated({ id, title, description, uid }: UpdateAdoption) {
   return {
     $set: {
-      'dataAdoption.title': title,
-      'dataAdoption.description': description,
-      'dataAdoption.updateDate.lastUpdatedAt': new Date(),
+      'data.title': title,
+      'data.description': description,
+      'data.updateDate.lastUpdatedAt': new Date(),
       slug: slug(title),
     },
     $push: {
-      'dataAdoption.updateDate.register': {
+      'data.updateDate.register': {
         uid: uid,
         change: 'adoption updated',
         updatedAt: new Date(),
@@ -68,11 +68,11 @@ export function adoptionUpdated({ id, title, description, uid }: UpdateAdoption)
 export function adoptionDetailUpdated({ text, uid }: UpdateDetailAdoption) {
   return {
     $set: {
-      'dataAdoption.details': text,
-      'dataAdoption.updateDate.lastUpdatedAt': new Date(),
+      'data.details': text,
+      'data.updateDate.lastUpdatedAt': new Date(),
     },
     $push: {
-      'dataAdoption.updateDate.register': {
+      'data.updateDate.register': {
         uid: uid,
         change: 'adoption detail updated',
         updatedAt: new Date(),
@@ -83,11 +83,11 @@ export function adoptionDetailUpdated({ text, uid }: UpdateDetailAdoption) {
 export function adoptionSpecsUpdated({ text, uid }: UpdateSpecsAdoption) {
   return {
     $set: {
-      'dataAdoption.specs': text,
-      'dataAdoption.updateDate.lastUpdatedAt': new Date(),
+      'data.specs': text,
+      'data.updateDate.lastUpdatedAt': new Date(),
     },
     $push: {
-      'dataAdoption.updateDate.register': {
+      'data.updateDate.register': {
         uid: uid,
         change: 'adoption specs updated',
         updatedAt: new Date(),
@@ -98,13 +98,13 @@ export function adoptionSpecsUpdated({ text, uid }: UpdateSpecsAdoption) {
 export function adoptionPriceUpdated({ price, discountPrice, inStock, uid }: UpdatePriceAdoption) {
   return {
     $set: {
-      'dataAdoption.price': price,
-      'dataAdoption.discountPrice': discountPrice,
-      'dataAdoption.inStock': inStock,
-      'dataAdoption.updateDate.lastUpdatedAt': new Date(),
+      'data.price': price,
+      'data.discountPrice': discountPrice,
+      'data.inStock': inStock,
+      'data.updateDate.lastUpdatedAt': new Date(),
     },
     $push: {
-      'dataAdoption.updateDate.register': {
+      'data.updateDate.register': {
         uid: uid,
         change: 'adoption price updated',
         updatedAt: new Date(),
@@ -115,15 +115,15 @@ export function adoptionPriceUpdated({ price, discountPrice, inStock, uid }: Upd
 export function adoptionTagsUpdated({ tags, uid }: UpdateTagsAdoption) {
   return {
     $set: {
-      'dataAdoption.tags': tags.map((data) => ({
+      'data.tags': tags.map((data) => ({
         
         text: data,
         slug: slug(data),
       })),
-      'dataAdoption.updateDate.lastUpdatedAt': new Date(),
+      'data.updateDate.lastUpdatedAt': new Date(),
     },
     $push: {
-      'dataAdoption.updateDate.register': {
+      'data.updateDate.register': {
         uid: uid,
         change: 'adoption tags updated',
         updatedAt: new Date(),
@@ -135,18 +135,18 @@ export function adoptionTagsUpdated({ tags, uid }: UpdateTagsAdoption) {
 export function adoptionLikesUpdated({ uid }: UpdateLikesAdoption) {
   return {
     $set: {
-      // 'dataAdoption.likes': tags.map((data) => ({
+      // 'data.likes': tags.map((data) => ({
       //   uid: uuidv3(),
       //   text: data,
       //   slug: slug(data),
       // })),
-      'dataAdoption.updateDate.lastUpdatedAt': new Date(),
+      'data.updateDate.lastUpdatedAt': new Date(),
     },
     $addToSet: {
-      'dataAdoption.likes': uid,
+      'data.likes': uid,
     },
     $push: {
-      'dataAdoption.updateDate.register': {
+      'data.updateDate.register': {
         uid: uid,
         change: 'adoption likes updated',
         updatedAt: new Date(),
@@ -158,18 +158,18 @@ export function adoptionLikesUpdated({ uid }: UpdateLikesAdoption) {
 export function adoptionDisLikesUpdated({ uid }: UpdateLikesAdoption) {
   return {
     $set: {
-      // 'dataAdoption.likes': tags.map((data) => ({
+      // 'data.likes': tags.map((data) => ({
       //   uid: uuidv3(),
       //   text: data,
       //   slug: slug(data),
       // })),
-      'dataAdoption.updateDate.lastUpdatedAt': new Date(),
+      'data.updateDate.lastUpdatedAt': new Date(),
     },
     $pull: {
-      'dataAdoption.likes': uid,
+      'data.likes': uid,
     },
     $push: {
-      'dataAdoption.updateDate.register': {
+      'data.updateDate.register': {
         uid: uid,
         change: 'adoption dislikes updated',
         updatedAt: new Date(),
@@ -187,16 +187,16 @@ export function adoptionUpdateImage({
   // const { src, alt } = images as InputImage;
   return {
     $set: {
-      'dataAdoption.images': images.map((data) => ({
+      'data.images': images.map((data) => ({
         src: data.src,
         alt: data.alt,
       })),
-      // 'dataAdoption.seoAdoption.image.src': images[0].src,
-      // 'dataAdoption.seoAdoption.image.alt': images[0].alt,
-      'dataAdoption.updateDate.lastUpdatedAt': new Date(),
+      // 'data.seoAdoption.image.src': images[0].src,
+      // 'data.seoAdoption.image.alt': images[0].alt,
+      'data.updateDate.lastUpdatedAt': new Date(),
     },
     $push: {
-      'dataAdoption.updateDate.register': {
+      'data.updateDate.register': {
         uid: uid,
         change: 'image adoption update',
         updatedAt: new Date(),
@@ -212,13 +212,13 @@ export function adoptionUpdateImageSeo({
   // const { src, alt } = images as InputImage;
   return {
     $set: {
-      'dataAdoption.thumbnailUrl': src,
-      // 'dataAdoption.seoAdoption.image.src': images[0].src,
-      // 'dataAdoption.seoAdoption.image.alt': images[0].alt,
-      'dataAdoption.updateDate.lastUpdatedAt': new Date(),
+      'data.thumbnailUrl': src,
+      // 'data.seoAdoption.image.src': images[0].src,
+      // 'data.seoAdoption.image.alt': images[0].alt,
+      'data.updateDate.lastUpdatedAt': new Date(),
     },
     $push: {
-      'dataAdoption.updateDate.register': {
+      'data.updateDate.register': {
         uid: uid,
         change: 'image for seo update',
         updatedAt: new Date(),

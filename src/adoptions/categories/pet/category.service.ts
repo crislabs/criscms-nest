@@ -43,7 +43,7 @@ export class PetAdoptionService {
     const adoption = await this.adoptionModel.findOne(
       {
         slug: slug(input.title),
-        'dataAdoption.siteId': input.siteId,
+        'data.siteId': input.siteId,
         parentId: input.parentId,
       },
       {},
@@ -65,7 +65,7 @@ export class PetAdoptionService {
       {
         _id: { $ne: input.id },
         slug: slug(input.title),
-        'dataAdoption.siteId': input.siteId,
+        'data.siteId': input.siteId,
         parentId: input.parentId,
       },
       {},
@@ -153,7 +153,7 @@ export class PetAdoptionService {
   }
 
   async deleteManyBySiteId(ids: string[]) {
-    await this.adoptionModel.deleteMany({ 'dataAdoption.siteId': { $in: ids } });
+    await this.adoptionModel.deleteMany({ 'data.siteId': { $in: ids } });
     return 'adoptions delete';
   }
   async deleteManyByParentId(ids: string[]) {
@@ -172,7 +172,7 @@ export class PetAdoptionService {
   }
 
   findBySiteId(siteId: string) {
-    const data = this.adoptionModel.find({ 'dataAdoption.siteId': siteId });
+    const data = this.adoptionModel.find({ 'data.siteId': siteId });
     return data;
   }
 
@@ -201,7 +201,7 @@ export class PetAdoptionService {
 
   findByParentIdByPagination(paginationQuery: ListInput, parentId: string) {
     const { limit, offset } = paginationQuery;
-    return this.adoptionModel.find({ parentId: parentId }).sort({ 'dataAdoption.updateDate.lastUpdatedAt': -1 }).skip(offset).limit(limit).exec();
+    return this.adoptionModel.find({ parentId: parentId }).sort({ 'data.updateDate.lastUpdatedAt': -1 }).skip(offset).limit(limit).exec();
   }
 
   async findByCursor(paginationQuery: ListInput, parentId: string) {
@@ -209,7 +209,7 @@ export class PetAdoptionService {
     const count = await this.adoptionModel.count({ parentId: parentId });
     const data = await this.adoptionModel
       .find({ parentId: parentId }, {}, { lean: true })
-      .sort({ 'dataAdoption.updateDate.lastUpdatedAt': -1 })
+      .sort({ 'data.updateDate.lastUpdatedAt': -1 })
       .skip(offset)
       .limit(limit)
       .exec();
