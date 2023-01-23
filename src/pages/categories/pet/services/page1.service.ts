@@ -24,7 +24,7 @@ export class PetPage1Service {
   async create(input: CreatePage) {
     const page = await this.pageModel.findOne(
       {
-        slug: slug(input.title),
+        slug: slug(input.name),
         'data.siteId': input.siteId,
         parentId: input.parentId,
       },
@@ -35,7 +35,7 @@ export class PetPage1Service {
     if (page) {
       // this.logger.warn('Document not found with filterQuery', filterQuery);
       throw new UnprocessableEntityException(
-        `You already have an item registered with that name "${input.title}"`,
+        `Ya tienes una página con este nombre "${input.name}" registrado`,
       );
     }
 
@@ -47,7 +47,7 @@ export class PetPage1Service {
     const page = await this.pageModel.findOne(
       {
         _id: { $ne: input.id },
-        slug: slug(input.title),
+        slug: slug(input.name),
         'data.siteId': input.siteId,
         parentId: input.parentId,
       },
@@ -57,7 +57,7 @@ export class PetPage1Service {
     if (page) {
       // this.logger.warn('Document not found with filterQuery', filterQuery);
       throw new UnprocessableEntityException(
-        `You already have an item registered with that name "${input.title}"`,
+        `Ya tienes una página con este nombre "${input.name}" registrado`,
       );
     }
     const document = await this.pageModel.findOneAndUpdate(

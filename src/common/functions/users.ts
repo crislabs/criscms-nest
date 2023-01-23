@@ -35,17 +35,17 @@ export async function  userCreated({
   };
 }
 
-export function pageUpdate({ id, type, title, description, uid }: UpdatePage) {
+export function pageUpdate({ id, type, name, description, uid }: UpdatePage) {
   return {
     filter: { _id: id },
     update: {
       $set: {
         'data.type': type,
-        'data.seoPage.title': capitalizar(title),
-        'data.seoPage.href': slug(title),
+        'data.seoPage.name': capitalizar(name),
+        'data.seoPage.href': slug(name),
         'data.seoPage.description': description,
         'data.updateData.lastUpdatedAt': new Date(),
-        slug: slug(title),
+        slug: slug(name),
       },
       $push: {
         'data.updateDate.register': {
@@ -91,7 +91,7 @@ export function pageFindOne(id: string) {
 
 export function page0(id: string, uid: string) {
   return {
-    title: 'home',
+    name: 'home',
     description: 'home description',
     type: 'page blanck',
     parentId: id,

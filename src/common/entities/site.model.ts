@@ -13,7 +13,7 @@ export class Site extends AbstractModel {
 @ObjectType()
 export class DataSite {
   @Field()
-  readonly title: string;
+  readonly name: string;
   @Field({nullable: true})
   readonly description?: string;
   @Field(() => Type)

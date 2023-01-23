@@ -15,7 +15,7 @@ export class Article extends AbstractModel {
 @ObjectType()
 export class DataArticle {
   @Field()
-  readonly title: string;
+  readonly name: string;
   @Field()
   readonly description: string;
   @Field({ nullable: true })

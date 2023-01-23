@@ -42,7 +42,7 @@ export class PetAdoptionService {
   async create(input: CreateAdoption) {
     const adoption = await this.adoptionModel.findOne(
       {
-        slug: slug(input.title),
+        slug: slug(input.name),
         'data.siteId': input.siteId,
         parentId: input.parentId,
       },
@@ -53,7 +53,7 @@ export class PetAdoptionService {
     if (adoption) {
       // this.logger.warn('Document not found with filterQuery', filterQuery);
       throw new UnprocessableEntityException(
-        `You already have an item registered with that name "${input.title}"`,
+        `Ya tienes una adopción con este nombre "${input.name}" registrado`,
       );
     }
     const data = new this.adoptionModel(adoptionCreated(input));
@@ -64,7 +64,7 @@ export class PetAdoptionService {
     const adoption = await this.adoptionModel.findOne(
       {
         _id: { $ne: input.id },
-        slug: slug(input.title),
+        slug: slug(input.name),
         'data.siteId': input.siteId,
         parentId: input.parentId,
       },
@@ -74,7 +74,7 @@ export class PetAdoptionService {
     if (adoption) {
       // this.logger.warn('Document not found with filterQuery', filterQuery);
       throw new UnprocessableEntityException(
-        `You already have an item registered with that name "${input.title}"`,
+        `Ya tienes una adopción con este nombre "${input.name}" registrado`,
       );
     }
     const data = await this.adoptionModel.findOneAndUpdate(

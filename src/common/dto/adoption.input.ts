@@ -3,7 +3,7 @@ import { InputType, Field, PartialType, ID, OmitType } from '@nestjs/graphql';
 @InputType()
 export class CreateAdoption {
   @Field()
-  readonly title: string;
+  readonly name: string;
 
   @Field()
   readonly description: string;

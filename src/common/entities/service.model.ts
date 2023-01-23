@@ -5,9 +5,9 @@ import { Promotion } from './product.model';
 import { Image, Seo, Tags, Type, UpdateDate } from './site.model';
 
 @ObjectType()
-export class Adoption extends AbstractModel {
-  @Field(() => DataAdoption)
-  readonly data: DataAdoption | string;
+export class Service extends AbstractModel {
+  @Field(() => DataService)
+  readonly data: DataService | string;
   @Field()
   readonly slug: string;
 
@@ -16,7 +16,7 @@ export class Adoption extends AbstractModel {
 }
 
 @ObjectType()
-export class DataAdoption {
+export class DataService {
   @Field()
   readonly name: string;
   @Field()
@@ -79,23 +79,23 @@ export class DataAdoption {
 
 
 // @ObjectType()
-// export class HardwareStoreAdoption extends Adoption {}
+// export class HardwareStoreService extends Service {}
 
 @ObjectType()
-export class PetAdoption extends Adoption {}
+export class PetService extends Service {}
 
 // @ObjectType()
-// export class PetAdoption extends Adoption {}
+// export class PetService extends Service {}
 // @ObjectType()
-// export class FoodAdoption extends Adoption {}
+// export class FoodService extends Service {}
 
 // @ObjectType()
-// export class ListWearAdoption extends RelayTypes<WearAdoption>(WearAdoption) {}
+// export class ListWearService extends RelayTypes<WearService>(WearService) {}
 @ObjectType()
-export class ListPetAdoption extends RelayTypes<PetAdoption>(PetAdoption) {}
+export class ListPetService extends RelayTypes<PetService>(PetService) {}
 // @ObjectType()
-// export class ListPetAdoption extends RelayTypes<PetAdoption>(PetAdoption) {}
+// export class ListPetService extends RelayTypes<PetService>(PetService) {}
 // @ObjectType()
-// export class ListHardwareStoreAdoption extends RelayTypes<HardwareStoreAdoption>(HardwareStoreAdoption) {}
+// export class ListHardwareStoreService extends RelayTypes<HardwareStoreService>(HardwareStoreService) {}
 // @ObjectType()
-// export class ListFoodAdoption extends RelayTypes<FoodAdoption>(FoodAdoption) {}
+// export class ListFoodService extends RelayTypes<FoodService>(FoodService) {}

@@ -1,34 +1,35 @@
 import { Types } from 'mongoose';
 import { capitalizar, slug, uuidv3 } from 'utils/function';
 import {
-  CreateProduct,
-  UpdateDetailProduct,
-  UpdateLikesProduct,
-  UpdatePriceProduct,
-  UpdateProduct,
-  UpdateSpecsProduct,
-  UpdateTagsProduct,
-} from '../dto/product.input';
-import { UpdateImageProduct, UpdateImageSeo } from '../dto/site.input';
+  CreateService,
+  UpdateDetailService,
+  UpdateLikesService,
+  UpdatePriceService,
+  UpdateService,
+  UpdateSpecsService,
+  UpdateTagsService,
+} from '../dto/service.input';
+import { UpdateImageSeo, UpdateImageProduct } from '../dto/site.input';
 
-export function productCreated({
+export function serviceCreated({
   name,
   description,
   siteId,
   parentId,
   uid,
   type,
-}: CreateProduct) {
+}: CreateService) {
   return {
     _id: new Types.ObjectId(),
     parentId: parentId,
     slug: slug(name),
     data: {
-      siteId: siteId,
       name: name,
       description: description,
+      siteId: siteId,
+      // type: type,
       type: {
-        label: typeProduct(type),
+        label: typeService(type),
         slug: slug(type),
       },
 
@@ -38,7 +39,7 @@ export function productCreated({
         register: [
           {
             uid: uid,
-            change: 'product created',
+            change: 'service created',
             updatedAt: new Date(),
           },
         ],
@@ -47,7 +48,7 @@ export function productCreated({
   };
 }
 
-export function productUpdated({ id, name, description, uid }: UpdateProduct) {
+export function serviceUpdated({ id, name, description, uid }: UpdateService) {
   return {
     $set: {
       'data.name': name,
@@ -58,13 +59,13 @@ export function productUpdated({ id, name, description, uid }: UpdateProduct) {
     $push: {
       'data.updateDate.register': {
         uid: uid,
-        change: 'product updated',
+        change: 'service updated',
         updatedAt: new Date(),
       },
     },
   };
 }
-export function productDetailUpdated({ text, uid }: UpdateDetailProduct) {
+export function serviceDetailUpdated({ text, uid }: UpdateDetailService) {
   return {
     $set: {
       'data.details': text,
@@ -73,13 +74,13 @@ export function productDetailUpdated({ text, uid }: UpdateDetailProduct) {
     $push: {
       'data.updateDate.register': {
         uid: uid,
-        change: 'product detail updated',
+        change: 'service detail updated',
         updatedAt: new Date(),
       },
     },
   };
 }
-export function productSpecsUpdated({ text, uid }: UpdateSpecsProduct) {
+export function serviceSpecsUpdated({ text, uid }: UpdateSpecsService) {
   return {
     $set: {
       'data.specs': text,
@@ -88,13 +89,13 @@ export function productSpecsUpdated({ text, uid }: UpdateSpecsProduct) {
     $push: {
       'data.updateDate.register': {
         uid: uid,
-        change: 'product specs updated',
+        change: 'service specs updated',
         updatedAt: new Date(),
       },
     },
   };
 }
-export function productPriceUpdated({ price, discountPrice, inStock, uid }: UpdatePriceProduct) {
+export function servicePriceUpdated({ price, discountPrice, inStock, uid }: UpdatePriceService) {
   return {
     $set: {
       'data.price': price,
@@ -105,17 +106,17 @@ export function productPriceUpdated({ price, discountPrice, inStock, uid }: Upda
     $push: {
       'data.updateDate.register': {
         uid: uid,
-        change: 'product price updated',
+        change: 'service price updated',
         updatedAt: new Date(),
       },
     },
   };
 }
-export function productTagsUpdated({ tags, uid }: UpdateTagsProduct) {
+export function serviceTagsUpdated({ tags, uid }: UpdateTagsService) {
   return {
     $set: {
       'data.tags': tags.map((data) => ({
-        uid: uuidv3(),
+        
         text: data,
         slug: slug(data),
       })),
@@ -124,16 +125,21 @@ export function productTagsUpdated({ tags, uid }: UpdateTagsProduct) {
     $push: {
       'data.updateDate.register': {
         uid: uid,
-        change: 'product tags updated',
+        change: 'service tags updated',
         updatedAt: new Date(),
       },
     },
   };
 }
 
-export function productLikesUpdated({ uid }: UpdateLikesProduct) {
+export function serviceLikesUpdated({ uid }: UpdateLikesService) {
   return {
     $set: {
+      // 'data.likes': tags.map((data) => ({
+      //   uid: uuidv3(),
+      //   text: data,
+      //   slug: slug(data),
+      // })),
       'data.updateDate.lastUpdatedAt': new Date(),
     },
     $addToSet: {
@@ -142,14 +148,14 @@ export function productLikesUpdated({ uid }: UpdateLikesProduct) {
     $push: {
       'data.updateDate.register': {
         uid: uid,
-        change: 'product likes updated',
+        change: 'service likes updated',
         updatedAt: new Date(),
       },
     },
   };
 }
 
-export function productDisLikesUpdated({ uid }: UpdateLikesProduct) {
+export function serviceDisLikesUpdated({ uid }: UpdateLikesService) {
   return {
     $set: {
       // 'data.likes': tags.map((data) => ({
@@ -165,14 +171,14 @@ export function productDisLikesUpdated({ uid }: UpdateLikesProduct) {
     $push: {
       'data.updateDate.register': {
         uid: uid,
-        change: 'product dislikes updated',
+        change: 'service dislikes updated',
         updatedAt: new Date(),
       },
     },
   };
 }
 
-export function productUpdateImage({
+export function serviceUpdateImage({
   id,
   images,
   type,
@@ -182,23 +188,23 @@ export function productUpdateImage({
   return {
     $set: {
       'data.images': images.map((data) => ({
-        
         src: data.src,
         alt: data.alt,
       })),
-      
+      // 'data.seoService.image.src': images[0].src,
+      // 'data.seoService.image.alt': images[0].alt,
       'data.updateDate.lastUpdatedAt': new Date(),
     },
     $push: {
       'data.updateDate.register': {
         uid: uid,
-        change: 'image product update',
+        change: 'image service update',
         updatedAt: new Date(),
       },
     },
   };
 }
-export function productUpdateImageSeo({
+export function serviceUpdateImageSeo({
   id,
   src,
   uid,
@@ -207,23 +213,25 @@ export function productUpdateImageSeo({
   return {
     $set: {
       'data.thumbnailUrl': src,
+      // 'data.seoService.image.src': images[0].src,
+      // 'data.seoService.image.alt': images[0].alt,
       'data.updateDate.lastUpdatedAt': new Date(),
     },
     $push: {
       'data.updateDate.register': {
         uid: uid,
-        change: 'image product update',
+        change: 'image for seo update',
         updatedAt: new Date(),
       },
     },
   };
 }
 
-export function typeProduct(type: string) {
+export function typeService(type: string) {
   let data: string;
   switch (type) {
-    case 'adoption':
-      data = 'Adoption';
+    case 'service':
+      data = 'Service';
       break;
 
     default:

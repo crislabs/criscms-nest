@@ -10,7 +10,7 @@ import {
 } from '../dto/site.input';
 
 export function siteCreated({
-  title,
+  name,
   type,
   uid,
 }: CreateSite) {
@@ -18,7 +18,7 @@ export function siteCreated({
   return {
     _id: new Types.ObjectId(),
     data: {
-      title: title,
+      name: name,
       type: {
         label: typeSite(type),
         slug: slug(type),
@@ -38,11 +38,11 @@ export function siteCreated({
   };
 }
 
-export function siteUpdate({ id, uid, title }: UpdateSite) {
+export function siteUpdate({ id, uid, name }: UpdateSite) {
   
   return {
     $set: {
-      'data.title': title,
+      'data.name': name,
       
       'data.updateDate.lastUpdatedAt': new Date(),
       

@@ -10,9 +10,10 @@ import { ProductsModule } from './products/products.module';
 import { SitesModule } from './sites/sites.module';
 import { UsersModule } from './users/users.module';
 import { UploadsModule } from './uploads/uploads.module';
+import { ServicesModule } from './services/services.module';
 
 @Module({
-  imports: [CommonModule, SitesModule, PagesModule, AdoptionsModule, ProductsModule, UsersModule, ArticlesModule, CommentsModule, UploadsModule],
+  imports: [CommonModule, SitesModule, PagesModule, AdoptionsModule, ProductsModule, UsersModule, ArticlesModule, CommentsModule, UploadsModule, ServicesModule],
   controllers: [AppController],
   providers: [AppService],
 })

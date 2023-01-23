@@ -12,7 +12,7 @@ import {
 import { UpdateImageSeo, UpdateImageProduct } from '../dto/site.input';
 
 export function adoptionCreated({
-  title,
+  name,
   description,
   siteId,
   parentId,
@@ -22,9 +22,9 @@ export function adoptionCreated({
   return {
     _id: new Types.ObjectId(),
     parentId: parentId,
-    slug: slug(title),
+    slug: slug(name),
     data: {
-      title: title,
+      name: name,
       description: description,
       siteId: siteId,
       // type: type,
@@ -48,13 +48,13 @@ export function adoptionCreated({
   };
 }
 
-export function adoptionUpdated({ id, title, description, uid }: UpdateAdoption) {
+export function adoptionUpdated({ id, name, description, uid }: UpdateAdoption) {
   return {
     $set: {
-      'data.title': title,
+      'data.name': name,
       'data.description': description,
       'data.updateDate.lastUpdatedAt': new Date(),
-      slug: slug(title),
+      slug: slug(name),
     },
     $push: {
       'data.updateDate.register': {

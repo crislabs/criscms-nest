@@ -3,7 +3,7 @@ import { InputType, Field, PartialType } from '@nestjs/graphql';
 @InputType()
 export class CreateArticle {
   @Field()
-  readonly title: string;
+  readonly name: string;
 
   @Field()
   readonly description: string;

@@ -28,7 +28,7 @@ export class PetProductService {
   async create(input: CreateProduct) {
     const product = await this.productModel.findOne(
       {
-        slug: slug(input.title),
+        slug: slug(input.name),
         'data.siteId': input.siteId,
         parentId: input.parentId,
       },
@@ -39,7 +39,7 @@ export class PetProductService {
     if (product) {
       // this.logger.warn('Document not found with filterQuery', filterQuery);
       throw new UnprocessableEntityException(
-        `You already have an item registered with that name "${input.title}"`,
+        `Ya tienes un producto con este nombre "${input.name}" registrado`,
       );
     }
     const data = new this.productModel(productCreated(input));
@@ -50,7 +50,7 @@ export class PetProductService {
     const product = await this.productModel.findOne(
       {
         _id: { $ne: input.id },
-        slug: slug(input.title),
+        slug: slug(input.name),
         'data.siteId': input.siteId,
         parentId: input.parentId,
       },
@@ -60,7 +60,7 @@ export class PetProductService {
     if (product) {
       // this.logger.warn('Document not found with filterQuery', filterQuery);
       throw new UnprocessableEntityException(
-        `You already have an item registered with that name "${input.title}"`,
+        `Ya tienes un producto con este nombre "${input.name}" registrado`,
       );
     }
     const data = await this.productModel.findOneAndUpdate(

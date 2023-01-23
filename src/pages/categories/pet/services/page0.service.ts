@@ -36,7 +36,7 @@ export class PetPage0Service {
 
     const page = await this.pageModel.findOne(
       {
-        slug: slug(input.title),
+        slug: slug(input.name),
         'data.siteId': input.siteId,
         parentId: input.parentId,
       },
@@ -46,7 +46,7 @@ export class PetPage0Service {
 
     if (page) {
       throw new UnprocessableEntityException(
-        `You already have an item registered with that name "${input.title}"`,
+        `Ya tienes una página con este nombre "${input.name}" registrado`,
       );
       // throw new HttpException({
       //   status: HttpStatus.FORBIDDEN,
@@ -64,7 +64,7 @@ export class PetPage0Service {
     const page = await this.pageModel.findOne(
       {
         _id: { $ne: input.id },
-        slug: slug(input.title),
+        slug: slug(input.name),
         'data.siteId': input.siteId,
         parentId: input.parentId,
       },
@@ -73,7 +73,7 @@ export class PetPage0Service {
     );
     if (page) {
       throw new UnprocessableEntityException(
-        `You already have an item registered with that name "${input.title}"`,
+        `Ya tienes una página con este nombre "${input.name}" registrado`,
       );
     }
     const document = await this.pageModel.findOneAndUpdate(

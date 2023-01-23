@@ -8,7 +8,7 @@ import {
 
 export function pageCreated({
   type,
-  title,
+  name,
   description,
   parentId,
   siteId,
@@ -22,7 +22,7 @@ export function pageCreated({
         label: typePage(type),
         slug: type,
       },
-      title: title,
+      name: name,
       description: description,
       
       updateDate: {
@@ -39,21 +39,21 @@ export function pageCreated({
       siteId: siteId,
     },
     parentId: parentId,
-    slug: slug(title),
+    slug: slug(name),
   };
 }
 
-export function pageUpdate({ id, type, title, description, uid }: UpdatePage) {
+export function pageUpdate({ id, type, name, description, uid }: UpdatePage) {
   return {
     $set: {
       'data.type': {
         label: typePage(type),
         slug: type,
       },
-      'data.title': title,
+      'data.name': name,
       'data.description': description,
       'data.updateDate.lastUpdatedAt': new Date(),
-      slug: slug(title),
+      slug: slug(name),
     },
     $push: {
       'data.updateDate.register': {
@@ -92,7 +92,7 @@ export function pageUpdateImage({ id, images, type, uid }: UpdateImage) {
 
 export function page0(id: string, uid: string) {
   return {
-    title: 'home',
+    name: 'home',
     description: 'home description',
     type: 'page-blank',
     parentId: id,

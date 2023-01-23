@@ -3,7 +3,7 @@ import { InputType, Field, OmitType } from '@nestjs/graphql';
 @InputType()
 export class CreatePage {
   @Field()
-  readonly title: string;
+  readonly name: string;
   @Field()
   readonly description: string;
   @Field()

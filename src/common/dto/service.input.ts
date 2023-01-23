@@ -1,7 +1,7 @@
 import { InputType, Field, PartialType, ID, OmitType } from '@nestjs/graphql';
 
 @InputType()
-export class CreateProduct {
+export class CreateService {
   @Field()
   readonly name: string;
 
@@ -20,7 +20,7 @@ export class CreateProduct {
 }
 
 @InputType()
-export class UpdateProduct extends PartialType(CreateProduct) {
+export class UpdateService extends PartialType(CreateService) {
   @Field()
   readonly id: string;
   // @Field(() => [String])
@@ -34,7 +34,7 @@ export class UpdateProduct extends PartialType(CreateProduct) {
 }
 
 @InputType()
-export class UpdateSpecsProduct {
+export class UpdateSpecsService {
   @Field()
   readonly id: string;
   @Field()
@@ -43,7 +43,7 @@ export class UpdateSpecsProduct {
   readonly uid: string;
 }
 @InputType()
-export class UpdateDetailProduct {
+export class UpdateDetailService {
   @Field()
   readonly id: string;
   @Field()
@@ -52,7 +52,7 @@ export class UpdateDetailProduct {
   readonly uid: string;
 }
 @InputType()
-export class UpdateTagsProduct {
+export class UpdateTagsService {
   @Field()
   readonly id: string;
   @Field(() => [String])
@@ -61,14 +61,14 @@ export class UpdateTagsProduct {
   readonly uid: string;
 }
 @InputType()
-export class UpdateLikesProduct {
+export class UpdateLikesService {
   @Field()
   readonly id: string;
   @Field()
   readonly uid: string;
 }
 @InputType()
-export class UpdatePriceProduct {
+export class UpdatePriceService {
   @Field()
   readonly id: string;
   @Field()

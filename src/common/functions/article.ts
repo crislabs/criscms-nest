@@ -5,7 +5,7 @@ import { CreateProduct, UpdateProduct } from '../dto/product.input';
 import { InputImage, UpdateImage, UpdateImageProduct } from '../dto/site.input';
 
 export function articleCreated({
-  title,
+  name,
   description,
   siteId,
   parentId,
@@ -13,16 +13,14 @@ export function articleCreated({
 }: CreateArticle) {
   return {
     _id: new Types.ObjectId(),
-    siteId: siteId,
     parentId: parentId,
-    slug: slug(title),
+    slug: slug(name),
     data: {
+      siteId: siteId,
       author: uid,
-      seoArticle: {
-        title: title,
-        href: slug(title),
-        description: description,
-      },
+      name: name,
+      description: description,
+      
       updateDate: {
         createdAt: new Date(),
         lastUpdatedAt: new Date(),
@@ -38,14 +36,14 @@ export function articleCreated({
   };
 }
 
-export function articleUpdated({ id, title, description, uid }: UpdateArticle) {
+export function articleUpdated({ id, name, description, uid }: UpdateArticle) {
   return {
     $set: {
-      'data.seoArticle.title': title,
-      'data.seoArticle.href': slug(title),
+      'data.seoArticle.name': name,
+      'data.seoArticle.href': slug(name),
       'data.seoArticle.description': description,
       'data.updateDate.lastUpdatedAt': new Date(),
-      slug: slug(title),
+      slug: slug(name),
     },
     $push: {
       'data.updateDate.register': {

@@ -9,7 +9,7 @@ type PageData {
 }
 
 type DataSite {
-  title: String!
+  name: String!
   description: String
   type: Type!
   images: ImageSite
@@ -157,7 +157,7 @@ type HardwareStoreComment {
 }
 
 type DataProduct {
-  title: String!
+  name: String!
   description: String!
   thumbnailUrl: String
   type: Type!
@@ -231,7 +231,7 @@ type PetProductPageInfo {
 }
 
 type DataAdoption {
-  title: String!
+  name: String!
   description: String!
   thumbnailUrl: String
   type: Type!
@@ -280,7 +280,7 @@ type PetAdoptionPageInfo {
 }
 
 type DataArticle {
-  title: String!
+  name: String!
   description: String!
   thumbnailUrl: String
   content: String
@@ -345,7 +345,7 @@ type HardwareStoreArticle {
 }
 
 type DataPage {
-  title: String!
+  name: String!
   description: String!
   thumbnailUrl: String
   type: Type!
@@ -1059,6 +1059,55 @@ type PetUser {
   email: String!
 }
 
+type DataService {
+  name: String!
+  description: String!
+  thumbnailUrl: String
+  type: Type!
+  inStock: Float
+  price: Float
+  discountPrice: Float
+  promotion: Promotion
+  details: String
+  featured: String
+  specs: String
+  tags: [Tags!]
+  images: [Image!]
+  updateDate: UpdateDate!
+  likes: [String!]
+  siteId: String!
+}
+
+type PetService {
+  _id: ID!
+  data: DataService!
+  slug: String!
+  parentId: String!
+  comments: [PetComment]
+}
+
+type ListPetService {
+  page: PetServiceConnection!
+  pageData: PageData
+}
+
+type PetServiceConnection {
+  edges: [PetServiceEdge!]
+  pageInfo: PetServicePageInfo
+}
+
+type PetServiceEdge {
+  cursor: String
+  node: PetService
+}
+
+type PetServicePageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
 type Query {
   petGetSite(id: String!): PetSite!
   petGetSites: [PetSite!]!
@@ -1181,6 +1230,13 @@ type Query {
   petGetUser(id: String!): PetUser!
   petGetUserByEmail(email: String!, siteId: String!): PetUser!
   petGetUsers: [PetUser!]!
+  petGetService(id: String!): PetService!
+  petGetServiceBySlug(slug: String!, siteId: String!): PetService!
+  petGetServices: [PetService!]!
+  petGetServicesBySiteId(siteId: String!): [PetService!]!
+  petGetServicesByParentId(parentId: String!): [PetService!]!
+  petGetServicesByParentIdByPagination(listInput: ListInput!, parentId: String!): [PetService!]!
+  petGetServicesWithCursor(args: ConnectionArgs!, parentId: String!): ListPetService!
 }
 
 input ListInput {
@@ -1334,16 +1390,27 @@ type Mutation {
   petDeleteArticles(ids: [String!]!): [String!]!
   petDeleteAllArticles: String!
   petCreateUser(input: CreateUser!): PetUser!
+  petCreateService(input: CreateService!): PetService!
+  petUpdateService(input: UpdateService!): PetService!
+  petUpdateDetailService(input: UpdateDetailService!): PetService!
+  petUpdatePriceService(input: UpdatePriceService!): PetService!
+  petUpdateSpecsService(input: UpdateSpecsService!): PetService!
+  petUpdateTagsService(input: UpdateTagsService!): PetService!
+  petUpdateLikesService(input: UpdateLikesService!): PetService!
+  petUpdateDisLikesService(input: UpdateLikesService!): PetService!
+  petDeleteService(id: String!): String!
+  petDeleteServices(ids: [String!]!): [String!]!
+  petDeleteAllServices: String!
 }
 
 input CreateSite {
-  title: String!
+  name: String!
   type: String!
   uid: String!
 }
 
 input UpdateSite {
-  title: String!
+  name: String!
   uid: String!
   id: String!
 }
@@ -1377,7 +1444,7 @@ input InputImage {
 }
 
 input CreatePage {
-  title: String!
+  name: String!
   description: String!
   type: String!
   parentId: String!
@@ -1386,7 +1453,7 @@ input CreatePage {
 }
 
 input UpdatePage {
-  title: String!
+  name: String!
   description: String!
   type: String!
   parentId: String!
@@ -1396,7 +1463,7 @@ input UpdatePage {
 }
 
 input CreateProduct {
-  title: String!
+  name: String!
   description: String!
   siteId: String!
   parentId: String!
@@ -1405,7 +1472,7 @@ input CreateProduct {
 }
 
 input UpdateProduct {
-  title: String
+  name: String
   description: String
   siteId: String
   parentId: String
@@ -1475,7 +1542,7 @@ input UpdateLikesComment {
 }
 
 input CreateAdoption {
-  title: String!
+  name: String!
   description: String!
   siteId: String!
   parentId: String!
@@ -1484,7 +1551,7 @@ input CreateAdoption {
 }
 
 input UpdateAdoption {
-  title: String
+  name: String
   description: String
   siteId: String
   parentId: String
@@ -1530,7 +1597,7 @@ input UpdateImageSeo {
 }
 
 input CreateArticle {
-  title: String!
+  name: String!
   description: String!
   siteId: String!
   parentId: String!
@@ -1538,7 +1605,7 @@ input CreateArticle {
 }
 
 input UpdateArticle {
-  title: String
+  name: String
   description: String
   siteId: String
   parentId: String
@@ -1571,4 +1638,54 @@ input CreateUser {
   password: String!
   role: String!
   oAuth: String
+}
+
+input CreateService {
+  name: String!
+  description: String!
+  siteId: String!
+  parentId: String!
+  uid: String!
+  type: String!
+}
+
+input UpdateService {
+  name: String
+  description: String
+  siteId: String
+  parentId: String
+  uid: String
+  type: String
+  id: String!
+}
+
+input UpdateDetailService {
+  id: String!
+  text: String!
+  uid: String!
+}
+
+input UpdatePriceService {
+  id: String!
+  price: String!
+  discountPrice: String!
+  inStock: String!
+  uid: String!
+}
+
+input UpdateSpecsService {
+  id: String!
+  text: String!
+  uid: String!
+}
+
+input UpdateTagsService {
+  id: String!
+  tags: [String!]!
+  uid: String!
+}
+
+input UpdateLikesService {
+  id: String!
+  uid: String!
 }

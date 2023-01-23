@@ -16,7 +16,7 @@ export class Page extends AbstractModel {
 @ObjectType()
 export class DataPage {
   @Field()
-  readonly title: string;
+  readonly name: string;
   @Field()
   readonly description: string;
   @Field({ nullable: true })
