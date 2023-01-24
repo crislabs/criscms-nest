@@ -10,6 +10,7 @@ import { PetArticleModule } from 'src/articles/categories/pet/category.module';
 import { PetUserModule } from 'src/users/categories/pet/category.module';
 import { PetAdoptionModule } from 'src/adoptions/categories/pet/category.module';
 import { PetCommentModule } from 'src/comments/categories/pet/category.module';
+import { PetTeamModule } from 'src/teams/categories/pet/category.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { PetCommentModule } from 'src/comments/categories/pet/category.module';
     PetAdoptionModule,
     PetArticleModule,
     PetCommentModule,
+    PetTeamModule,
     MongooseModule.forFeature(
       [{ name: PetSite.name, schema: PetSiteSchema }],
       'petDB',

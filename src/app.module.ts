@@ -11,9 +11,10 @@ import { SitesModule } from './sites/sites.module';
 import { UsersModule } from './users/users.module';
 import { UploadsModule } from './uploads/uploads.module';
 import { ServicesModule } from './services/services.module';
+import { TeamsModule } from './teams/teams.module';
 
 @Module({
-  imports: [CommonModule, SitesModule, PagesModule, AdoptionsModule, ProductsModule, UsersModule, ArticlesModule, CommentsModule, UploadsModule, ServicesModule],
+  imports: [CommonModule, SitesModule, PagesModule, AdoptionsModule, ProductsModule, UsersModule, ArticlesModule, CommentsModule, UploadsModule, ServicesModule, TeamsModule],
   controllers: [AppController],
   providers: [AppService],
 })

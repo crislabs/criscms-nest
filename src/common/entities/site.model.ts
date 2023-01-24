@@ -117,10 +117,10 @@ export class Tags {
 
 @ObjectType()
 export class Type {
-  @Field()
-  label: string;
-  @Field()
-  slug: string;
+  @Field({ nullable: true })
+  readonly label?: string;
+  @Field({ nullable: true })
+  readonly slug?: string;
 }
 
   @ObjectType()

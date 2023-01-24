@@ -37,6 +37,8 @@ import { PetArticleService } from 'src/articles/categories/pet/category.service'
 import { PetAdoptionService } from 'src/adoptions/categories/pet/category.service';
 import { PetAdoption } from 'src/common/entities/adoption.model';
 import { PetCommentService } from 'src/comments/categories/pet/category.service';
+import { PetTeamService } from 'src/teams/categories/pet/category.service';
+import { PetTeam } from 'src/common/entities/team.model';
 
 @Resolver(() => PetSite)
 export class PetSiteResolver {
@@ -48,6 +50,7 @@ export class PetSiteResolver {
     private readonly productService: PetProductService,
     private readonly adoptionService: PetAdoptionService,
     private readonly articleService: PetArticleService,
+    private readonly teamService: PetTeamService,
   ) {}
 
   @Mutation(() => PetSite, { name: 'petCreateSite' })
@@ -85,6 +88,7 @@ export class PetSiteResolver {
     this.productService.deleteManyBySiteId([id]);
     this.adoptionService.deleteManyBySiteId([id]);
     this.articleService.deleteManyBySiteId([id]);
+    this.teamService.deleteManyBySiteId([id]);
     return this.siteService.deleteOne(id);
   }
 
@@ -96,6 +100,7 @@ export class PetSiteResolver {
     this.productService.deleteManyBySiteId(ids);
     this.adoptionService.deleteManyBySiteId(ids);
     this.articleService.deleteManyBySiteId(ids);
+    this.teamService.deleteManyBySiteId(ids);
     return this.siteService.deleteMany(ids);
   }
 
@@ -107,6 +112,7 @@ export class PetSiteResolver {
     this.productService.deleteAll();
     this.adoptionService.deleteAll();
     this.articleService.deleteAll();
+    this.teamService.deleteAll();
     return this.siteService.deleteAll();
   }
 
@@ -166,5 +172,9 @@ export class PetSiteResolver {
   @ResolveField('articles', () => [PetArticle], { nullable: 'itemsAndList' })
   getArticles(@Parent() { _id }: PetSite) {
     return this.articleService.findBySiteId(_id.toString());
+  }
+  @ResolveField('team', () => [PetTeam], { nullable: 'itemsAndList' })
+  getTeam(@Parent() { _id }: PetSite) {
+    return this.teamService.findBySiteId(_id.toString());
   }
 }

@@ -69,8 +69,8 @@ type Tags {
 }
 
 type Type {
-  label: String!
-  slug: String!
+  label: String
+  slug: String
 }
 
 type FoodSite {
@@ -94,6 +94,7 @@ type PetSite {
   products: [PetProduct]
   adoptions: [PetAdoption]
   articles: [PetArticle]
+  team: [PetTeam]
 }
 
 type ListPetSite {
@@ -177,13 +178,13 @@ type DataProduct {
 }
 
 type Mark {
-  label: String!
-  slug: String!
+  label: String
+  slug: String
 }
 
 type Promotion {
-  label: String!
-  slug: String!
+  label: String
+  slug: String
 }
 
 type HardwareStoreProduct {
@@ -1059,6 +1060,71 @@ type PetUser {
   email: String!
 }
 
+type DataTeam {
+  name: String!
+  description: String!
+  thumbnailUrl: String
+  siteId: String
+  socialMedia: [SocialMedia!]!
+  updateDate: UpdateDate!
+}
+
+type SocialMedia {
+  label: String!
+  url: String!
+}
+
+type PetTeam {
+  _id: ID!
+  data: DataTeam!
+  parentId: String!
+  slug: String!
+  comments: [PetComment]
+}
+
+type ListPetTeam {
+  page: PetTeamConnection!
+  pageData: PageData
+}
+
+type PetTeamConnection {
+  edges: [PetTeamEdge!]
+  pageInfo: PetTeamPageInfo
+}
+
+type PetTeamEdge {
+  cursor: String
+  node: PetTeam
+}
+
+type PetTeamPageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type FoodTeam {
+  _id: ID!
+  data: DataTeam!
+  parentId: String!
+  slug: String!
+}
+
+type PortfolioTeam {
+  _id: ID!
+  data: DataTeam!
+  parentId: String!
+  slug: String!
+}
+
+type HardwareStoreTeam {
+  _id: ID!
+  data: DataTeam!
+  parentId: String!
+  slug: String!
+}
+
 type DataService {
   name: String!
   description: String!
@@ -1230,6 +1296,13 @@ type Query {
   petGetUser(id: String!): PetUser!
   petGetUserByEmail(email: String!, siteId: String!): PetUser!
   petGetUsers: [PetUser!]!
+  petGetTeam(id: String!): PetTeam!
+  petGetTeamBySlug(slug: String!, siteId: String!): PetTeam!
+  petGetTeams: [PetTeam!]!
+  petGetTeamsBySiteId(siteId: String!): [PetTeam!]!
+  petGetTeamsByParentId(parentId: String!): [PetTeam!]!
+  petGetTeamsByParentIdByPagination(listInput: ListInput!, parentId: String!): [PetTeam!]!
+  petGetTeamsWithCursor(args: ConnectionArgs!, parentId: String!): ListPetTeam!
   petGetService(id: String!): PetService!
   petGetServiceBySlug(slug: String!, siteId: String!): PetService!
   petGetServices: [PetService!]!
@@ -1390,6 +1463,17 @@ type Mutation {
   petDeleteArticles(ids: [String!]!): [String!]!
   petDeleteAllArticles: String!
   petCreateUser(input: CreateUser!): PetUser!
+  petCreateTeam(input: CreateTeam!): PetTeam!
+  petUpdateTeam(input: UpdateTeam!): PetTeam!
+  petUpdateDetailTeam(input: UpdateDetailTeam!): PetTeam!
+  petUpdateSpecsTeam(input: UpdateSpecsTeam!): PetTeam!
+  petUpdateTagsTeam(input: UpdateTagsTeam!): PetTeam!
+  petUpdateLikesTeam(input: UpdateLikesTeam!): PetTeam!
+  petUpdateDisLikesTeam(input: UpdateLikesTeam!): PetTeam!
+  petUpdateImageSeoTeam(input: UpdateImageSeo!): PetTeam!
+  petDeleteTeam(id: String!): String!
+  petDeleteTeams(ids: [String!]!): [String!]!
+  petDeleteAllTeams: String!
   petCreateService(input: CreateService!): PetService!
   petUpdateService(input: UpdateService!): PetService!
   petUpdateDetailService(input: UpdateDetailService!): PetService!
@@ -1638,6 +1722,44 @@ input CreateUser {
   password: String!
   role: String!
   oAuth: String
+}
+
+input CreateTeam {
+  name: String!
+  siteId: String!
+  parentId: String!
+  uid: String!
+}
+
+input UpdateTeam {
+  name: String
+  siteId: String
+  parentId: String
+  uid: String
+  id: String!
+}
+
+input UpdateDetailTeam {
+  id: String!
+  text: String!
+  uid: String!
+}
+
+input UpdateSpecsTeam {
+  id: String!
+  text: String!
+  uid: String!
+}
+
+input UpdateTagsTeam {
+  id: String!
+  tags: [String!]!
+  uid: String!
+}
+
+input UpdateLikesTeam {
+  id: String!
+  uid: String!
 }
 
 input CreateService {
