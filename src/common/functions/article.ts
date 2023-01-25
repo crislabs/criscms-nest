@@ -36,12 +36,11 @@ export function articleCreated({
   };
 }
 
-export function articleUpdated({ id, name, description, uid }: UpdateArticle) {
+export function articleUpdated({ name, description, uid }: UpdateArticle) {
   return {
     $set: {
-      'data.seoArticle.name': name,
-      'data.seoArticle.href': slug(name),
-      'data.seoArticle.description': description,
+      'data.name': name,
+      'data.description': description,
       'data.updateDate.lastUpdatedAt': new Date(),
       slug: slug(name),
     },
