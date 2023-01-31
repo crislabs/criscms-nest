@@ -77,6 +77,33 @@ type FoodSite {
   _id: ID!
   data: DataSite!
   url: String
+  pages: [FoodPage0]
+  users: [FoodUser]
+  products: [FoodProduct]
+  articles: [FoodArticle]
+  team: [FoodTeam]
+}
+
+type ListFoodSite {
+  page: FoodSiteConnection!
+  pageData: PageData
+}
+
+type FoodSiteConnection {
+  edges: [FoodSiteEdge!]
+  pageInfo: FoodSitePageInfo
+}
+
+type FoodSiteEdge {
+  cursor: String
+  node: FoodSite
+}
+
+type FoodSitePageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
 }
 
 type HardwareStoreSite {
@@ -242,6 +269,7 @@ type FoodProduct {
   data: DataProduct!
   slug: String!
   parentId: String!
+  comments: [FoodComment]
 }
 
 type ListPetProduct {
@@ -260,6 +288,28 @@ type PetProductEdge {
 }
 
 type PetProductPageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListFoodProduct {
+  page: FoodProductConnection!
+  pageData: PageData
+}
+
+type FoodProductConnection {
+  edges: [FoodProductEdge!]
+  pageInfo: FoodProductPageInfo
+}
+
+type FoodProductEdge {
+  cursor: String
+  node: FoodProduct
+}
+
+type FoodProductPageInfo {
   startCursor: String
   endCursor: String
   hasPreviousPage: Boolean!
@@ -386,6 +436,29 @@ type FoodArticle {
   data: DataArticle!
   parentId: String!
   slug: String!
+  comments: [FoodComment]
+}
+
+type ListFoodArticle {
+  page: FoodArticleConnection!
+  pageData: PageData
+}
+
+type FoodArticleConnection {
+  edges: [FoodArticleEdge!]
+  pageInfo: FoodArticlePageInfo
+}
+
+type FoodArticleEdge {
+  cursor: String
+  node: FoodArticle
+}
+
+type FoodArticlePageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
 }
 
 type PortfolioArticle {
@@ -447,6 +520,9 @@ type FoodPage0 {
   data: DataPage!
   slug: String!
   parentId: String!
+  pages: [FoodPage1]
+  products: [FoodProduct]
+  articles: [FoodArticle]
 }
 
 type FoodPage1 {
@@ -454,6 +530,8 @@ type FoodPage1 {
   data: DataPage!
   slug: String!
   parentId: String!
+  products: [FoodProduct]
+  pages: [FoodPage2]
 }
 
 type FoodPage2 {
@@ -461,6 +539,8 @@ type FoodPage2 {
   data: DataPage!
   slug: String!
   parentId: String!
+  products: [FoodProduct]
+  pages: [FoodPage3]
 }
 
 type FoodPage3 {
@@ -468,6 +548,8 @@ type FoodPage3 {
   data: DataPage!
   slug: String!
   parentId: String!
+  products: [FoodProduct]
+  pages: [FoodPage4]
 }
 
 type FoodPage4 {
@@ -475,6 +557,8 @@ type FoodPage4 {
   data: DataPage!
   slug: String!
   parentId: String!
+  products: [FoodProduct]
+  pages: [FoodPage5]
 }
 
 type FoodPage5 {
@@ -482,6 +566,8 @@ type FoodPage5 {
   data: DataPage!
   slug: String!
   parentId: String!
+  products: [FoodProduct]
+  pages: [FoodPage6]
 }
 
 type FoodPage6 {
@@ -489,6 +575,8 @@ type FoodPage6 {
   data: DataPage!
   slug: String!
   parentId: String!
+  products: [FoodProduct]
+  pages: [FoodPage7]
 }
 
 type FoodPage7 {
@@ -496,6 +584,8 @@ type FoodPage7 {
   data: DataPage!
   slug: String!
   parentId: String!
+  products: [FoodProduct]
+  pages: [FoodPage8]
 }
 
 type FoodPage8 {
@@ -503,6 +593,8 @@ type FoodPage8 {
   data: DataPage!
   slug: String!
   parentId: String!
+  products: [FoodProduct]
+  pages: [FoodPage9]
 }
 
 type FoodPage9 {
@@ -510,6 +602,8 @@ type FoodPage9 {
   data: DataPage!
   slug: String!
   parentId: String!
+  products: [FoodProduct]
+  pages: [FoodPage10]
 }
 
 type FoodPage10 {
@@ -517,6 +611,8 @@ type FoodPage10 {
   data: DataPage!
   slug: String!
   parentId: String!
+  products: [FoodProduct]
+  pages: [FoodPage11]
 }
 
 type FoodPage11 {
@@ -524,6 +620,8 @@ type FoodPage11 {
   data: DataPage!
   slug: String!
   parentId: String!
+  products: [FoodProduct]
+  pages: [FoodPage12]
 }
 
 type FoodPage12 {
@@ -531,6 +629,7 @@ type FoodPage12 {
   data: DataPage!
   slug: String!
   parentId: String!
+  products: [FoodProduct]
 }
 
 type HardwareStorePage0 {
@@ -1431,6 +1530,292 @@ type PortfolioPage12PageInfo {
   hasNextPage: Boolean!
 }
 
+type ListFoodPage0 {
+  page: FoodPage0Connection!
+  pageData: PageData
+}
+
+type FoodPage0Connection {
+  edges: [FoodPage0Edge!]
+  pageInfo: FoodPage0PageInfo
+}
+
+type FoodPage0Edge {
+  cursor: String
+  node: FoodPage0
+}
+
+type FoodPage0PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListFoodPage1 {
+  page: FoodPage1Connection!
+  pageData: PageData
+}
+
+type FoodPage1Connection {
+  edges: [FoodPage1Edge!]
+  pageInfo: FoodPage1PageInfo
+}
+
+type FoodPage1Edge {
+  cursor: String
+  node: FoodPage1
+}
+
+type FoodPage1PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListFoodPage2 {
+  page: FoodPage2Connection!
+  pageData: PageData
+}
+
+type FoodPage2Connection {
+  edges: [FoodPage2Edge!]
+  pageInfo: FoodPage2PageInfo
+}
+
+type FoodPage2Edge {
+  cursor: String
+  node: FoodPage2
+}
+
+type FoodPage2PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListFoodPage3 {
+  page: FoodPage3Connection!
+  pageData: PageData
+}
+
+type FoodPage3Connection {
+  edges: [FoodPage3Edge!]
+  pageInfo: FoodPage3PageInfo
+}
+
+type FoodPage3Edge {
+  cursor: String
+  node: FoodPage3
+}
+
+type FoodPage3PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListFoodPage4 {
+  page: FoodPage4Connection!
+  pageData: PageData
+}
+
+type FoodPage4Connection {
+  edges: [FoodPage4Edge!]
+  pageInfo: FoodPage4PageInfo
+}
+
+type FoodPage4Edge {
+  cursor: String
+  node: FoodPage4
+}
+
+type FoodPage4PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListFoodPage5 {
+  page: FoodPage5Connection!
+  pageData: PageData
+}
+
+type FoodPage5Connection {
+  edges: [FoodPage5Edge!]
+  pageInfo: FoodPage5PageInfo
+}
+
+type FoodPage5Edge {
+  cursor: String
+  node: FoodPage5
+}
+
+type FoodPage5PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListFoodPage6 {
+  page: FoodPage6Connection!
+  pageData: PageData
+}
+
+type FoodPage6Connection {
+  edges: [FoodPage6Edge!]
+  pageInfo: FoodPage6PageInfo
+}
+
+type FoodPage6Edge {
+  cursor: String
+  node: FoodPage6
+}
+
+type FoodPage6PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListFoodPage7 {
+  page: FoodPage7Connection!
+  pageData: PageData
+}
+
+type FoodPage7Connection {
+  edges: [FoodPage7Edge!]
+  pageInfo: FoodPage7PageInfo
+}
+
+type FoodPage7Edge {
+  cursor: String
+  node: FoodPage7
+}
+
+type FoodPage7PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListFoodPage8 {
+  page: FoodPage8Connection!
+  pageData: PageData
+}
+
+type FoodPage8Connection {
+  edges: [FoodPage8Edge!]
+  pageInfo: FoodPage8PageInfo
+}
+
+type FoodPage8Edge {
+  cursor: String
+  node: FoodPage8
+}
+
+type FoodPage8PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListFoodPage9 {
+  page: FoodPage9Connection!
+  pageData: PageData
+}
+
+type FoodPage9Connection {
+  edges: [FoodPage9Edge!]
+  pageInfo: FoodPage9PageInfo
+}
+
+type FoodPage9Edge {
+  cursor: String
+  node: FoodPage9
+}
+
+type FoodPage9PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListFoodPage10 {
+  page: FoodPage10Connection!
+  pageData: PageData
+}
+
+type FoodPage10Connection {
+  edges: [FoodPage10Edge!]
+  pageInfo: FoodPage10PageInfo
+}
+
+type FoodPage10Edge {
+  cursor: String
+  node: FoodPage10
+}
+
+type FoodPage10PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListFoodPage11 {
+  page: FoodPage11Connection!
+  pageData: PageData
+}
+
+type FoodPage11Connection {
+  edges: [FoodPage11Edge!]
+  pageInfo: FoodPage11PageInfo
+}
+
+type FoodPage11Edge {
+  cursor: String
+  node: FoodPage11
+}
+
+type FoodPage11PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListFoodPage12 {
+  page: FoodPage12Connection!
+  pageData: PageData
+}
+
+type FoodPage12Connection {
+  edges: [FoodPage12Edge!]
+  pageInfo: FoodPage12PageInfo
+}
+
+type FoodPage12Edge {
+  cursor: String
+  node: FoodPage12
+}
+
+type FoodPage12PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
 type DataUser {
   password: String!
   updateDate: UpdateDate!
@@ -1453,6 +1838,12 @@ type PetUser {
 }
 
 type PortfolioUser {
+  _id: ID!
+  data: DataUser!
+  email: String!
+}
+
+type FoodUser {
   _id: ID!
   data: DataUser!
   email: String!
@@ -1507,6 +1898,29 @@ type FoodTeam {
   data: DataTeam!
   parentId: String!
   slug: String!
+  comments: [FoodComment]
+}
+
+type ListFoodTeam {
+  page: FoodTeamConnection!
+  pageData: PageData
+}
+
+type FoodTeamConnection {
+  edges: [FoodTeamEdge!]
+  pageInfo: FoodTeamPageInfo
+}
+
+type FoodTeamEdge {
+  cursor: String
+  node: FoodTeam
+}
+
+type FoodTeamPageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
 }
 
 type PortfolioTeam {
@@ -1619,6 +2033,36 @@ type PortfolioServiceEdge {
 }
 
 type PortfolioServicePageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type FoodService {
+  _id: ID!
+  data: DataService!
+  slug: String!
+  parentId: String!
+  comments: [FoodComment]
+}
+
+type ListFoodService {
+  page: FoodServiceConnection!
+  pageData: PageData
+}
+
+type FoodServiceConnection {
+  edges: [FoodServiceEdge!]
+  pageInfo: FoodServicePageInfo
+}
+
+type FoodServiceEdge {
+  cursor: String
+  node: FoodService
+}
+
+type FoodServicePageInfo {
   startCursor: String
   endCursor: String
   hasPreviousPage: Boolean!
@@ -1875,6 +2319,127 @@ type Query {
   portfolioGetTeamsByParentId(parentId: String!): [PortfolioTeam!]!
   portfolioGetTeamsByParentIdByPagination(listInput: ListInput!, parentId: String!): [PortfolioTeam!]!
   portfolioGetTeamsWithCursor(args: ConnectionArgs!, parentId: String!): ListPortfolioTeam!
+  foodGetSite(id: String!): FoodSite!
+  foodGetSites: [FoodSite!]!
+  foodGetSitesByPagination(listInput: ListInput!): [FoodSite!]!
+  foodGetSitesWithCursor(args: ConnectionArgs!): ListFoodSite!
+  foodGetPage0(id: String!): FoodPage0!
+  foodGetPage0BySlug(slug: String!, siteId: String!): FoodPage0!
+  foodGetPages0: [FoodPage0!]!
+  foodGetPages0ByParentId(parentId: String!): [FoodPage0!]!
+  foodGetPages0BySiteId(siteId: String!): [FoodPage0!]!
+  foodGetPages0ByParentIdByPagination(listInput: ListInput!, parentId: String!): [FoodPage0!]!
+  foodGetPages0WithCursor(args: ConnectionArgs!, parentId: String!): ListFoodPage0!
+  foodGetPage1(id: String!): FoodPage1!
+  foodGetPage1BySlug(slug: String!, siteId: String!): FoodPage1!
+  foodGetPages1: [FoodPage1!]!
+  foodGetPages1BySiteId(siteId: String!): [FoodPage1!]!
+  foodGetPages1ByParentId(parentId: String!): [FoodPage1!]!
+  foodGetPages1ByParentIdByPagination(listInput: ListInput!, parentId: String!): [FoodPage1!]!
+  foodGetPages1WithCursor(args: ConnectionArgs!, parentId: String!): ListFoodPage1!
+  foodGetPage2(id: String!): FoodPage2!
+  foodGetPage2BySlug(slug: String!, siteId: String!): FoodPage2!
+  foodGetPages2: [FoodPage2!]!
+  foodGetPages2ByParentId(parentId: String!): [FoodPage2!]!
+  foodGetPages2BySiteId(siteId: String!): [FoodPage2!]!
+  foodGetPages2ByParentIdByPagination(listInput: ListInput!, parentId: String!): [FoodPage2!]!
+  foodGetPages2WithCursor(args: ConnectionArgs!, parentId: String!): ListFoodPage2!
+  foodGetPage3(id: String!): FoodPage3!
+  foodGetPage3BySlug(slug: String!, siteId: String!): FoodPage3!
+  foodGetPages3: [FoodPage3!]!
+  foodGetPages3ByParentId(parentId: String!): [FoodPage3!]!
+  foodGetPages3BySiteId(siteId: String!): [FoodPage3!]!
+  foodGetPages3ByParentIdByPagination(listInput: ListInput!, parentId: String!): [FoodPage3!]!
+  foodGetPages3WithCursor(args: ConnectionArgs!, parentId: String!): ListFoodPage3!
+  foodGetPage4(id: String!): FoodPage4!
+  foodGetPage4BySlug(slug: String!, siteId: String!): FoodPage4!
+  foodGetPages4: [FoodPage4!]!
+  foodGetPages4ByParentId(parentId: String!): [FoodPage4!]!
+  foodGetPages4BySiteId(siteId: String!): [FoodPage4!]!
+  foodGetPages4ByParentIdByPagination(listInput: ListInput!, parentId: String!): [FoodPage4!]!
+  foodGetPages4WithCursor(args: ConnectionArgs!, parentId: String!): ListFoodPage4!
+  foodGetPage5(id: String!): FoodPage5!
+  foodGetPage5BySlug(slug: String!, siteId: String!): FoodPage5!
+  foodGetPages5: [FoodPage5!]!
+  foodGetPages5ByParentId(parentId: String!): [FoodPage5!]!
+  foodGetPages5BySiteId(siteId: String!): [FoodPage5!]!
+  foodGetPages5ByParentIdByPagination(listInput: ListInput!, parentId: String!): [FoodPage5!]!
+  foodGetPages5WithCursor(args: ConnectionArgs!, parentId: String!): ListFoodPage5!
+  foodGetPage6(id: String!): FoodPage6!
+  foodGetPage6BySlug(slug: String!, siteId: String!): FoodPage6!
+  foodGetPages6: [FoodPage6!]!
+  foodGetPages6ByParentId(parentId: String!): [FoodPage6!]!
+  foodGetPages6BySiteId(siteId: String!): [FoodPage6!]!
+  foodGetPages6ByParentIdByPagination(listInput: ListInput!, parentId: String!): [FoodPage6!]!
+  foodGetPages6WithCursor(args: ConnectionArgs!, parentId: String!): ListFoodPage6!
+  foodGetPage7(id: String!): FoodPage7!
+  foodGetPage7BySlug(slug: String!, siteId: String!): FoodPage7!
+  foodGetPages7: [FoodPage7!]!
+  foodGetPages7ByParentId(parentId: String!): [FoodPage7!]!
+  foodGetPages7BySiteId(siteId: String!): [FoodPage7!]!
+  foodGetPages7ByParentIdByPagination(listInput: ListInput!, parentId: String!): [FoodPage7!]!
+  foodGetPages7WithCursor(args: ConnectionArgs!, parentId: String!): ListFoodPage7!
+  foodGetPage8(id: String!): FoodPage8!
+  foodGetPage8BySlug(slug: String!, siteId: String!): FoodPage8!
+  foodGetPages8: [FoodPage8!]!
+  foodGetPages8ByParentId(parentId: String!): [FoodPage8!]!
+  foodGetPages8BySiteId(siteId: String!): [FoodPage8!]!
+  foodGetPages8ByParentIdByPagination(listInput: ListInput!, parentId: String!): [FoodPage8!]!
+  foodGetPages8WithCursor(args: ConnectionArgs!, parentId: String!): ListFoodPage8!
+  foodGetPage9(id: String!): FoodPage9!
+  foodGetPage9BySlug(slug: String!, siteId: String!): FoodPage9!
+  foodGetPages9: [FoodPage9!]!
+  foodGetPages9ByParentId(parentId: String!): [FoodPage9!]!
+  foodGetPages9BySiteId(siteId: String!): [FoodPage9!]!
+  foodGetPages9ByParentIdByPagination(listInput: ListInput!, parentId: String!): [FoodPage9!]!
+  foodGetPages9WithCursor(args: ConnectionArgs!, parentId: String!): ListFoodPage9!
+  foodGetPage10(id: String!): FoodPage10!
+  foodGetPage10BySlug(slug: String!, siteId: String!): FoodPage10!
+  foodGetPages10: [FoodPage10!]!
+  foodGetPages10ByParentId(parentId: String!): [FoodPage10!]!
+  foodGetPages10BySiteId(siteId: String!): [FoodPage10!]!
+  foodGetPages10ByParentIdByPagination(listInput: ListInput!, parentId: String!): [FoodPage10!]!
+  foodGetPages10WithCursor(args: ConnectionArgs!, parentId: String!): ListFoodPage10!
+  foodGetPage11(id: String!): FoodPage11!
+  foodGetPage11BySlug(slug: String!, siteId: String!): FoodPage11!
+  foodGetPages11: [FoodPage11!]!
+  foodGetPages11ByParentId(parentId: String!): [FoodPage11!]!
+  foodGetPages11BySiteId(siteId: String!): [FoodPage11!]!
+  foodGetPages11ByParentIdByPagination(listInput: ListInput!, parentId: String!): [FoodPage11!]!
+  foodGetPages11WithCursor(args: ConnectionArgs!, parentId: String!): ListFoodPage11!
+  foodGetPage12(id: String!): FoodPage12!
+  foodGetPage12BySlug(slug: String!, siteId: String!): FoodPage12!
+  foodGetPages12: [FoodPage12!]!
+  foodGetPages12ByParentId(parentId: String!): [FoodPage12!]!
+  foodGetPages12BySiteId(siteId: String!): [FoodPage12!]!
+  foodGetPages12ByParentIdByPagination(listInput: ListInput!, parentId: String!): [FoodPage12!]!
+  foodGetPages12WithCursor(args: ConnectionArgs!, parentId: String!): ListFoodPage12!
+  foodGetProduct(id: String!): FoodProduct!
+  foodGetProductBySlug(slug: String!, siteId: String!): FoodProduct!
+  foodGetProducts: [FoodProduct!]!
+  foodGetProductsBySiteId(siteId: String!): [FoodProduct!]!
+  foodGetProductsByParentId(parentId: String!): [FoodProduct!]!
+  foodGetProductsByParentIdByPagination(listInput: ListInput!, parentId: String!): [FoodProduct!]!
+  foodGetProductsWithCursor(args: ConnectionArgs!, parentId: String!): ListFoodProduct!
+  foodGetComment(id: String!): FoodComment!
+  foodGetCommentsByParentId(parentId: String!): [FoodComment!]!
+  foodGetArticle(id: String!): FoodArticle!
+  foodGetArticleBySlug(siteId: String!, slug: String!): FoodArticle!
+  foodGetArticles: [FoodArticle!]!
+  foodGetArticlesByParentId(parentId: String!): [FoodArticle!]!
+  foodGetArticlesBySiteId(siteId: String!): [FoodArticle!]!
+  foodGetArticlesByParentIdByPagination(listInput: ListInput!, parentId: String!): [FoodArticle!]!
+  foodGetArticlesWithCursor(args: ConnectionArgs!, parentId: String!): ListFoodArticle!
+  foodGetUser(id: String!): FoodUser!
+  foodGetUserByEmail(email: String!, siteId: String!): FoodUser!
+  foodGetUsers: [FoodUser!]!
+  foodGetTeam(id: String!): FoodTeam!
+  foodGetTeamBySlug(slug: String!, siteId: String!): FoodTeam!
+  foodGetTeams: [FoodTeam!]!
+  foodGetTeamsBySiteId(siteId: String!): [FoodTeam!]!
+  foodGetTeamsByParentId(parentId: String!): [FoodTeam!]!
+  foodGetTeamsByParentIdByPagination(listInput: ListInput!, parentId: String!): [FoodTeam!]!
+  foodGetTeamsWithCursor(args: ConnectionArgs!, parentId: String!): ListFoodTeam!
   petGetService(id: String!): PetService!
   petGetServiceBySlug(slug: String!, siteId: String!): PetService!
   petGetServices: [PetService!]!
@@ -1889,6 +2454,13 @@ type Query {
   portfolioGetServicesByParentId(parentId: String!): [PortfolioService!]!
   portfolioGetServicesByParentIdByPagination(listInput: ListInput!, parentId: String!): [PortfolioService!]!
   portfolioGetServicesWithCursor(args: ConnectionArgs!, parentId: String!): ListPortfolioService!
+  foodGetService(id: String!): FoodService!
+  foodGetServiceBySlug(slug: String!, siteId: String!): FoodService!
+  foodGetServices: [FoodService!]!
+  foodGetServicesBySiteId(siteId: String!): [FoodService!]!
+  foodGetServicesByParentId(parentId: String!): [FoodService!]!
+  foodGetServicesByParentIdByPagination(listInput: ListInput!, parentId: String!): [FoodService!]!
+  foodGetServicesWithCursor(args: ConnectionArgs!, parentId: String!): ListFoodService!
 }
 
 input ListInput {
@@ -2180,6 +2752,133 @@ type Mutation {
   portfolioDeleteTeam(id: String!): String!
   portfolioDeleteTeams(ids: [String!]!): [String!]!
   portfolioDeleteAllTeams: String!
+  foodCreateSite(input: CreateSite!): FoodSite!
+  foodUpdateSite(input: UpdateSite!): FoodSite!
+  foodUpdateDbSite(input: UpdateDB!): FoodSite!
+  foodUpdateAdminSite(input: UpdateAdminSite!): FoodSite!
+  foodUpdateImageSite(input: UpdateImage!): FoodSite!
+  foodDeleteSite(id: String!): String!
+  foodDeleteSites(ids: [String!]!): [String!]!
+  foodDeleteAllSites: String!
+  foodCreatePage0(input: CreatePage!): FoodPage0!
+  foodUpdatePage0(input: UpdatePage!): FoodPage0!
+  foodUpdateImagePage0(input: UpdateImage!): FoodPage0!
+  foodDeletePage0(id: String!): String!
+  foodDeletePages0(ids: [String!]!): [String!]!
+  foodDeleteAllPages0: String!
+  foodCreatePage1(input: CreatePage!): FoodPage1!
+  foodUpdatePage1(input: UpdatePage!): FoodPage1!
+  foodUpdateImagePage1(input: UpdateImage!): FoodPage1!
+  foodDeletePage1(id: String!): String!
+  foodDeletePages1(ids: [String!]!): [String!]!
+  foodDeleteAllPages1: String!
+  foodCreatePage2(input: CreatePage!): FoodPage2!
+  foodUpdatePage2(input: UpdatePage!): FoodPage2!
+  foodUpdateImagePage2(input: UpdateImage!): FoodPage2!
+  foodDeletePage2(id: String!): String!
+  foodDeletePages2(ids: [String!]!): [String!]!
+  foodDeleteAllPages2: String!
+  foodCreatePage3(input: CreatePage!): FoodPage3!
+  foodUpdatePage3(input: UpdatePage!): FoodPage3!
+  foodUpdateImagePage3(input: UpdateImage!): FoodPage3!
+  foodDeletePage3(id: String!): String!
+  foodDeletePages3(ids: [String!]!): [String!]!
+  foodDeleteAllPages3: String!
+  foodCreatePage4(input: CreatePage!): FoodPage4!
+  foodUpdatePage4(input: UpdatePage!): FoodPage4!
+  foodUpdateImagePage4(input: UpdateImage!): FoodPage4!
+  foodDeletePage4(id: String!): String!
+  foodDeletePages4(ids: [String!]!): [String!]!
+  foodDeleteAllPages4: String!
+  foodCreatePage5(input: CreatePage!): FoodPage5!
+  foodUpdatePage5(input: UpdatePage!): FoodPage5!
+  foodUpdateImagePage5(input: UpdateImage!): FoodPage5!
+  foodDeletePage5(id: String!): String!
+  foodDeletePages5(ids: [String!]!): [String!]!
+  foodDeleteAllPages5: String!
+  foodCreatePage6(input: CreatePage!): FoodPage6!
+  foodUpdatePage6(input: UpdatePage!): FoodPage6!
+  foodUpdateImagePage6(input: UpdateImage!): FoodPage6!
+  foodDeletePage6(id: String!): String!
+  foodDeletePages6(ids: [String!]!): [String!]!
+  foodDeleteAllPages6: String!
+  foodCreatePage7(input: CreatePage!): FoodPage7!
+  foodUpdatePage7(input: UpdatePage!): FoodPage7!
+  foodUpdateImagePage7(input: UpdateImage!): FoodPage7!
+  foodDeletePage7(id: String!): String!
+  foodDeletePages7(ids: [String!]!): [String!]!
+  foodDeleteAllPages7: String!
+  foodCreatePage8(input: CreatePage!): FoodPage8!
+  foodUpdatePage8(input: UpdatePage!): FoodPage8!
+  foodUpdateImagePage8(input: UpdateImage!): FoodPage8!
+  foodDeletePage8(id: String!): String!
+  foodDeletePages8(ids: [String!]!): [String!]!
+  foodDeleteAllPages8: String!
+  foodCreatePage9(input: CreatePage!): FoodPage9!
+  foodUpdatePage9(input: UpdatePage!): FoodPage9!
+  foodUpdateImagePage9(input: UpdateImage!): FoodPage9!
+  foodDeletePage9(id: String!): String!
+  foodDeletePages9(ids: [String!]!): [String!]!
+  foodDeleteAllPages9: String!
+  foodCreatePage10(input: CreatePage!): FoodPage10!
+  foodUpdatePage10(input: UpdatePage!): FoodPage10!
+  foodUpdateImagePage10(input: UpdateImage!): FoodPage10!
+  foodDeletePage10(id: String!): String!
+  foodDeletePages10(ids: [String!]!): [String!]!
+  foodDeleteAllPages10: String!
+  foodCreatePage11(input: CreatePage!): FoodPage11!
+  foodUpdatePage11(input: UpdatePage!): FoodPage11!
+  foodUpdateImagePage11(input: UpdateImage!): FoodPage11!
+  foodDeletePage11(id: String!): String!
+  foodDeletePages11(ids: [String!]!): [String!]!
+  foodDeleteAllPages11: String!
+  foodCreatePage12(input: CreatePage!): FoodPage12!
+  foodUpdatePage12(input: UpdatePage!): FoodPage12!
+  foodUpdateImagePage12(input: UpdateImage!): FoodPage12!
+  foodDeletePage12(id: String!): String!
+  foodDeletePages12(ids: [String!]!): [String!]!
+  foodDeleteAllPages12: String!
+  foodCreateProduct(input: CreateProduct!): FoodProduct!
+  foodUpdateProduct(input: UpdateProduct!): FoodProduct!
+  foodUpdateDetailProduct(input: UpdateDetailProduct!): FoodProduct!
+  foodUpdatePriceProduct(input: UpdatePriceProduct!): FoodProduct!
+  foodUpdateSpecsProduct(input: UpdateSpecsProduct!): FoodProduct!
+  foodUpdateTagsProduct(input: UpdateTagsProduct!): FoodProduct!
+  foodUpdateLikesProduct(input: UpdateLikesProduct!): FoodProduct!
+  foodUpdateDisLikesProduct(input: UpdateLikesProduct!): FoodProduct!
+  foodUpdateImageProduct(input: UpdateImageProduct!): FoodProduct!
+  foodDeleteProduct(id: String!): String!
+  foodDeleteProducts(ids: [String!]!): [String!]!
+  foodDeleteAllProducts: String!
+  foodCreateComment(input: CreateComment!): FoodComment!
+  foodUpdateComment(input: UpdateComment!): FoodComment!
+  foodUpdateLikesComment(input: UpdateLikesComment!): FoodComment!
+  foodUpdateDisLikesComment(input: UpdateLikesComment!): FoodComment!
+  foodDeleteComment(id: String!): String!
+  foodDeleteComments(ids: [String!]!): [String!]!
+  foodDeleteAllComments: String!
+  foodCreateArticle(input: CreateArticle!): FoodArticle!
+  foodUpdateArticle(input: UpdateArticle!): FoodArticle!
+  foodUpdateContentArticle(input: UpdateContentArticle!): FoodArticle!
+  foodUpdateTagsArticle(input: UpdateTagsArticle!): FoodArticle!
+  foodUpdateLikesArticle(input: UpdateLikesArticle!): FoodArticle!
+  foodUpdateDisLikesArticle(input: UpdateLikesArticle!): FoodArticle!
+  foodUpdateImageArticle(input: UpdateImage!): FoodArticle!
+  foodDeleteArticle(id: String!): String!
+  foodDeleteArticles(ids: [String!]!): [String!]!
+  foodDeleteAllArticles: String!
+  foodCreateUser(input: CreateUser!): FoodUser!
+  foodCreateTeam(input: CreateTeam!): FoodTeam!
+  foodUpdateTeam(input: UpdateTeam!): FoodTeam!
+  foodUpdateDetailTeam(input: UpdateDetailTeam!): FoodTeam!
+  foodUpdateSpecsTeam(input: UpdateSpecsTeam!): FoodTeam!
+  foodUpdateTagsTeam(input: UpdateTagsTeam!): FoodTeam!
+  foodUpdateLikesTeam(input: UpdateLikesTeam!): FoodTeam!
+  foodUpdateDisLikesTeam(input: UpdateLikesTeam!): FoodTeam!
+  foodUpdateImageSeoTeam(input: UpdateImageSeo!): FoodTeam!
+  foodDeleteTeam(id: String!): String!
+  foodDeleteTeams(ids: [String!]!): [String!]!
+  foodDeleteAllTeams: String!
   petCreateService(input: CreateService!): PetService!
   petUpdateService(input: UpdateService!): PetService!
   petUpdateDetailService(input: UpdateDetailService!): PetService!
@@ -2202,6 +2901,17 @@ type Mutation {
   portfolioDeleteService(id: String!): String!
   portfolioDeleteServices(ids: [String!]!): [String!]!
   portfolioDeleteAllServices: String!
+  foodCreateService(input: CreateService!): FoodService!
+  foodUpdateService(input: UpdateService!): FoodService!
+  foodUpdateDetailService(input: UpdateDetailService!): FoodService!
+  foodUpdatePriceService(input: UpdatePriceService!): FoodService!
+  foodUpdateSpecsService(input: UpdateSpecsService!): FoodService!
+  foodUpdateTagsService(input: UpdateTagsService!): FoodService!
+  foodUpdateLikesService(input: UpdateLikesService!): FoodService!
+  foodUpdateDisLikesService(input: UpdateLikesService!): FoodService!
+  foodDeleteService(id: String!): String!
+  foodDeleteServices(ids: [String!]!): [String!]!
+  foodDeleteAllServices: String!
 }
 
 input CreateSite {

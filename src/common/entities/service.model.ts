@@ -92,3 +92,9 @@ export class PortfolioService extends Service {}
 
 @ObjectType()
 export class ListPortfolioService extends RelayTypes<PortfolioService>(PortfolioService) {}
+
+@ObjectType()
+export class FoodService extends Service {}
+
+@ObjectType()
+export class ListFoodService extends RelayTypes<FoodService>(FoodService) {}
