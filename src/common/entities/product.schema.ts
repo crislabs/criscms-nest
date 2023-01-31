@@ -16,5 +16,6 @@ export class ProductDocument extends AbstractDocument {
 export const HardwareStoreProductSchema = SchemaFactory.createForClass(ProductDocument);
 
 export const PetProductSchema = SchemaFactory.createForClass(ProductDocument);
+export const PortfolioProductSchema = SchemaFactory.createForClass(ProductDocument);
 export const PetAdoptionSchema = SchemaFactory.createForClass(ProductDocument);
 export const FoodProductSchema = SchemaFactory.createForClass(ProductDocument);

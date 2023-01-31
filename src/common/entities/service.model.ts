@@ -84,18 +84,11 @@ export class DataService {
 @ObjectType()
 export class PetService extends Service {}
 
-// @ObjectType()
-// export class PetService extends Service {}
-// @ObjectType()
-// export class FoodService extends Service {}
-
-// @ObjectType()
-// export class ListWearService extends RelayTypes<WearService>(WearService) {}
 @ObjectType()
 export class ListPetService extends RelayTypes<PetService>(PetService) {}
-// @ObjectType()
-// export class ListPetService extends RelayTypes<PetService>(PetService) {}
-// @ObjectType()
-// export class ListHardwareStoreService extends RelayTypes<HardwareStoreService>(HardwareStoreService) {}
-// @ObjectType()
-// export class ListFoodService extends RelayTypes<FoodService>(FoodService) {}
+
+@ObjectType()
+export class PortfolioService extends Service {}
+
+@ObjectType()
+export class ListPortfolioService extends RelayTypes<PortfolioService>(PortfolioService) {}

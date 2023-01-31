@@ -123,6 +123,33 @@ type PortfolioSite {
   _id: ID!
   data: DataSite!
   url: String
+  pages: [PortfolioPage0]
+  users: [PortfolioUser]
+  products: [PortfolioProduct]
+  articles: [PortfolioArticle]
+  team: [PortfolioTeam]
+}
+
+type ListPortfolioSite {
+  page: PortfolioSiteConnection!
+  pageData: PageData
+}
+
+type PortfolioSiteConnection {
+  edges: [PortfolioSiteEdge!]
+  pageInfo: PortfolioSitePageInfo
+}
+
+type PortfolioSiteEdge {
+  cursor: String
+  node: PortfolioSite
+}
+
+type PortfolioSitePageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
 }
 
 type DataComment {
@@ -202,6 +229,14 @@ type PetProduct {
   comments: [PetComment]
 }
 
+type PortfolioProduct {
+  _id: ID!
+  data: DataProduct!
+  slug: String!
+  parentId: String!
+  comments: [PortfolioComment]
+}
+
 type FoodProduct {
   _id: ID!
   data: DataProduct!
@@ -225,6 +260,28 @@ type PetProductEdge {
 }
 
 type PetProductPageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListPortfolioProduct {
+  page: PortfolioProductConnection!
+  pageData: PageData
+}
+
+type PortfolioProductConnection {
+  edges: [PortfolioProductEdge!]
+  pageInfo: PortfolioProductPageInfo
+}
+
+type PortfolioProductEdge {
+  cursor: String
+  node: PortfolioProduct
+}
+
+type PortfolioProductPageInfo {
   startCursor: String
   endCursor: String
   hasPreviousPage: Boolean!
@@ -336,6 +393,29 @@ type PortfolioArticle {
   data: DataArticle!
   parentId: String!
   slug: String!
+  comments: [PortfolioComment]
+}
+
+type ListPortfolioArticle {
+  page: PortfolioArticleConnection!
+  pageData: PageData
+}
+
+type PortfolioArticleConnection {
+  edges: [PortfolioArticleEdge!]
+  pageInfo: PortfolioArticlePageInfo
+}
+
+type PortfolioArticleEdge {
+  cursor: String
+  node: PortfolioArticle
+}
+
+type PortfolioArticlePageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
 }
 
 type HardwareStoreArticle {
@@ -667,6 +747,9 @@ type PortfolioPage0 {
   data: DataPage!
   slug: String!
   parentId: String!
+  pages: [PortfolioPage1]
+  products: [PortfolioProduct]
+  articles: [PortfolioArticle]
 }
 
 type PortfolioPage1 {
@@ -674,6 +757,8 @@ type PortfolioPage1 {
   data: DataPage!
   slug: String!
   parentId: String!
+  products: [PortfolioProduct]
+  pages: [PortfolioPage2]
 }
 
 type PortfolioPage2 {
@@ -681,6 +766,8 @@ type PortfolioPage2 {
   data: DataPage!
   slug: String!
   parentId: String!
+  products: [PortfolioProduct]
+  pages: [PortfolioPage3]
 }
 
 type PortfolioPage3 {
@@ -688,6 +775,8 @@ type PortfolioPage3 {
   data: DataPage!
   slug: String!
   parentId: String!
+  products: [PortfolioProduct]
+  pages: [PortfolioPage4]
 }
 
 type PortfolioPage4 {
@@ -695,6 +784,8 @@ type PortfolioPage4 {
   data: DataPage!
   slug: String!
   parentId: String!
+  products: [PortfolioProduct]
+  pages: [PortfolioPage5]
 }
 
 type PortfolioPage5 {
@@ -702,6 +793,8 @@ type PortfolioPage5 {
   data: DataPage!
   slug: String!
   parentId: String!
+  products: [PortfolioProduct]
+  pages: [PortfolioPage6]
 }
 
 type PortfolioPage6 {
@@ -709,6 +802,8 @@ type PortfolioPage6 {
   data: DataPage!
   slug: String!
   parentId: String!
+  products: [PortfolioProduct]
+  pages: [PortfolioPage7]
 }
 
 type PortfolioPage7 {
@@ -716,6 +811,8 @@ type PortfolioPage7 {
   data: DataPage!
   slug: String!
   parentId: String!
+  products: [PortfolioProduct]
+  pages: [PortfolioPage8]
 }
 
 type PortfolioPage8 {
@@ -723,6 +820,8 @@ type PortfolioPage8 {
   data: DataPage!
   slug: String!
   parentId: String!
+  products: [PortfolioProduct]
+  pages: [PortfolioPage9]
 }
 
 type PortfolioPage9 {
@@ -730,6 +829,8 @@ type PortfolioPage9 {
   data: DataPage!
   slug: String!
   parentId: String!
+  products: [PortfolioProduct]
+  pages: [PortfolioPage10]
 }
 
 type PortfolioPage10 {
@@ -737,6 +838,8 @@ type PortfolioPage10 {
   data: DataPage!
   slug: String!
   parentId: String!
+  products: [PortfolioProduct]
+  pages: [PortfolioPage11]
 }
 
 type PortfolioPage11 {
@@ -744,6 +847,8 @@ type PortfolioPage11 {
   data: DataPage!
   slug: String!
   parentId: String!
+  products: [PortfolioProduct]
+  pages: [PortfolioPage12]
 }
 
 type PortfolioPage12 {
@@ -751,6 +856,7 @@ type PortfolioPage12 {
   data: DataPage!
   slug: String!
   parentId: String!
+  products: [PortfolioProduct]
 }
 
 type ListPetPage0 {
@@ -1039,6 +1145,292 @@ type PetPage12PageInfo {
   hasNextPage: Boolean!
 }
 
+type ListPortfolioPage0 {
+  page: PortfolioPage0Connection!
+  pageData: PageData
+}
+
+type PortfolioPage0Connection {
+  edges: [PortfolioPage0Edge!]
+  pageInfo: PortfolioPage0PageInfo
+}
+
+type PortfolioPage0Edge {
+  cursor: String
+  node: PortfolioPage0
+}
+
+type PortfolioPage0PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListPortfolioPage1 {
+  page: PortfolioPage1Connection!
+  pageData: PageData
+}
+
+type PortfolioPage1Connection {
+  edges: [PortfolioPage1Edge!]
+  pageInfo: PortfolioPage1PageInfo
+}
+
+type PortfolioPage1Edge {
+  cursor: String
+  node: PortfolioPage1
+}
+
+type PortfolioPage1PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListPortfolioPage2 {
+  page: PortfolioPage2Connection!
+  pageData: PageData
+}
+
+type PortfolioPage2Connection {
+  edges: [PortfolioPage2Edge!]
+  pageInfo: PortfolioPage2PageInfo
+}
+
+type PortfolioPage2Edge {
+  cursor: String
+  node: PortfolioPage2
+}
+
+type PortfolioPage2PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListPortfolioPage3 {
+  page: PortfolioPage3Connection!
+  pageData: PageData
+}
+
+type PortfolioPage3Connection {
+  edges: [PortfolioPage3Edge!]
+  pageInfo: PortfolioPage3PageInfo
+}
+
+type PortfolioPage3Edge {
+  cursor: String
+  node: PortfolioPage3
+}
+
+type PortfolioPage3PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListPortfolioPage4 {
+  page: PortfolioPage4Connection!
+  pageData: PageData
+}
+
+type PortfolioPage4Connection {
+  edges: [PortfolioPage4Edge!]
+  pageInfo: PortfolioPage4PageInfo
+}
+
+type PortfolioPage4Edge {
+  cursor: String
+  node: PortfolioPage4
+}
+
+type PortfolioPage4PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListPortfolioPage5 {
+  page: PortfolioPage5Connection!
+  pageData: PageData
+}
+
+type PortfolioPage5Connection {
+  edges: [PortfolioPage5Edge!]
+  pageInfo: PortfolioPage5PageInfo
+}
+
+type PortfolioPage5Edge {
+  cursor: String
+  node: PortfolioPage5
+}
+
+type PortfolioPage5PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListPortfolioPage6 {
+  page: PortfolioPage6Connection!
+  pageData: PageData
+}
+
+type PortfolioPage6Connection {
+  edges: [PortfolioPage6Edge!]
+  pageInfo: PortfolioPage6PageInfo
+}
+
+type PortfolioPage6Edge {
+  cursor: String
+  node: PortfolioPage6
+}
+
+type PortfolioPage6PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListPortfolioPage7 {
+  page: PortfolioPage7Connection!
+  pageData: PageData
+}
+
+type PortfolioPage7Connection {
+  edges: [PortfolioPage7Edge!]
+  pageInfo: PortfolioPage7PageInfo
+}
+
+type PortfolioPage7Edge {
+  cursor: String
+  node: PortfolioPage7
+}
+
+type PortfolioPage7PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListPortfolioPage8 {
+  page: PortfolioPage8Connection!
+  pageData: PageData
+}
+
+type PortfolioPage8Connection {
+  edges: [PortfolioPage8Edge!]
+  pageInfo: PortfolioPage8PageInfo
+}
+
+type PortfolioPage8Edge {
+  cursor: String
+  node: PortfolioPage8
+}
+
+type PortfolioPage8PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListPortfolioPage9 {
+  page: PortfolioPage9Connection!
+  pageData: PageData
+}
+
+type PortfolioPage9Connection {
+  edges: [PortfolioPage9Edge!]
+  pageInfo: PortfolioPage9PageInfo
+}
+
+type PortfolioPage9Edge {
+  cursor: String
+  node: PortfolioPage9
+}
+
+type PortfolioPage9PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListPortfolioPage10 {
+  page: PortfolioPage10Connection!
+  pageData: PageData
+}
+
+type PortfolioPage10Connection {
+  edges: [PortfolioPage10Edge!]
+  pageInfo: PortfolioPage10PageInfo
+}
+
+type PortfolioPage10Edge {
+  cursor: String
+  node: PortfolioPage10
+}
+
+type PortfolioPage10PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListPortfolioPage11 {
+  page: PortfolioPage11Connection!
+  pageData: PageData
+}
+
+type PortfolioPage11Connection {
+  edges: [PortfolioPage11Edge!]
+  pageInfo: PortfolioPage11PageInfo
+}
+
+type PortfolioPage11Edge {
+  cursor: String
+  node: PortfolioPage11
+}
+
+type PortfolioPage11PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type ListPortfolioPage12 {
+  page: PortfolioPage12Connection!
+  pageData: PageData
+}
+
+type PortfolioPage12Connection {
+  edges: [PortfolioPage12Edge!]
+  pageInfo: PortfolioPage12PageInfo
+}
+
+type PortfolioPage12Edge {
+  cursor: String
+  node: PortfolioPage12
+}
+
+type PortfolioPage12PageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
 type DataUser {
   password: String!
   updateDate: UpdateDate!
@@ -1055,6 +1447,12 @@ type OAuth {
 }
 
 type PetUser {
+  _id: ID!
+  data: DataUser!
+  email: String!
+}
+
+type PortfolioUser {
   _id: ID!
   data: DataUser!
   email: String!
@@ -1116,6 +1514,29 @@ type PortfolioTeam {
   data: DataTeam!
   parentId: String!
   slug: String!
+  comments: [PortfolioComment]
+}
+
+type ListPortfolioTeam {
+  page: PortfolioTeamConnection!
+  pageData: PageData
+}
+
+type PortfolioTeamConnection {
+  edges: [PortfolioTeamEdge!]
+  pageInfo: PortfolioTeamPageInfo
+}
+
+type PortfolioTeamEdge {
+  cursor: String
+  node: PortfolioTeam
+}
+
+type PortfolioTeamPageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
 }
 
 type HardwareStoreTeam {
@@ -1168,6 +1589,36 @@ type PetServiceEdge {
 }
 
 type PetServicePageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type PortfolioService {
+  _id: ID!
+  data: DataService!
+  slug: String!
+  parentId: String!
+  comments: [PortfolioComment]
+}
+
+type ListPortfolioService {
+  page: PortfolioServiceConnection!
+  pageData: PageData
+}
+
+type PortfolioServiceConnection {
+  edges: [PortfolioServiceEdge!]
+  pageInfo: PortfolioServicePageInfo
+}
+
+type PortfolioServiceEdge {
+  cursor: String
+  node: PortfolioService
+}
+
+type PortfolioServicePageInfo {
   startCursor: String
   endCursor: String
   hasPreviousPage: Boolean!
@@ -1303,6 +1754,127 @@ type Query {
   petGetTeamsByParentId(parentId: String!): [PetTeam!]!
   petGetTeamsByParentIdByPagination(listInput: ListInput!, parentId: String!): [PetTeam!]!
   petGetTeamsWithCursor(args: ConnectionArgs!, parentId: String!): ListPetTeam!
+  portfolioGetSite(id: String!): PortfolioSite!
+  portfolioGetSites: [PortfolioSite!]!
+  portfolioGetSitesByPagination(listInput: ListInput!): [PortfolioSite!]!
+  portfolioGetSitesWithCursor(args: ConnectionArgs!): ListPortfolioSite!
+  portfolioGetPage0(id: String!): PortfolioPage0!
+  portfolioGetPage0BySlug(slug: String!, siteId: String!): PortfolioPage0!
+  portfolioGetPages0: [PortfolioPage0!]!
+  portfolioGetPages0ByParentId(parentId: String!): [PortfolioPage0!]!
+  portfolioGetPages0BySiteId(siteId: String!): [PortfolioPage0!]!
+  portfolioGetPages0ByParentIdByPagination(listInput: ListInput!, parentId: String!): [PortfolioPage0!]!
+  portfolioGetPages0WithCursor(args: ConnectionArgs!, parentId: String!): ListPortfolioPage0!
+  portfolioGetPage1(id: String!): PortfolioPage1!
+  portfolioGetPage1BySlug(slug: String!, siteId: String!): PortfolioPage1!
+  portfolioGetPages1: [PortfolioPage1!]!
+  portfolioGetPages1BySiteId(siteId: String!): [PortfolioPage1!]!
+  portfolioGetPages1ByParentId(parentId: String!): [PortfolioPage1!]!
+  portfolioGetPages1ByParentIdByPagination(listInput: ListInput!, parentId: String!): [PortfolioPage1!]!
+  portfolioGetPages1WithCursor(args: ConnectionArgs!, parentId: String!): ListPortfolioPage1!
+  portfolioGetPage2(id: String!): PortfolioPage2!
+  portfolioGetPage2BySlug(slug: String!, siteId: String!): PortfolioPage2!
+  portfolioGetPages2: [PortfolioPage2!]!
+  portfolioGetPages2ByParentId(parentId: String!): [PortfolioPage2!]!
+  portfolioGetPages2BySiteId(siteId: String!): [PortfolioPage2!]!
+  portfolioGetPages2ByParentIdByPagination(listInput: ListInput!, parentId: String!): [PortfolioPage2!]!
+  portfolioGetPages2WithCursor(args: ConnectionArgs!, parentId: String!): ListPortfolioPage2!
+  portfolioGetPage3(id: String!): PortfolioPage3!
+  portfolioGetPage3BySlug(slug: String!, siteId: String!): PortfolioPage3!
+  portfolioGetPages3: [PortfolioPage3!]!
+  portfolioGetPages3ByParentId(parentId: String!): [PortfolioPage3!]!
+  portfolioGetPages3BySiteId(siteId: String!): [PortfolioPage3!]!
+  portfolioGetPages3ByParentIdByPagination(listInput: ListInput!, parentId: String!): [PortfolioPage3!]!
+  portfolioGetPages3WithCursor(args: ConnectionArgs!, parentId: String!): ListPortfolioPage3!
+  portfolioGetPage4(id: String!): PortfolioPage4!
+  portfolioGetPage4BySlug(slug: String!, siteId: String!): PortfolioPage4!
+  portfolioGetPages4: [PortfolioPage4!]!
+  portfolioGetPages4ByParentId(parentId: String!): [PortfolioPage4!]!
+  portfolioGetPages4BySiteId(siteId: String!): [PortfolioPage4!]!
+  portfolioGetPages4ByParentIdByPagination(listInput: ListInput!, parentId: String!): [PortfolioPage4!]!
+  portfolioGetPages4WithCursor(args: ConnectionArgs!, parentId: String!): ListPortfolioPage4!
+  portfolioGetPage5(id: String!): PortfolioPage5!
+  portfolioGetPage5BySlug(slug: String!, siteId: String!): PortfolioPage5!
+  portfolioGetPages5: [PortfolioPage5!]!
+  portfolioGetPages5ByParentId(parentId: String!): [PortfolioPage5!]!
+  portfolioGetPages5BySiteId(siteId: String!): [PortfolioPage5!]!
+  portfolioGetPages5ByParentIdByPagination(listInput: ListInput!, parentId: String!): [PortfolioPage5!]!
+  portfolioGetPages5WithCursor(args: ConnectionArgs!, parentId: String!): ListPortfolioPage5!
+  portfolioGetPage6(id: String!): PortfolioPage6!
+  portfolioGetPage6BySlug(slug: String!, siteId: String!): PortfolioPage6!
+  portfolioGetPages6: [PortfolioPage6!]!
+  portfolioGetPages6ByParentId(parentId: String!): [PortfolioPage6!]!
+  portfolioGetPages6BySiteId(siteId: String!): [PortfolioPage6!]!
+  portfolioGetPages6ByParentIdByPagination(listInput: ListInput!, parentId: String!): [PortfolioPage6!]!
+  portfolioGetPages6WithCursor(args: ConnectionArgs!, parentId: String!): ListPortfolioPage6!
+  portfolioGetPage7(id: String!): PortfolioPage7!
+  portfolioGetPage7BySlug(slug: String!, siteId: String!): PortfolioPage7!
+  portfolioGetPages7: [PortfolioPage7!]!
+  portfolioGetPages7ByParentId(parentId: String!): [PortfolioPage7!]!
+  portfolioGetPages7BySiteId(siteId: String!): [PortfolioPage7!]!
+  portfolioGetPages7ByParentIdByPagination(listInput: ListInput!, parentId: String!): [PortfolioPage7!]!
+  portfolioGetPages7WithCursor(args: ConnectionArgs!, parentId: String!): ListPortfolioPage7!
+  portfolioGetPage8(id: String!): PortfolioPage8!
+  portfolioGetPage8BySlug(slug: String!, siteId: String!): PortfolioPage8!
+  portfolioGetPages8: [PortfolioPage8!]!
+  portfolioGetPages8ByParentId(parentId: String!): [PortfolioPage8!]!
+  portfolioGetPages8BySiteId(siteId: String!): [PortfolioPage8!]!
+  portfolioGetPages8ByParentIdByPagination(listInput: ListInput!, parentId: String!): [PortfolioPage8!]!
+  portfolioGetPages8WithCursor(args: ConnectionArgs!, parentId: String!): ListPortfolioPage8!
+  portfolioGetPage9(id: String!): PortfolioPage9!
+  portfolioGetPage9BySlug(slug: String!, siteId: String!): PortfolioPage9!
+  portfolioGetPages9: [PortfolioPage9!]!
+  portfolioGetPages9ByParentId(parentId: String!): [PortfolioPage9!]!
+  portfolioGetPages9BySiteId(siteId: String!): [PortfolioPage9!]!
+  portfolioGetPages9ByParentIdByPagination(listInput: ListInput!, parentId: String!): [PortfolioPage9!]!
+  portfolioGetPages9WithCursor(args: ConnectionArgs!, parentId: String!): ListPortfolioPage9!
+  portfolioGetPage10(id: String!): PortfolioPage10!
+  portfolioGetPage10BySlug(slug: String!, siteId: String!): PortfolioPage10!
+  portfolioGetPages10: [PortfolioPage10!]!
+  portfolioGetPages10ByParentId(parentId: String!): [PortfolioPage10!]!
+  portfolioGetPages10BySiteId(siteId: String!): [PortfolioPage10!]!
+  portfolioGetPages10ByParentIdByPagination(listInput: ListInput!, parentId: String!): [PortfolioPage10!]!
+  portfolioGetPages10WithCursor(args: ConnectionArgs!, parentId: String!): ListPortfolioPage10!
+  portfolioGetPage11(id: String!): PortfolioPage11!
+  portfolioGetPage11BySlug(slug: String!, siteId: String!): PortfolioPage11!
+  portfolioGetPages11: [PortfolioPage11!]!
+  portfolioGetPages11ByParentId(parentId: String!): [PortfolioPage11!]!
+  portfolioGetPages11BySiteId(siteId: String!): [PortfolioPage11!]!
+  portfolioGetPages11ByParentIdByPagination(listInput: ListInput!, parentId: String!): [PortfolioPage11!]!
+  portfolioGetPages11WithCursor(args: ConnectionArgs!, parentId: String!): ListPortfolioPage11!
+  portfolioGetPage12(id: String!): PortfolioPage12!
+  portfolioGetPage12BySlug(slug: String!, siteId: String!): PortfolioPage12!
+  portfolioGetPages12: [PortfolioPage12!]!
+  portfolioGetPages12ByParentId(parentId: String!): [PortfolioPage12!]!
+  portfolioGetPages12BySiteId(siteId: String!): [PortfolioPage12!]!
+  portfolioGetPages12ByParentIdByPagination(listInput: ListInput!, parentId: String!): [PortfolioPage12!]!
+  portfolioGetPages12WithCursor(args: ConnectionArgs!, parentId: String!): ListPortfolioPage12!
+  portfolioGetProduct(id: String!): PortfolioProduct!
+  portfolioGetProductBySlug(slug: String!, siteId: String!): PortfolioProduct!
+  portfolioGetProducts: [PortfolioProduct!]!
+  portfolioGetProductsBySiteId(siteId: String!): [PortfolioProduct!]!
+  portfolioGetProductsByParentId(parentId: String!): [PortfolioProduct!]!
+  portfolioGetProductsByParentIdByPagination(listInput: ListInput!, parentId: String!): [PortfolioProduct!]!
+  portfolioGetProductsWithCursor(args: ConnectionArgs!, parentId: String!): ListPortfolioProduct!
+  portfolioGetComment(id: String!): PortfolioComment!
+  portfolioGetCommentsByParentId(parentId: String!): [PortfolioComment!]!
+  portfolioGetArticle(id: String!): PortfolioArticle!
+  portfolioGetArticleBySlug(siteId: String!, slug: String!): PortfolioArticle!
+  portfolioGetArticles: [PortfolioArticle!]!
+  portfolioGetArticlesByParentId(parentId: String!): [PortfolioArticle!]!
+  portfolioGetArticlesBySiteId(siteId: String!): [PortfolioArticle!]!
+  portfolioGetArticlesByParentIdByPagination(listInput: ListInput!, parentId: String!): [PortfolioArticle!]!
+  portfolioGetArticlesWithCursor(args: ConnectionArgs!, parentId: String!): ListPortfolioArticle!
+  portfolioGetUser(id: String!): PortfolioUser!
+  portfolioGetUserByEmail(email: String!, siteId: String!): PortfolioUser!
+  portfolioGetUsers: [PortfolioUser!]!
+  portfolioGetTeam(id: String!): PortfolioTeam!
+  portfolioGetTeamBySlug(slug: String!, siteId: String!): PortfolioTeam!
+  portfolioGetTeams: [PortfolioTeam!]!
+  portfolioGetTeamsBySiteId(siteId: String!): [PortfolioTeam!]!
+  portfolioGetTeamsByParentId(parentId: String!): [PortfolioTeam!]!
+  portfolioGetTeamsByParentIdByPagination(listInput: ListInput!, parentId: String!): [PortfolioTeam!]!
+  portfolioGetTeamsWithCursor(args: ConnectionArgs!, parentId: String!): ListPortfolioTeam!
   petGetService(id: String!): PetService!
   petGetServiceBySlug(slug: String!, siteId: String!): PetService!
   petGetServices: [PetService!]!
@@ -1310,6 +1882,13 @@ type Query {
   petGetServicesByParentId(parentId: String!): [PetService!]!
   petGetServicesByParentIdByPagination(listInput: ListInput!, parentId: String!): [PetService!]!
   petGetServicesWithCursor(args: ConnectionArgs!, parentId: String!): ListPetService!
+  portfolioGetService(id: String!): PortfolioService!
+  portfolioGetServiceBySlug(slug: String!, siteId: String!): PortfolioService!
+  portfolioGetServices: [PortfolioService!]!
+  portfolioGetServicesBySiteId(siteId: String!): [PortfolioService!]!
+  portfolioGetServicesByParentId(parentId: String!): [PortfolioService!]!
+  portfolioGetServicesByParentIdByPagination(listInput: ListInput!, parentId: String!): [PortfolioService!]!
+  portfolioGetServicesWithCursor(args: ConnectionArgs!, parentId: String!): ListPortfolioService!
 }
 
 input ListInput {
@@ -1474,6 +2053,133 @@ type Mutation {
   petDeleteTeam(id: String!): String!
   petDeleteTeams(ids: [String!]!): [String!]!
   petDeleteAllTeams: String!
+  portfolioCreateSite(input: CreateSite!): PortfolioSite!
+  portfolioUpdateSite(input: UpdateSite!): PortfolioSite!
+  portfolioUpdateDbSite(input: UpdateDB!): PortfolioSite!
+  portfolioUpdateAdminSite(input: UpdateAdminSite!): PortfolioSite!
+  portfolioUpdateImageSite(input: UpdateImage!): PortfolioSite!
+  portfolioDeleteSite(id: String!): String!
+  portfolioDeleteSites(ids: [String!]!): [String!]!
+  portfolioDeleteAllSites: String!
+  portfolioCreatePage0(input: CreatePage!): PortfolioPage0!
+  portfolioUpdatePage0(input: UpdatePage!): PortfolioPage0!
+  portfolioUpdateImagePage0(input: UpdateImage!): PortfolioPage0!
+  portfolioDeletePage0(id: String!): String!
+  portfolioDeletePages0(ids: [String!]!): [String!]!
+  portfolioDeleteAllPages0: String!
+  portfolioCreatePage1(input: CreatePage!): PortfolioPage1!
+  portfolioUpdatePage1(input: UpdatePage!): PortfolioPage1!
+  portfolioUpdateImagePage1(input: UpdateImage!): PortfolioPage1!
+  portfolioDeletePage1(id: String!): String!
+  portfolioDeletePages1(ids: [String!]!): [String!]!
+  portfolioDeleteAllPages1: String!
+  portfolioCreatePage2(input: CreatePage!): PortfolioPage2!
+  portfolioUpdatePage2(input: UpdatePage!): PortfolioPage2!
+  portfolioUpdateImagePage2(input: UpdateImage!): PortfolioPage2!
+  portfolioDeletePage2(id: String!): String!
+  portfolioDeletePages2(ids: [String!]!): [String!]!
+  portfolioDeleteAllPages2: String!
+  portfolioCreatePage3(input: CreatePage!): PortfolioPage3!
+  portfolioUpdatePage3(input: UpdatePage!): PortfolioPage3!
+  portfolioUpdateImagePage3(input: UpdateImage!): PortfolioPage3!
+  portfolioDeletePage3(id: String!): String!
+  portfolioDeletePages3(ids: [String!]!): [String!]!
+  portfolioDeleteAllPages3: String!
+  portfolioCreatePage4(input: CreatePage!): PortfolioPage4!
+  portfolioUpdatePage4(input: UpdatePage!): PortfolioPage4!
+  portfolioUpdateImagePage4(input: UpdateImage!): PortfolioPage4!
+  portfolioDeletePage4(id: String!): String!
+  portfolioDeletePages4(ids: [String!]!): [String!]!
+  portfolioDeleteAllPages4: String!
+  portfolioCreatePage5(input: CreatePage!): PortfolioPage5!
+  portfolioUpdatePage5(input: UpdatePage!): PortfolioPage5!
+  portfolioUpdateImagePage5(input: UpdateImage!): PortfolioPage5!
+  portfolioDeletePage5(id: String!): String!
+  portfolioDeletePages5(ids: [String!]!): [String!]!
+  portfolioDeleteAllPages5: String!
+  portfolioCreatePage6(input: CreatePage!): PortfolioPage6!
+  portfolioUpdatePage6(input: UpdatePage!): PortfolioPage6!
+  portfolioUpdateImagePage6(input: UpdateImage!): PortfolioPage6!
+  portfolioDeletePage6(id: String!): String!
+  portfolioDeletePages6(ids: [String!]!): [String!]!
+  portfolioDeleteAllPages6: String!
+  portfolioCreatePage7(input: CreatePage!): PortfolioPage7!
+  portfolioUpdatePage7(input: UpdatePage!): PortfolioPage7!
+  portfolioUpdateImagePage7(input: UpdateImage!): PortfolioPage7!
+  portfolioDeletePage7(id: String!): String!
+  portfolioDeletePages7(ids: [String!]!): [String!]!
+  portfolioDeleteAllPages7: String!
+  portfolioCreatePage8(input: CreatePage!): PortfolioPage8!
+  portfolioUpdatePage8(input: UpdatePage!): PortfolioPage8!
+  portfolioUpdateImagePage8(input: UpdateImage!): PortfolioPage8!
+  portfolioDeletePage8(id: String!): String!
+  portfolioDeletePages8(ids: [String!]!): [String!]!
+  portfolioDeleteAllPages8: String!
+  portfolioCreatePage9(input: CreatePage!): PortfolioPage9!
+  portfolioUpdatePage9(input: UpdatePage!): PortfolioPage9!
+  portfolioUpdateImagePage9(input: UpdateImage!): PortfolioPage9!
+  portfolioDeletePage9(id: String!): String!
+  portfolioDeletePages9(ids: [String!]!): [String!]!
+  portfolioDeleteAllPages9: String!
+  portfolioCreatePage10(input: CreatePage!): PortfolioPage10!
+  portfolioUpdatePage10(input: UpdatePage!): PortfolioPage10!
+  portfolioUpdateImagePage10(input: UpdateImage!): PortfolioPage10!
+  portfolioDeletePage10(id: String!): String!
+  portfolioDeletePages10(ids: [String!]!): [String!]!
+  portfolioDeleteAllPages10: String!
+  portfolioCreatePage11(input: CreatePage!): PortfolioPage11!
+  portfolioUpdatePage11(input: UpdatePage!): PortfolioPage11!
+  portfolioUpdateImagePage11(input: UpdateImage!): PortfolioPage11!
+  portfolioDeletePage11(id: String!): String!
+  portfolioDeletePages11(ids: [String!]!): [String!]!
+  portfolioDeleteAllPages11: String!
+  portfolioCreatePage12(input: CreatePage!): PortfolioPage12!
+  portfolioUpdatePage12(input: UpdatePage!): PortfolioPage12!
+  portfolioUpdateImagePage12(input: UpdateImage!): PortfolioPage12!
+  portfolioDeletePage12(id: String!): String!
+  portfolioDeletePages12(ids: [String!]!): [String!]!
+  portfolioDeleteAllPages12: String!
+  portfolioCreateProduct(input: CreateProduct!): PortfolioProduct!
+  portfolioUpdateProduct(input: UpdateProduct!): PortfolioProduct!
+  portfolioUpdateDetailProduct(input: UpdateDetailProduct!): PortfolioProduct!
+  portfolioUpdatePriceProduct(input: UpdatePriceProduct!): PortfolioProduct!
+  portfolioUpdateSpecsProduct(input: UpdateSpecsProduct!): PortfolioProduct!
+  portfolioUpdateTagsProduct(input: UpdateTagsProduct!): PortfolioProduct!
+  portfolioUpdateLikesProduct(input: UpdateLikesProduct!): PortfolioProduct!
+  portfolioUpdateDisLikesProduct(input: UpdateLikesProduct!): PortfolioProduct!
+  portfolioUpdateImageProduct(input: UpdateImageProduct!): PortfolioProduct!
+  portfolioDeleteProduct(id: String!): String!
+  portfolioDeleteProducts(ids: [String!]!): [String!]!
+  portfolioDeleteAllProducts: String!
+  portfolioCreateComment(input: CreateComment!): PortfolioComment!
+  portfolioUpdateComment(input: UpdateComment!): PortfolioComment!
+  portfolioUpdateLikesComment(input: UpdateLikesComment!): PortfolioComment!
+  portfolioUpdateDisLikesComment(input: UpdateLikesComment!): PortfolioComment!
+  portfolioDeleteComment(id: String!): String!
+  portfolioDeleteComments(ids: [String!]!): [String!]!
+  portfolioDeleteAllComments: String!
+  portfolioCreateArticle(input: CreateArticle!): PortfolioArticle!
+  portfolioUpdateArticle(input: UpdateArticle!): PortfolioArticle!
+  portfolioUpdateContentArticle(input: UpdateContentArticle!): PortfolioArticle!
+  portfolioUpdateTagsArticle(input: UpdateTagsArticle!): PortfolioArticle!
+  portfolioUpdateLikesArticle(input: UpdateLikesArticle!): PortfolioArticle!
+  portfolioUpdateDisLikesArticle(input: UpdateLikesArticle!): PortfolioArticle!
+  portfolioUpdateImageArticle(input: UpdateImage!): PortfolioArticle!
+  portfolioDeleteArticle(id: String!): String!
+  portfolioDeleteArticles(ids: [String!]!): [String!]!
+  portfolioDeleteAllArticles: String!
+  portfolioCreateUser(input: CreateUser!): PortfolioUser!
+  portfolioCreateTeam(input: CreateTeam!): PortfolioTeam!
+  portfolioUpdateTeam(input: UpdateTeam!): PortfolioTeam!
+  portfolioUpdateDetailTeam(input: UpdateDetailTeam!): PortfolioTeam!
+  portfolioUpdateSpecsTeam(input: UpdateSpecsTeam!): PortfolioTeam!
+  portfolioUpdateTagsTeam(input: UpdateTagsTeam!): PortfolioTeam!
+  portfolioUpdateLikesTeam(input: UpdateLikesTeam!): PortfolioTeam!
+  portfolioUpdateDisLikesTeam(input: UpdateLikesTeam!): PortfolioTeam!
+  portfolioUpdateImageSeoTeam(input: UpdateImageSeo!): PortfolioTeam!
+  portfolioDeleteTeam(id: String!): String!
+  portfolioDeleteTeams(ids: [String!]!): [String!]!
+  portfolioDeleteAllTeams: String!
   petCreateService(input: CreateService!): PetService!
   petUpdateService(input: UpdateService!): PetService!
   petUpdateDetailService(input: UpdateDetailService!): PetService!
@@ -1485,6 +2191,17 @@ type Mutation {
   petDeleteService(id: String!): String!
   petDeleteServices(ids: [String!]!): [String!]!
   petDeleteAllServices: String!
+  portfolioCreateService(input: CreateService!): PortfolioService!
+  portfolioUpdateService(input: UpdateService!): PortfolioService!
+  portfolioUpdateDetailService(input: UpdateDetailService!): PortfolioService!
+  portfolioUpdatePriceService(input: UpdatePriceService!): PortfolioService!
+  portfolioUpdateSpecsService(input: UpdateSpecsService!): PortfolioService!
+  portfolioUpdateTagsService(input: UpdateTagsService!): PortfolioService!
+  portfolioUpdateLikesService(input: UpdateLikesService!): PortfolioService!
+  portfolioUpdateDisLikesService(input: UpdateLikesService!): PortfolioService!
+  portfolioDeleteService(id: String!): String!
+  portfolioDeleteServices(ids: [String!]!): [String!]!
+  portfolioDeleteAllServices: String!
 }
 
 input CreateSite {

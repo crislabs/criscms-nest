@@ -16,5 +16,6 @@ export class ServiceDocument extends AbstractDocument {
 // export const HardwareStoreServiceSchema = SchemaFactory.createForClass(ServiceDocument);
 
 export const PetServiceSchema = SchemaFactory.createForClass(ServiceDocument);
+export const PortfolioServiceSchema = SchemaFactory.createForClass(ServiceDocument);
 // export const PetServiceSchema = SchemaFactory.createForClass(ServiceDocument);
 // export const FoodServiceSchema = SchemaFactory.createForClass(ServiceDocument);
